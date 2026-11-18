@@ -49,7 +49,7 @@ export default function TextSection({ blok }: Props) {
     <section className="section-pad intro-section" {...storyblokEditable(blok)}>
       <div className="container-shell grid gap-10 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
         <div><p className="eyebrow"><EyebrowIcon size={16} /> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight} /></h2></div>
-        <div className="prose-copy">{paragraphs.map((paragraph, index) => <p className={index ? "mt-4" : ""} key={index}>{paragraph}</p>)}<Link href={blok.link_url || "/about"} className="text-link mt-5">{blok.link_text || "Get to know Lily Pads & Poppy Paws"} <span aria-hidden="true">→</span></Link></div>
+        <div className="prose-copy">{paragraphs.map((paragraph, index) => <p className={index ? "mt-4" : ""} key={index}>{paragraph}</p>)}<Link href={blok.link_url || "/about"} className="text-link mt-5">{blok.link_text || "Get to know Lily Pads & Poppy Paws"}</Link></div>
       </div>
     </section>
   );
@@ -61,7 +61,7 @@ export default function TextSection({ blok }: Props) {
         <div><p className="eyebrow"><HeartHandshake size={16} /> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight} /></h2>
           {paragraphs.map((paragraph,index)=><p className="mt-5 leading-8 text-slate-600" key={index}>{paragraph}</p>)}
           <ul className="feature-list mt-6"><li><ShieldCheck size={20} /> {blok.feature_one || "Qualified and insured dog groomer"}</li><li><PawPrint size={20} /> {blok.feature_two || "Grooming options from nail clips to full grooms"}</li><li><MapPin size={20} /> {blok.feature_three || "Conveniently based in Hemel Hempstead"}</li></ul>
-          <Link href={blok.link_url || "/faqs"} className="text-link mt-7">{blok.link_text || "Read our grooming FAQs"} <span aria-hidden="true">→</span></Link>
+          <Link href={blok.link_url || "/faqs"} className="text-link mt-7">{blok.link_text || "Read our grooming FAQs"}</Link>
         </div>
       </div>
     </section>
@@ -71,7 +71,7 @@ export default function TextSection({ blok }: Props) {
     <section className="section-pad about-image-band" {...storyblokEditable(blok)}>
       <div className="container-shell grid gap-8 md:grid-cols-2 md:items-center">
         <Image src={blok.image?.filename || blok.image_url || "/images/1.jpg"} alt={blok.image_alt || "Illustrated dog in the Lily Pads & Poppy Paws aqua and blue brand artwork"} width={1000} height={900} className="about-secondary-image" />
-        <div><p className="eyebrow"><Sparkles size={16}/> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-5 leading-8 text-slate-600" key={index}>{paragraph}</p>)}<Link href={blok.link_url || "/contact"} className="text-link mt-6">{blok.link_text || "Come and say hello"} <span aria-hidden="true">→</span></Link></div>
+        <div><p className="eyebrow"><Sparkles size={16}/> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-5 leading-8 text-slate-600" key={index}>{paragraph}</p>)}<Link href={blok.link_url || "/contact"} className="text-link mt-6">{blok.link_text || "Come and say hello"}</Link></div>
       </div>
     </section>
   );
@@ -82,7 +82,7 @@ export default function TextSection({ blok }: Props) {
         <div><p className="eyebrow"><MapPin size={16} /> {eyebrow || "Your local dog groomer"}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight} /></h2>
           {(eyebrow.toLowerCase().includes("your local dog groomer") ? paragraphs.slice(0, 1) : []).map((paragraph,index)=><p className="mt-5 max-w-xl leading-8 text-slate-600" key={index}>{paragraph}</p>)}
           <address className="mt-5 not-italic font-bold leading-7 text-navy">{blok.address_line_1 || "Lily Pads & Poppy Paws"}<br />{blok.address_line_2 || "42 Lomond Road"}<br />{blok.address_line_3 || "Hemel Hempstead"}<br />{blok.address_line_4 || "HP2 6PA"}</address>
-          <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}>{blok.primary_button_text || "Call to enquire"}</a><a className="button-secondary" href={blok.directions_url || "https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA"} target="_blank" rel="noreferrer">{blok.secondary_button_text || "Get directions"} <span aria-hidden="true">↗</span></a></div>
+          <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}>{blok.primary_button_text || "Call to enquire"}</a><a className="button-secondary" href={blok.directions_url || "https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA"} target="_blank" rel="noreferrer">{blok.secondary_button_text || "Get directions"}</a></div>
         </div>
         <div className="map-frame"><iframe title={blok.map_title || "Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA"} src={blok.map_embed_url || "https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed"} width="100%" height="390" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
       </div>
