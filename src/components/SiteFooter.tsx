@@ -6,6 +6,7 @@ import { business } from "@/lib/business";
 type FooterLink = { _uid?: string; label?: string; href?: string };
 type SiteSettings = {
   logo?: { filename?: string; alt?: string };
+  logo_url?: string;
   logo_alt?: string;
   brand_name?: string;
   footer_description?: string;
@@ -31,7 +32,7 @@ const defaultFooterLinks = [
 ];
 
 export default function SiteFooter({ settings }: { settings?: SiteSettings | null }) {
-  const logoSrc = settings?.logo?.filename || "/images/2.jpeg";
+  const logoSrc = settings?.logo?.filename || settings?.logo_url || "/images/2.jpeg";
   const brandName = settings?.brand_name || business.name;
   const phone = settings?.phone_link || `tel:${business.telephone}`;
   const phoneDisplay = settings?.phone_display || business.telephoneDisplay;
