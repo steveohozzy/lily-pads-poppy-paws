@@ -3,6 +3,7 @@ import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
 import { business } from "@/lib/business";
+import { getSiteSettings } from "@/lib/storyblok";
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.domain),
@@ -22,15 +23,16 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const settings = await getSiteSettings();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: business.name,
-    description: business.description,
+    name: settings?.brand_name || business.name,
+    description: settings?.footer_description || business.description,
     url: business.domain,
     telephone: business.telephone,
-    image: `${business.domain}/images/2.jpeg`,
+    image: settings?.logo?.filename || `${business.domain}/images/2.jpeg`,
     address: {
       "@type": "PostalAddress",
       streetAddress: business.address.streetAddress,
@@ -39,7 +41,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressRegion: business.address.addressRegion,
       addressCountry: business.address.addressCountry
     },
-    sameAs: [business.facebook, business.instagram],
+    sameAs: [settings?.facebook_url || business.facebook, settings?.instagram_url || business.instagram],
     areaServed: [
       { "@type": "City", name: "Hemel Hempstead" },
       { "@type": "AdministrativeArea", name: "Hertfordshire" }
@@ -66,9 +68,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en-GB">
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        <SiteHeader />
+        <SiteHeader settings={settings} />
         <main>{children}</main>
-        <SiteFooter />
+        <SiteFooter settings={settings} />
       </body>
     </html>
   );
