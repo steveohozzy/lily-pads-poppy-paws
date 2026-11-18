@@ -2,8 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { PawPrint, Phone, ShieldCheck } from "lucide-react";
 import { storyblokEditable } from "@storyblok/react/rsc";
+import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { eyebrow?: string; heading?: string; intro?: string; image?: { filename?: string; alt?: string }; button_text?: string; button_link?: string } };
+type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; button_text?: string; button_link?: string } };
 
 export default function Hero({ blok }: Props) {
   return (
@@ -11,7 +12,7 @@ export default function Hero({ blok }: Props) {
       <div className="container-shell hero-layout grid gap-8 py-12 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:py-16">
         <div className="relative z-10">
           <p className="eyebrow"><PawPrint size={16} /> {blok.eyebrow || "Dog grooming in Hemel Hempstead"}</p>
-          <h1 className="display-heading mt-5">{blok.heading || "Happy dogs. Lovely fresh trims."}</h1>
+          <h1 className="display-heading mt-5"><HighlightedText text={blok.heading || "Happy dogs. Lovely fresh trims."} highlight={blok.highlight} /></h1>
           <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a className="button-primary" href="tel:07752027606"><Phone size={18} /> Call 07752 027606</a>
