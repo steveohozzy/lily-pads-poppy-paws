@@ -33,24 +33,24 @@ const pageSeo: Record<string, { title: string; description: string }> = {
     description: "Looking for a dog groomer in Hemel Hempstead? Lily Pads & Poppy Paws is qualified and insured, offering nail clips to full grooms for all breeds. Call to enquire."
   },
   about: {
-    title: "About Lily Pads & Poppy Paws | Hemel Hempstead Dog Groomer",
-    description: "Meet Lily Pads & Poppy Paws, a qualified and insured dog grooming business in Hemel Hempstead, Hertfordshire. All breeds welcome."
+    title: "About Your Local Dog Groomer | Hemel Hempstead",
+    description: "Get to know Lily Pads & Poppy Paws, a qualified and insured dog grooming business in Hemel Hempstead. Friendly grooming enquiries for all breeds."
   },
   services: {
-    title: "Dog Grooming Services | Hemel Hempstead | Lily Pads & Poppy Paws",
-    description: "Explore dog grooming in Hemel Hempstead, from nail clipping to full grooms for all breeds. Contact Lily Pads & Poppy Paws to discuss your dog's needs and prices."
+    title: "Dog Grooming Services in Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Find out about dog nail clipping and full grooms in Hemel Hempstead. All breeds welcome. Contact Lily Pads & Poppy Paws to discuss your dog's needs and prices."
   },
   gallery: {
-    title: "Dog Grooming Gallery | Lily Pads & Poppy Paws",
-    description: "See the Lily Pads & Poppy Paws dog grooming gallery. Follow our latest updates and lovely four-legged visitors in Hemel Hempstead."
+    title: "Gallery | Lily Pads & Poppy Paws Dog Grooming",
+    description: "Explore the Lily Pads & Poppy Paws brand gallery and dog grooming imagery from Hemel Hempstead, Hertfordshire."
   },
   faqs: {
-    title: "Dog Grooming FAQs | Hemel Hempstead | Lily Pads & Poppy Paws",
-    description: "Answers to common questions about dog grooming, services, prices and appointments at Lily Pads & Poppy Paws in Hemel Hempstead."
+    title: "Dog Grooming FAQs in Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Answers about dog grooming services, nail clipping, prices and appointments at Lily Pads & Poppy Paws in Hemel Hempstead."
   },
   contact: {
     title: "Contact a Dog Groomer in Hemel Hempstead | Lily Pads & Poppy Paws",
-    description: "Contact Lily Pads & Poppy Paws for dog grooming enquiries, prices and appointments. Find us at 42 Lomond Road, Hemel Hempstead, HP2 6PA."
+    description: "Contact Lily Pads & Poppy Paws about dog grooming, nail clipping, prices and appointments. Find us at 42 Lomond Road, Hemel Hempstead, HP2 6PA."
   },
   privacy: {
     title: "Privacy Policy | Lily Pads & Poppy Paws",
@@ -67,7 +67,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
     title: `${path.charAt(0).toUpperCase()}${path.slice(1)} | Lily Pads & Poppy Paws`,
     description: "Qualified and insured dog groomer in Hemel Hempstead. Contact Lily Pads & Poppy Paws to discuss dog grooming services, prices and appointments."
   };
-  const pageTitle = content.seo_title || content.title || fallback.title;
+  const pageTitle = content.seo_title || fallback.title;
   const description = content.seo_description || fallback.description;
   const canonical = `${business.domain}${path === "home" ? "" : `/${path}`}`;
   return {
