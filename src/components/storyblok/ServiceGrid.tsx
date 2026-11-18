@@ -1,7 +1,6 @@
 import { StoryblokServerComponent } from "@storyblok/react/rsc";
 import { PawPrint, Scissors, Sparkles, Heart } from "lucide-react";
 import { services } from "@/lib/business";
-import { GroomingPicker } from "@/components/FallbackInteractions";
 import HighlightedText from "./HighlightedText";
 
 type Props = { blok: { _uid: string; heading?: string; highlight?: string; intro?: string; show_prices?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
@@ -25,7 +24,6 @@ export default function ServiceGrid({ blok }: Props) {
           <div className="mt-9 text-center"><a href="/services" className="button-secondary">See all service information <span aria-hidden="true">→</span></a></div>
         </div>
       </section>
-      <section className="section-pad picker-section"><div className="container-shell"><GroomingPicker /></div></section>
     </>
   );
 }
