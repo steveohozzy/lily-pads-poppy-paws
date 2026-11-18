@@ -16,11 +16,21 @@ const defaultHighlights = [
 ];
 
 export default function HighlightedText({ text = "", highlight }: Props) {
-  const phrase = highlight || defaultHighlights.find((candidate) => text.toLowerCase().includes(candidate.toLowerCase()));
+  const phrase = highlight?.trim() || defaultHighlights.find((candidate) => text.toLowerCase().includes(candidate.toLowerCase()));
   if (!phrase) return <>{text}</>;
 
   const index = text.toLowerCase().indexOf(phrase.toLowerCase());
-  if (index === -1) return <>{text}</>;
+
+  // Storyblok editors can enter the highlighted phrase in its own field.
+  // If it is not already in the heading, append it as the highlighted ending.
+  if (index === -1) {
+    return (
+      <>
+        {text}{text && !/\s$/.test(text) ? " " : ""}
+        <span>{phrase}</span>
+      </>
+    );
+  }
 
   return (
     <>
