@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Menu, Phone, X, ChevronRight } from "lucide-react";
+import { Menu, Phone, X, ChevronRight, PawPrint } from "lucide-react";
 import { business } from "@/lib/business";
 
 type NavItem = { _uid?: string; label?: string; href?: string };
@@ -120,7 +120,7 @@ export default function SiteHeader({ settings }: { settings?: SiteSettings | nul
           <nav id="mobile-menu-panel" className="mobile-menu-panel" aria-label="Mobile navigation">
             <div className="mobile-menu-heading">
               <span>Where would you like to go?</span>
-              <span className="mobile-menu-paw" aria-hidden="true">🐾</span>
+              <PawPrint className="mobile-menu-paw" aria-hidden="true" size={25} />
             </div>
             {links.map(([label, href], index) => (
               <Link key={href} href={href} className="mobile-menu-link" onClick={closeMenu}>
