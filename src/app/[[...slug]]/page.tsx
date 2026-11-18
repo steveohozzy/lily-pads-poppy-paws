@@ -33,7 +33,7 @@ const pageSeo: Record<string, { title: string; description: string }> = {
     description: "Looking for a dog groomer in Hemel Hempstead? Lily Pads & Poppy Paws is qualified and insured, offering nail clips to full grooms for all breeds. Call to enquire."
   },
   about: {
-    title: "About Your Local Dog Groomer | Hemel Hempstead",
+    title: "About Lily Pads & Poppy Paws | Dog Groomer Hemel Hempstead",
     description: "Get to know Lily Pads & Poppy Paws, a qualified and insured dog grooming business in Hemel Hempstead. Friendly grooming enquiries for all breeds."
   },
   services: {
