@@ -16,7 +16,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="container-shell header-inner">
         <Link href="/" className="brand-lockup" aria-label="Lily Pads & Poppy Paws — dog grooming in Hemel Hempstead">
-          <Image src="/images/brand-reference-logo.jpeg" alt="" width={72} height={72} priority className="brand-logo-image" />
+          <Image src="/images/brand-reference-logo.jpeg" alt="" width={72} height={72} className="brand-logo-image" />
           <span className="brand-name">Lily Pads <span>&</span><br />Poppy Paws</span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
