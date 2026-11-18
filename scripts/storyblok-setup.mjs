@@ -715,7 +715,7 @@ function applyEditableDefaults(pageSlug, body) {
         image_url: isHome || pageSlug === "services" ? "/images/1.jpg" : "/images/3.jpg",
         image_alt: isHome ? "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style" : "Lily Pads & Poppy Paws dog grooming illustration",
         layout: pageSlug === "gallery" || pageSlug === "faqs" ? "centered" : "illustrated",
-        paint_note: pageSlug === "services" ? "Freshen up\\nyour fluff!" : pageSlug === "contact" ? "Come say\\nhello!" : "A little kindness\\ngoes a long way",
+        paint_note: pageSlug === "services" ? "Freshen up\nyour fluff!" : pageSlug === "contact" ? "Come say\nhello!" : "A little kindness\ngoes a long way",
         phone_link: "tel:07752027606",
         phone_text: isHome ? "Call 07752 027606" : pageSlug === "about" ? "Have a chat" : pageSlug === "services" ? "Call for a quote" : "Call 07752 027606",
         button_text: isHome ? "Call 07752 027606" : pageSlug === "about" ? "Have a chat" : pageSlug === "services" ? "Call for a quote" : "Call 07752 027606",
@@ -755,8 +755,8 @@ function applyEditableDefaults(pageSlug, body) {
       const eyebrow = (blokItem.eyebrow || "").toLowerCase();
       const heading = (blokItem.heading || "").toLowerCase();
       if (eyebrow.includes("welcome to our little grooming")) {
-        if ((blokItem.body || "").includes("\\n\\nGet to know Lily Pads & Poppy Paws by visiting our About page.")) {
-          blokItem.body = blokItem.body.replace("\\n\\nGet to know Lily Pads & Poppy Paws by visiting our About page.", "");
+        if ((blokItem.body || "").includes("\n\nGet to know Lily Pads & Poppy Paws by visiting our About page.")) {
+          blokItem.body = blokItem.body.replace("\n\nGet to know Lily Pads & Poppy Paws by visiting our About page.", "");
           changed = true;
         }
         fill(blokItem, {
