@@ -31,13 +31,13 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     name: settings?.brand_name || business.name,
     description: settings?.footer_description || business.description,
     url: business.domain,
-    telephone: business.telephone,
+    telephone: settings?.phone_display || business.telephoneDisplay,
     image: settings?.logo?.filename || `${business.domain}/images/2.jpeg`,
     address: {
       "@type": "PostalAddress",
-      streetAddress: business.address.streetAddress,
-      addressLocality: business.address.addressLocality,
-      postalCode: business.address.postalCode,
+      streetAddress: settings?.address_line_1 || business.address.streetAddress,
+      addressLocality: settings?.address_line_2 || business.address.addressLocality,
+      postalCode: settings?.address_line_3 || business.address.postalCode,
       addressRegion: business.address.addressRegion,
       addressCountry: business.address.addressCountry
     },
