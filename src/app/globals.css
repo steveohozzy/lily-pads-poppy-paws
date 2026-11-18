@@ -1069,3 +1069,22 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
     animation:none !important;
   }
 }
+
+
+/* Keep gallery captions clearly visible over every photograph. */
+.gallery-showcase-tile .gallery-tile-caption {
+  z-index:2;
+  align-items:center;
+  background:rgba(8,40,79,.94);
+  color:#fff;
+  box-shadow:0 4px 14px #08284f35;
+  font-size:14px;
+  line-height:1.35;
+  opacity:1;
+  visibility:visible;
+}
+.gallery-showcase-tile .gallery-tile-caption > span {
+  flex:0 0 auto;
+  color:#8fe3f1;
+  font-size:18px;
+}
