@@ -786,6 +786,7 @@ async function main() {
       continue;
     }
 
+    applyEditableDefaults(page.slug, page.body);
     await request("stories", {
       method: "POST",
       body: JSON.stringify({
