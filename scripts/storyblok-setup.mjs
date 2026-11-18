@@ -130,6 +130,11 @@ const components = [
         { name: "Illustrated", value: "illustrated" },
         { name: "Centered", value: "centered" }
       ] }),
+      eyebrow_icon: field("option", { options: [
+        { name: "Paw", value: "paw" },
+        { name: "Heart", value: "heart" },
+        { name: "Sparkles", value: "sparkles" }
+      ] }),
       show_secondary_button: field("boolean", { default_value: true }),
       button_text: text(),
       button_link: field("multilink"),
@@ -715,6 +720,7 @@ function applyEditableDefaults(pageSlug, body) {
         image_url: isHome || pageSlug === "services" ? "/images/1.jpg" : "/images/3.jpg",
         image_alt: isHome ? "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style" : "Lily Pads & Poppy Paws dog grooming illustration",
         layout: pageSlug === "gallery" || pageSlug === "faqs" ? "centered" : "illustrated",
+        eyebrow_icon: pageSlug === "home" || pageSlug === "gallery" ? "paw" : pageSlug === "services" ? "sparkles" : "heart",
         paint_note: pageSlug === "services" ? "Freshen up\nyour fluff!" : pageSlug === "contact" ? "Come say\nhello!" : "A little kindness\ngoes a long way",
         phone_link: "tel:07752027606",
         phone_text: isHome ? "Call 07752 027606" : pageSlug === "about" ? "Have a chat" : pageSlug === "services" ? "Call for a quote" : "Call 07752 027606",
