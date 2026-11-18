@@ -25,12 +25,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "PetGroomer",
+    "@type": "LocalBusiness",
     name: business.name,
     description: business.description,
     url: business.domain,
     telephone: business.telephone,
-    image: `${business.domain}/images/lily-pads-poppy-paws-brand.jpg`,
+    image: `${business.domain}/images/brand-reference-logo.jpeg`,
     address: {
       "@type": "PostalAddress",
       streetAddress: business.address.streetAddress,
@@ -39,7 +39,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressRegion: business.address.addressRegion,
       addressCountry: business.address.addressCountry
     },
-    sameAs: [business.facebook, business.instagram]
+    sameAs: [business.facebook, business.instagram],
+    priceRange: "$",
+    areaServed: { "@type": "City", name: "Hemel Hempstead" }
   };
 
   return (
