@@ -42,8 +42,6 @@ export function HomeFallback() {
         <div className="hero-wave" aria-hidden="true" />
       </section>
 
-      <div className="paw-ticker" aria-label="Dog grooming in Hemel Hempstead and Hertfordshire"><div className="paw-ticker-track"><span>Happy paws, happy hearts</span><span aria-hidden="true">✦</span><span>Dog grooming in Hemel Hempstead</span><span aria-hidden="true">✦</span><span>All breeds welcome</span><span aria-hidden="true">✦</span><span>Qualified & insured</span><span aria-hidden="true">✦</span><span>Happy paws, happy hearts</span><span aria-hidden="true">✦</span><span>Dog grooming in Hemel Hempstead</span><span aria-hidden="true">✦</span><span>All breeds welcome</span><span aria-hidden="true">✦</span><span>Qualified & insured</span><span aria-hidden="true">✦</span></div></div>
-
       <section className="trust-ribbon" aria-label="About our dog grooming service">
         <div className="container-shell">
           <span><PawPrint size={17} /> A warm welcome for every breed</span>
