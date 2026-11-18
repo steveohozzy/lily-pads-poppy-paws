@@ -11,7 +11,7 @@ export default function Hero({ blok }: Props) {
   const heading = blok.heading || "Happy dogs. Lovely fresh trims.";
   const isServices = heading.toLowerCase().includes("service");
   const isContact = heading.toLowerCase().includes("contact");
-  const paintNote = blok.paint_note || (isServices ? "Freshen up\\nyour fluff!" : isContact ? "Come say\\nhello!" : "A little kindness\\ngoes a long way");
+  const paintNote = blok.paint_note || (isServices ? "Freshen up\nyour fluff!" : isContact ? "Come say\nhello!" : "A little kindness\ngoes a long way");
   const pageArtClass = isServices ? "page-art-services" : isContact ? "page-art-contact" : "page-art-about";
   const pageButtonText = blok.phone_text || blok.button_text || (isServices ? "Call for a quote" : isContact ? "Call 07752 027606" : "Have a chat");
   const secondaryHref = blok.secondary_button_link || (typeof blok.button_link === "string" ? blok.button_link : blok.button_link?.cached_url || blok.button_link?.url) || "/services";
@@ -36,7 +36,7 @@ export default function Hero({ blok }: Props) {
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
             <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a>{blok.show_secondary_button !== false && <Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link>}</div>
           </div>
-          <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote.split("\\n").map((line, index) => <span key={index}>{index > 0 && <br/>}{line}</span>)}</span></div>
+          <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote.split("\n").map((line, index) => <span key={index}>{index > 0 && <br/>}{line}</span>)}</span></div>
         </div>
       </section>
     </>
