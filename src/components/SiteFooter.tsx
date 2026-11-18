@@ -51,7 +51,7 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
         <div>
           <div className="brand-lockup text-white">
             <Image src={logoSrc} alt={settings?.logo?.alt || settings?.logo_alt || `${brandName} logo`} width={76} height={76} className="footer-brand-logo" />
-            <span className="brand-name">{brandName}</span>
+            <span className="brand-name">{brandName.includes("&") ? <>{brandName.split("&")[0].trim()} <span>&</span><br/>{brandName.split("&").slice(1).join("&").trim()}</> : brandName}</span>
           </div>
           <p className="mt-5 max-w-sm leading-7 text-sky-100">{settings?.footer_description || business.description}</p>
         </div>
