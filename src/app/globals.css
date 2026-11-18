@@ -1192,3 +1192,58 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
   .site-header,.mobile-menu-link { transition:none; }
   .mobile-menu-panel { animation:none; }
 }
+
+/* Mobile production fixes: prevent decorative artwork from widening the viewport. */
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+body { position: relative; }
+.container-shell,
+.hero-layout,
+.hero-copy,
+.hero-art,
+.section-pad,
+.why-section,
+.why-section .container-shell,
+.services-section .container-shell {
+  min-width: 0;
+  max-width: 100%;
+}
+img, svg, iframe { max-width: 100%; }
+@media (max-width: 767px) {
+  .services-section::after,
+  .why-section::after {
+    content: none !important;
+    display: none !important;
+    background: none !important;
+  }
+  .services-section {
+    padding-bottom: 58px;
+    overflow: clip;
+  }
+  .why-art-illustration {
+    width: min(100%, 360px);
+    min-height: 320px;
+    transform: none;
+  }
+  .why-art-illustration .why-art-paw {
+    width: 128px;
+    height: 128px;
+  }
+  .why-art-illustration .why-art-caption {
+    right: 3%;
+    bottom: 8%;
+    max-width: 72%;
+    font-size: 13px;
+  }
+  .why-section .container-shell > * {
+    min-width: 0;
+  }
+  .feature-list li {
+    align-items: flex-start;
+    min-width: 0;
+  }
+  .feature-list li svg { margin-top: 3px; }
+}
