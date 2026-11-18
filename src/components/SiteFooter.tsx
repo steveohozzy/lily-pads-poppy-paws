@@ -12,7 +12,7 @@ export default function SiteFooter() {
             <Image src="/images/2.jpeg" alt="Lily Pads & Poppy Paws logo" width={76} height={76} className="footer-brand-logo" />
             <span className="brand-name">Lily Pads <span>&</span><br />Poppy Paws</span>
           </div>
-          <p className="mt-5 max-w-sm leading-7 text-sky-100">Qualified and insured dog groomer in Hemel Hempstead. Everything available from nail clips to full grooms for all breeds.</p>
+          <p className="mt-5 max-w-sm leading-7 text-sky-100">Qualified and insured dog grooming in Hemel Hempstead, Hertfordshire. Enquire about nail clipping and full grooms for all breeds.</p>
         </div>
         <div>
           <h2 className="footer-heading">Find us</h2>
