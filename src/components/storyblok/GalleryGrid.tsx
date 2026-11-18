@@ -9,7 +9,7 @@ export default function GalleryGrid({ blok }: Props) {
           {(blok.images || []).map((image, index) => (
             <div className="gallery-tile" key={`${image.filename}-${index}`}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={image.filename} alt={image.alt || "Dog groomed by Lily Pads & Poppy Paws"} loading="lazy" />
+              <img src={image.filename} alt={image.alt || "Dog grooming gallery photograph for Lily Pads & Poppy Paws"} loading="lazy" />
             </div>
           ))}
         </div>
