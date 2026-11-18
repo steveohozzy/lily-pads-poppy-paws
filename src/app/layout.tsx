@@ -42,6 +42,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${business.domain}/#business`,
     name: settings?.brand_name || business.name,
     description: settings?.footer_description || business.description,
     url: business.domain,
@@ -56,10 +57,6 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       addressCountry: business.address.addressCountry
     },
     sameAs: [settings?.facebook_url || business.facebook, settings?.instagram_url || business.instagram],
-    areaServed: [
-      { "@type": "City", name: "Hemel Hempstead" },
-      { "@type": "AdministrativeArea", name: "Hertfordshire" }
-    ],
     knowsAbout: ["Dog grooming", "Dog nail clipping", "Full dog grooms"],
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/Tuesday", opens: "09:00", closes: "17:00" },
