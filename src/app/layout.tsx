@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     ? { index: false, follow: false }
     : { index: true, follow: true },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    shortcut: ["/icon.svg"],
-    apple: [{ url: "/icon.svg", type: "image/svg+xml" }]
+    icon: [{ url: "/images/2.jpeg", type: "image/jpeg" }],
+    shortcut: ["/images/2.jpeg"],
+    apple: [{ url: "/images/2.jpeg", type: "image/jpeg" }]
   },
   openGraph: {
     type: "website",
