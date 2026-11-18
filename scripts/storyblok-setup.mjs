@@ -80,6 +80,7 @@ const components = [
     schema: {
       eyebrow: text(),
       heading: text(),
+      highlight: text(),
       intro: textarea(),
       image: field("asset"),
       button_text: text(),
@@ -94,6 +95,7 @@ const components = [
     schema: {
       eyebrow: text(),
       heading: text(),
+      highlight: text(),
       body: textarea()
     }
   },
@@ -104,6 +106,7 @@ const components = [
     is_nestable: true,
     schema: {
       heading: text(),
+      highlight: text(),
       intro: textarea(),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
@@ -128,6 +131,7 @@ const components = [
     is_nestable: true,
     schema: {
       heading: text(),
+      highlight: text(),
       items: bloks(["faq_item"])
     }
   },
@@ -158,6 +162,7 @@ const components = [
     is_nestable: true,
     schema: {
       heading: text(),
+      highlight: text(),
       body: textarea(),
       button_text: text()
     }
