@@ -40,7 +40,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressCountry: business.address.addressCountry
     },
     sameAs: [business.facebook, business.instagram],
-    areaServed: { "@type": "City", name: "Hemel Hempstead" }
+    areaServed: [
+      { "@type": "City", name: "Hemel Hempstead" },
+      { "@type": "AdministrativeArea", name: "Hertfordshire" }
+    ],
+    knowsAbout: ["Dog grooming", "Dog nail clipping", "Full dog grooms"]
   };
 
   return (
