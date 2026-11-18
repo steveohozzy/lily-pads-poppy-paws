@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 const spaceId = process.env.STORYBLOK_SPACE_ID || "296657281586236";
 const token = process.env.STORYBLOK_MANAGEMENT_TOKEN;
 const baseUrl = "https://mapi.storyblok.com/v1";
-const publishStories = process.env.STORYBLOK_PUBLISH !== "false";
+const publishStories = process.env.STORYBLOK_PUBLISH === "true";
 
 if (!token) {
   console.error("Missing STORYBLOK_MANAGEMENT_TOKEN. Add your Storyblok Personal Access Token to .env.local.");
