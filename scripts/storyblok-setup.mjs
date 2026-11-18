@@ -486,7 +486,7 @@ async function main() {
           currentBody.splice(insertAt, 0, pickerBlock);
           await request(`stories/${existing.id}`, {
             method: "PUT",
-            body: JSON.stringify({ story: { ...currentStory, content: { ...currentStory.content, body: currentBody } } })
+            body: JSON.stringify({ story: { name: currentStory.name, slug: currentStory.slug, content: { ...currentStory.content, body: currentBody } } })
           });
           console.log("Added Grooming Picker block to existing homepage after Service Grid.");
         } else {
@@ -494,7 +494,7 @@ async function main() {
         }
       }
 
-      if (publishStories && !existing.published_at) {
+      if (publishStories) {
         await request(`stories/${existing.id}/publish`);
         console.log(`Published existing draft: /${page.slug}`);
       } else {
