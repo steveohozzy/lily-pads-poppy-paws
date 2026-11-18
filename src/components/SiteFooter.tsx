@@ -9,7 +9,7 @@ export default function SiteFooter() {
       <div className="container-shell grid gap-10 py-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div>
           <div className="brand-lockup text-white">
-            <Image src="/images/2.jpeg" alt="" width={76} height={76} className="footer-brand-logo" />
+            <Image src="/images/2.jpeg" alt="Lily Pads & Poppy Paws logo" width={76} height={76} className="footer-brand-logo" />
             <span className="brand-name">Lily Pads <span>&</span><br />Poppy Paws</span>
           </div>
           <p className="mt-5 max-w-sm leading-7 text-sky-100">Qualified and insured dog groomer in Hemel Hempstead. Everything available from nail clips to full grooms for all breeds.</p>
