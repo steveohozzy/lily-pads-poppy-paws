@@ -728,9 +728,9 @@ function applyEditableDefaults(pageSlug, body) {
         show_button: pageSlug !== "services"
       });
       if (pageSlug === "services") fill(blokItem, { price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment." });
-      for (const item of blokItem.items || []) {
+      for (const [index, item] of (blokItem.items || []).entries()) {
         if (item.component === "service_item") fill(item, {
-          kicker: pageSlug === "home" ? "" : "A little love · 01",
+          kicker: pageSlug === "home" ? "" : `A little love · 0${index + 1}`,
           link_text: pageSlug === "home" ? "Ask us about this" : "Enquire",
           link_url: "/contact",
           footer_note: pageSlug === "home" ? "" : "All breeds welcome",
