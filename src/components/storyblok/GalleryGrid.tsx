@@ -4,10 +4,10 @@ import { GalleryShowcase } from "@/components/FallbackInteractions";
 type Props = { blok: { heading?: string; images?: Array<{ filename: string; alt?: string; title?: string }> } };
 
 export default function GalleryGrid({ blok }: Props) {
-  const images = (blok.images || []).filter((image) => image.filename).map((image) => ({
+  const images = (blok.images || []).filter((image) => image.filename).map((image, index) => ({
     src: image.filename,
     alt: image.alt || image.title || "Dog grooming gallery image for Lily Pads & Poppy Paws",
-    note: image.title || image.alt || "A little love for every paw"
+    note: image.title || ["A little love for every paw", "A friendly welcome", "Made for happy tails"][index] || image.alt || "A little love for every paw"
   }));
   return (
     <section className="section-pad gallery-page-section">
