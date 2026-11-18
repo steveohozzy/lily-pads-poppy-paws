@@ -16,8 +16,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     siteName: business.name,
-    title: "Dog Groomers in Hemel Hempstead | Lily Pads & Poppy Paws",
-    description: "Qualified and insured dog groomer in Hemel Hempstead. From nail clips to full grooms for all breeds.",
+    title: "Dog Grooming in Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Lily Pads & Poppy Paws offers qualified and insured dog grooming in Hemel Hempstead, from nail clipping to full grooms for all breeds.",
     url: business.domain
   }
 };
