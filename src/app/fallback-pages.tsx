@@ -26,6 +26,17 @@ export function HomeFallback() {
           </div>
           <div className="hero-art">
             <div className="hero-art-wash" aria-hidden="true" />
+            <span className="hero-paint-streak hero-paint-streak-one" aria-hidden="true" />
+            <span className="hero-paint-streak hero-paint-streak-two" aria-hidden="true" />
+            <span className="hero-doodle-heart hero-doodle-heart-one" aria-hidden="true">
+              <svg viewBox="0 0 64 58" role="presentation"><path d="M31 51C23 44 6 32 6 19 6 9 18 4 26 12l6 7 6-8C47 1 60 9 58 21 56 33 42 44 31 51Z" /></svg>
+            </span>
+            <span className="hero-doodle-heart hero-doodle-heart-two" aria-hidden="true">
+              <svg viewBox="0 0 64 58" role="presentation"><path d="M31 51C22 43 7 32 7 20 7 9 18 5 26 13l6 6 7-8C48 2 59 10 57 21 55 33 42 44 31 51Z" /></svg>
+            </span>
+            <span className="hero-doodle-paw hero-doodle-paw-one" aria-hidden="true"><PawPrint size={27} /></span>
+            <span className="hero-doodle-paw hero-doodle-paw-two" aria-hidden="true"><PawPrint size={22} /></span>
+            <span className="hero-doodle-paw hero-doodle-paw-three" aria-hidden="true"><PawPrint size={24} /></span>
             <Image
               src="/images/1.jpg"
               alt="A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style"
