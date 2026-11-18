@@ -481,7 +481,7 @@ async function main() {
           blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
           blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
         ]
-      }),;
+      });
           const insertAt = serviceGridIndex >= 0 ? serviceGridIndex + 1 : currentBody.length;
           currentBody.splice(insertAt, 0, pickerBlock);
           await request(`stories/${existing.id}`, {
