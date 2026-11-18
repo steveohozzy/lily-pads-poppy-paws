@@ -79,6 +79,7 @@ const components = [
     is_nestable: false,
     schema: {
       logo: field("asset"),
+      logo_url: text(),
       logo_alt: text(),
       brand_name: text(),
       header_call_text: text(),
@@ -123,6 +124,8 @@ const components = [
       highlight: text(),
       intro: textarea(),
       image: field("asset"),
+      image_url: text(),
+      image_alt: text(),
       button_text: text(),
       button_link: field("multilink"),
       secondary_button_text: text(),
@@ -149,6 +152,7 @@ const components = [
       link_text: text(),
       link_url: text(),
       image: field("asset"),
+      image_url: text(),
       image_alt: text(),
       art_caption: text(),
       feature_one: text(),
@@ -354,6 +358,8 @@ const pages = [
         eyebrow: "A little love for every paw · Hemel Hempstead",
         heading: "Dog grooming in Hemel Hempstead",
         intro: "Happy dogs, lovely fresh coats and a whole lot of fuss. Lily Pads & Poppy Paws is a qualified and insured dog groomer offering everything from nail clips to full grooms for all breeds.",
+        image_url: "/images/1.jpg",
+        image_alt: "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style",
         secondary_button_text: "Explore our services",
         secondary_button_link: "/services",
         trust_badge_one: "Qualified & insured",
@@ -411,7 +417,9 @@ const pages = [
       blok("hero", {
         eyebrow: "A little about us",
         heading: "Dog grooming with care in Hemel Hempstead.",
-        intro: "Lily Pads & Poppy Paws is a qualified and insured dog grooming business in Hemel Hempstead, Hertfordshire. All breeds are welcome, with grooming options ranging from nail clipping to full grooms. The aim is simple: to make every dog feel comfortable, cared for and looking their best."
+        intro: "Lily Pads & Poppy Paws is a qualified and insured dog grooming business in Hemel Hempstead, Hertfordshire. All breeds are welcome, with grooming options ranging from nail clipping to full grooms. The aim is simple: to make every dog feel comfortable, cared for and looking their best.",
+        image_url: "/images/3.jpg",
+        image_alt: "Lily Pads & Poppy Paws dog grooming illustration"
       }),
       blok("text_section", {
         eyebrow: "The Lily Pads promise",
@@ -684,6 +692,7 @@ async function main() {
           slug: "site-settings",
           content: {
             component: "site_settings",
+            logo_url: "/images/2.jpeg",
             logo_alt: "Lily Pads & Poppy Paws logo",
             brand_name: "Lily Pads & Poppy Paws",
             header_call_text: "Call us",
