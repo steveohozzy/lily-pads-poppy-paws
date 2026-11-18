@@ -136,7 +136,11 @@ const components = [
       sticker_bottom: text(),
       phone_link: text(),
       phone_text: text(),
-      paint_note: text()
+      paint_note: text(),
+      layout: field("option", { options: [
+        { name: "Illustrated", value: "illustrated" },
+        { name: "Centered", value: "centered" }
+      ] })
     }
   },
   {
@@ -190,6 +194,7 @@ const components = [
       intro: textarea(),
       button_text: text(),
       button_link: text(),
+      price_note: textarea(),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
     }
@@ -481,6 +486,7 @@ const pages = [
       blok("service_grid", {
         heading: "Our dog grooming services",
         eyebrow: "The good stuff",
+        price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment.",
         button_text: "See all service information",
         button_link: "/services",
         intro: "All breeds are welcome. Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment.",
@@ -523,11 +529,6 @@ const pages = [
           { filename: "/images/2.jpeg", alt: "Lily Pads & Poppy Paws business logo" },
           { filename: "/images/3.jpg", alt: "Decorative dog grooming brand illustration for Lily Pads & Poppy Paws" }
         ]
-      }),
-      blok("text_section", {
-        eyebrow: "More fluffy updates",
-        heading: "Follow along for more paw-some moments.",
-        body: "Find Lily Pads & Poppy Paws on social media for the latest updates.\n\nFacebook: https://www.facebook.com/lilypadspoppypaws/\nInstagram: https://www.instagram.com/lilypadspoppypaws/"
       }),
       commonCallout("Want to know more?")
     ]
@@ -718,6 +719,7 @@ function applyEditableDefaults(pageSlug, body) {
       eyebrow: "The lovely faces behind the paws",
       social_eyebrow: "More fluffy updates",
       social_heading: "Follow along for more paw-some moments.",
+      social_highlight: "more paw-some moments.",
       social_intro: "Find Lily Pads & Poppy Paws on social media for the latest updates.",
       facebook_url: "https://www.facebook.com/lilypadspoppypaws/",
       instagram_url: "https://www.instagram.com/lilypadspoppypaws/",
@@ -772,6 +774,23 @@ async function main() {
       const currentStory = fullStoryResponse.story;
       const currentBody = currentStory?.content?.body || [];
       let changed = applyEditableDefaults(page.slug, currentBody);
+
+      if (page.slug === "services" && !currentBody.some((item) => item.component === "grooming_picker")) {
+        const serviceGridIndex = currentBody.findIndex((item) => item.component === "service_grid");
+        currentBody.splice(serviceGridIndex >= 0 ? serviceGridIndex + 1 : currentBody.length, 0, blok("grooming_picker", {
+          eyebrow: "A tiny bit of help",
+          heading: "What kind of pamper are you thinking?",
+          highlight: "pamper",
+          intro: "Choose the option that sounds closest. We'll point you in the right direction.",
+          options: [
+            blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
+            blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
+            blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
+          ]
+        }));
+        changed = true;
+        console.log("Added Grooming Picker block to existing services page.");
+      }
 
       if (page.slug === "home") {
         if (!currentBody.some((item) => item.component === "trust_ribbon")) {
