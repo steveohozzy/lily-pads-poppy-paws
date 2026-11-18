@@ -87,6 +87,7 @@ export default function TextSection({ blok }: Props) {
         <div className="map-frame"><iframe title={blok.map_title || "Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA"} src={blok.map_embed_url || "https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed"} width="100%" height="390" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
       </div>
     </section>
+    
   );
 
   const icon = eyebrow.toLowerCase().includes("promise") ? <HeartHandshake size={16} /> : eyebrow.toLowerCase().includes("tails") ? <Sparkles size={16} /> : <PawPrint size={16} />;
