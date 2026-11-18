@@ -130,7 +130,10 @@ const components = [
       trust_badge_one: text(),
       trust_badge_two: text(),
       sticker_top: text(),
-      sticker_bottom: text()
+      sticker_bottom: text(),
+      phone_link: text(),
+      phone_text: text(),
+      paint_note: text()
     }
   },
   {
@@ -161,6 +164,7 @@ const components = [
       address_line_3: text(),
       phone_display: text(),
       phone_link: text(),
+      address_line_4: text(),
       monday_hours: text(),
       tuesday_hours: text(),
       wednesday_hours: text(),
@@ -258,6 +262,10 @@ const components = [
     schema: {
       heading: text(),
       highlight: text(),
+      intro: textarea(),
+      phone_text: text(),
+      phone_display: text(),
+      phone_link: text(),
       items: bloks(["faq_item"])
     }
   },
@@ -277,8 +285,18 @@ const components = [
     is_root: false,
     is_nestable: true,
     schema: {
+      eyebrow: text(),
       heading: text(),
-      images: field("multiasset")
+      intro: textarea(),
+      images: field("multiasset"),
+      social_eyebrow: text(),
+      social_heading: text(),
+      social_highlight: text(),
+      social_intro: textarea(),
+      facebook_url: text(),
+      instagram_url: text(),
+      facebook_text: text(),
+      instagram_text: text()
     }
   },
   {
@@ -287,10 +305,15 @@ const components = [
     is_root: false,
     is_nestable: true,
     schema: {
+      eyebrow: text(),
       heading: text(),
       highlight: text(),
       body: textarea(),
-      button_text: text()
+      button_text: text(),
+      button_link: text(),
+      phone_link: text(),
+      secondary_button_text: text(),
+      secondary_button_link: text()
     }
   }
 ];
