@@ -1088,3 +1088,46 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
   color:#8fe3f1;
   font-size:18px;
 }
+
+
+/* Gallery captions sit below the circular artwork so the full text stays readable. */
+.gallery-showcase-item {
+  display:flex;
+  min-width:0;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.gallery-showcase-item-1 { transform:rotate(-1deg); }
+.gallery-showcase-item-2 { transform:rotate(1deg); }
+.gallery-showcase-item-3 { transform:rotate(-.5deg); }
+.gallery-showcase-item .gallery-showcase-tile,
+.gallery-showcase-item .gallery-showcase-tile-2 {
+  flex:none;
+}
+.gallery-showcase-caption {
+  position:static;
+  width:fit-content;
+  max-width:100%;
+  padding:9px 16px;
+  border:1px solid #bceafa;
+  border-radius:999px;
+  background:#fff;
+  color:#08284f;
+  box-shadow:0 5px 14px #08284f10;
+  font-family:Georgia,serif;
+  font-size:14px;
+  font-weight:700;
+  line-height:1.4;
+  text-align:center;
+}
+@media(max-width:800px) {
+  .gallery-showcase-item-3 {
+    grid-column:1/-1;
+    width:72%;
+    justify-self:center;
+  }
+}
+@media(max-width:560px) {
+  .gallery-showcase-item-3 { grid-column:auto; width:100%; }
+}
