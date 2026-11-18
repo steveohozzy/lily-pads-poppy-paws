@@ -140,11 +140,7 @@ const components = [
       sticker_bottom: text(),
       phone_link: text(),
       phone_text: text(),
-      paint_note: text(),
-      layout: field("option", { options: [
-        { name: "Illustrated", value: "illustrated" },
-        { name: "Centered", value: "centered" }
-      ] })
+      paint_note: text()
     }
   },
   {
@@ -200,6 +196,7 @@ const components = [
       button_link: text(),
       price_note: textarea(),
       show_button: field("boolean", { default_value: true }),
+      show_heading: field("boolean", { default_value: true }),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
     }
@@ -566,10 +563,6 @@ const pages = [
         intro: "All breeds are welcome. Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment.",
         items: serviceItems.map((item) => blok("service_item", item))
       }),
-      blok("text_section", {
-        heading: "Not sure which groom is right?",
-        body: "Every pup is unique. If you're unsure whether your dog needs a nail clip, a full groom or something else, get in touch and talk through your requirements. You can ask for a price before arranging an appointment."
-      }),
       blok("grooming_picker", {
         eyebrow: "A tiny bit of help",
         heading: "What kind of pamper are you thinking?",
@@ -720,6 +713,7 @@ function applyEditableDefaults(pageSlug, body) {
         image_url: isHome ? "/images/1.jpg" : "/images/3.jpg",
         image_alt: isHome ? "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style" : "Lily Pads & Poppy Paws dog grooming illustration",
         layout: pageSlug === "gallery" || pageSlug === "faqs" ? "centered" : "illustrated",
+        paint_note: pageSlug === "services" ? "Freshen up\\nyour fluff!" : pageSlug === "contact" ? "Come say\\nhello!" : "A little kindness\\ngoes a long way",
         phone_link: "tel:07752027606",
         phone_text: isHome ? "Call 07752 027606" : "Call 07752 027606",
         secondary_button_text: isHome ? "Explore our services" : "Explore grooming",
@@ -738,7 +732,8 @@ function applyEditableDefaults(pageSlug, body) {
         eyebrow: pageSlug === "services" ? "The pamper menu" : "The good stuff",
         button_text: "See all service information",
         button_link: "/services",
-        show_button: pageSlug !== "services"
+        show_button: pageSlug !== "services",
+        show_heading: pageSlug !== "services"
       });
       if (pageSlug === "services") fill(blokItem, { price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment." });
       for (const [index, item] of (blokItem.items || []).entries()) {
