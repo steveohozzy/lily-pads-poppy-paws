@@ -4,7 +4,7 @@ import { HeartHandshake, PawPrint, Phone, ShieldCheck } from "lucide-react";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; image_url?: string; image_alt?: string; button_text?: string; button_link?: string | { cached_url?: string; url?: string }; secondary_button_text?: string; secondary_button_link?: string; phone_link?: string; phone_text?: string; paint_note?: string; layout?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
+type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; image_url?: string; image_alt?: string; button_text?: string; button_link?: string | { cached_url?: string; url?: string }; secondary_button_text?: string; secondary_button_link?: string; show_secondary_button?: boolean; phone_link?: string; phone_text?: string; paint_note?: string; layout?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
 
 export default function Hero({ blok }: Props) {
   const isHome = (blok.eyebrow || "").toLowerCase().includes("little love for every paw");
@@ -34,7 +34,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><PawPrint size={16}/> {blok.eyebrow || "A little about us"}</p>
             <h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a><Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link></div>
+            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a>{blok.show_secondary_button !== false && <Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link>}</div>
           </div>
           <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote.split("\\n").map((line, index) => <span key={index}>{index > 0 && <br/>}{line}</span>)}</span></div>
         </div>
