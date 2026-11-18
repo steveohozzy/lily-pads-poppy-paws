@@ -1,6 +1,6 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 
-type Props = { blok: { _uid: string; heading?: string; body?: string; eyebrow?: string } };
+type Props = { blok: { _uid: string; _editable?: string; heading?: string; body?: string; eyebrow?: string } };
 
 export default function TextSection({ blok }: Props) {
   return (
