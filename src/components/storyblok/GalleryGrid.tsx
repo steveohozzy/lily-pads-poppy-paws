@@ -6,16 +6,23 @@ import HighlightedText from "./HighlightedText";
 type Props = { blok: {
   _uid: string; _editable?: string; eyebrow?: string; heading?: string; intro?: string;
   images?: Array<{ filename: string; alt?: string; title?: string }>;
+  gallery_items?: Array<{ _uid: string; image?: { filename?: string; alt?: string }; image_url?: string; alt?: string; caption?: string }>;
   social_eyebrow?: string; social_heading?: string; social_highlight?: string; social_intro?: string;
   facebook_url?: string; instagram_url?: string; facebook_text?: string; instagram_text?: string;
 } };
 
 export default function GalleryGrid({ blok }: Props) {
-  const images = (blok.images || []).filter((image) => image.filename).map((image, index) => ({
-    src: image.filename,
-    alt: image.alt || image.title || "Dog grooming gallery image for Lily Pads & Poppy Paws",
-    note: image.title || ["A little love for every paw", "A friendly welcome", "Made for happy tails"][index] || image.alt || "A little love for every paw"
-  }));
+  const images = blok.gallery_items?.length
+    ? blok.gallery_items.filter((image) => image.image?.filename || image.image_url).map((image) => ({
+        src: image.image?.filename || image.image_url || "",
+        alt: image.image?.alt || image.alt || "Dog grooming gallery image for Lily Pads & Poppy Paws",
+        note: image.caption || image.alt || "A little love for every paw"
+      }))
+    : (blok.images || []).filter((image) => image.filename).map((image, index) => ({
+        src: image.filename,
+        alt: image.alt || image.title || "Dog grooming gallery image for Lily Pads & Poppy Paws",
+        note: image.title || ["A little love for every paw", "A friendly welcome", "Made for happy tails"][index] || image.alt || "A little love for every paw"
+      }));
   return (
     <section className="section-pad gallery-page-section" {...storyblokEditable(blok as never)}>
       <div className="container-shell">
