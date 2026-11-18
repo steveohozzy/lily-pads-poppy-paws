@@ -1,6 +1,6 @@
 import { storyblokEditable } from "@storyblok/react/rsc";
 
-type Props = { blok: { _uid: string; title?: string; description?: string; show_price?: boolean; price?: string }; show_prices?: boolean };
+type Props = { blok: { _uid: string; _editable?: string; title?: string; description?: string; show_price?: boolean; price?: string }; show_prices?: boolean };
 
 export default function ServiceItem({ blok, show_prices = false }: Props) {
   return (
