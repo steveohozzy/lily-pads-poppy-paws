@@ -36,7 +36,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><EyebrowIcon size={16}/> {blok.eyebrow || "A little about us"}</p>
             <h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a>{blok.show_secondary_button !== false && <Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link>}</div>
+            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a>{blok.show_secondary_button !== false && <Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"}</Link>}</div>
           </div>
           <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote.split("\n").map((line, index) => <span key={index}>{index > 0 && <br/>}{line}</span>)}</span></div>
         </div>
@@ -52,7 +52,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><EyebrowIcon size={16} /> {blok.eyebrow || "Dog grooming in Hemel Hempstead"}</p>
             <h1 className="display-heading mt-5"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
-            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={buttonHref}>Explore our services <span aria-hidden="true">→</span></Link></div>
+            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={buttonHref}>Explore our services</Link></div>
             <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3"><span><ShieldCheck size={18}/> {blok.trust_badge_one || "Qualified & insured"}</span><span><HeartHandshake size={18}/> {blok.trust_badge_two || "All breeds welcome"}</span></div>
           </div>
           <div className="hero-art">
