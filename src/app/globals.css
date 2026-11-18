@@ -777,3 +777,100 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
 
 /* Paw prints drift on the content sections, not over the hero artwork. */
 .hero-wrap::before { content:none !important; }
+
+
+/* Paw-print trails use the brand paw mark rather than the orange emoji glyph. */
+.services-section::after,
+.intro-section::after,
+.why-section::after,
+.local-section::after,
+.page-hero::after,
+.gallery-page-section::after {
+  content:"";
+  position:absolute;
+  z-index:2;
+  display:block;
+  width:94px;
+  height:54px;
+  pointer-events:none;
+  opacity:.38;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23159bd2' stroke='%23159bd2' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='4' r='2'/%3E%3Ccircle cx='18' cy='8' r='2'/%3E%3Ccircle cx='20' cy='16' r='2'/%3E%3Cpath d='M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23159bd2' stroke='%23159bd2' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='4' r='2'/%3E%3Ccircle cx='18' cy='8' r='2'/%3E%3Ccircle cx='20' cy='16' r='2'/%3E%3Cpath d='M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23159bd2' stroke='%23159bd2' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='4' r='2'/%3E%3Ccircle cx='18' cy='8' r='2'/%3E%3Ccircle cx='20' cy='16' r='2'/%3E%3Cpath d='M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-size:31px 31px,31px 31px,31px 31px;
+  background-position:0 0,30px 15px,61px 1px;
+  filter:drop-shadow(0 3px 3px #087eae18);
+  animation:paw-walk 7s ease-in-out infinite;
+}
+.intro-section::after { top:17%; right:7%; animation-delay:-1.5s; }
+.services-section::after { bottom:9%; left:5%; width:100px; height:58px; animation-delay:-3.5s; }
+.why-section::after { top:15%; left:7%; animation-delay:-2.2s; }
+.local-section::after { bottom:13%; right:7%; animation-delay:-4.5s; }
+.page-hero::after { right:5%; bottom:18px; width:110px; height:64px; opacity:.3; animation-delay:-2.8s; }
+.gallery-page-section::after { top:13%; right:6%; animation-delay:-5.2s; }
+
+@keyframes paw-walk {
+  0%,100% { transform:translate3d(0,0,0) rotate(-7deg); }
+  25% { transform:translate3d(4px,-5px,0) rotate(-2deg); }
+  50% { transform:translate3d(9px,-1px,0) rotate(5deg); }
+  75% { transform:translate3d(5px,4px,0) rotate(1deg); }
+}
+
+/* Give the services panel a proper walking paw trail, not a tiny second paint swipe. */
+.services-section { overflow:hidden; }
+.services-section::after {
+  bottom:8%;
+  left:4%;
+  transform-origin:left center;
+}
+
+/* A little more character around the existing hero artwork, without moving the dog. */
+.hero-art { isolation:isolate; }
+.hero-art-wash { z-index:0; }
+.hero-art::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  width:92%;
+  height:76%;
+  left:-4%;
+  top:13%;
+  pointer-events:none;
+  opacity:.55;
+  background:linear-gradient(105deg,#53d2ed 0%,#a9eafa 42%,#159bd2 100%);
+  clip-path:polygon(2% 44%,8% 31%,18% 36%,26% 19%,36% 28%,45% 12%,57% 25%,67% 14%,77% 27%,89% 19%,98% 37%,94% 51%,100% 62%,88% 67%,79% 83%,66% 70%,55% 89%,43% 72%,31% 84%,21% 66%,10% 73%,4% 59%);
+  transform:rotate(-8deg);
+}
+.hero-art::after {
+  content:"✦  ·  ✧";
+  position:absolute;
+  z-index:3;
+  top:8%;
+  left:5%;
+  color:#159bd2;
+  font-size:clamp(25px,3vw,38px);
+  letter-spacing:12px;
+  line-height:1;
+  opacity:.8;
+  pointer-events:none;
+  text-shadow:0 3px 0 #fff;
+  animation:hero-sparkle-drift 6s ease-in-out infinite;
+}
+@keyframes hero-sparkle-drift {
+  0%,100% { transform:translateY(0) rotate(-5deg); }
+  50% { transform:translateY(-7px) rotate(5deg); }
+}
+.hero-sticker { transition:transform .25s ease,box-shadow .25s ease; }
+.hero-sticker:hover { box-shadow:0 10px 0 #092b5812,0 16px 28px #092b5818; }
+@media (max-width:640px) {
+  .hero-art::before { width:100%; left:-2%; height:70%; top:15%; }
+  .hero-art::after { top:1%; left:2%; font-size:25px; letter-spacing:7px; }
+  .services-section::after { left:2%; bottom:4%; transform:scale(.82); transform-origin:left bottom; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .intro-section::after,.services-section::after,.why-section::after,
+  .local-section::after,.page-hero::after,.gallery-page-section::after,
+  .hero-art::after { animation:none !important; }
+}
