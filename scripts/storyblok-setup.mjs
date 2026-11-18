@@ -73,6 +73,46 @@ const components = [
     }
   },
   {
+    name: "site_settings",
+    display_name: "Site Settings",
+    is_root: true,
+    is_nestable: false,
+    schema: {
+      logo: field("asset"),
+      logo_alt: text(),
+      brand_name: text(),
+      header_call_text: text(),
+      phone_display: text(),
+      phone_link: text(),
+      navigation: bloks(["site_nav_link"]),
+      footer_description: textarea(),
+      footer_find_us_heading: text(),
+      address_line_1: text(),
+      address_line_2: text(),
+      address_line_3: text(),
+      footer_social_heading: text(),
+      facebook_url: text(),
+      instagram_url: text(),
+      footer_links: bloks(["site_footer_link"]),
+      copyright_text: text(),
+      footer_tagline: text()
+    }
+  },
+  {
+    name: "site_nav_link",
+    display_name: "Navigation link",
+    is_root: false,
+    is_nestable: true,
+    schema: { label: text(), href: text() }
+  },
+  {
+    name: "site_footer_link",
+    display_name: "Footer link",
+    is_root: false,
+    is_nestable: true,
+    schema: { label: text(), href: text() }
+  },
+  {
     name: "hero",
     display_name: "Hero",
     is_root: false,
@@ -520,6 +560,58 @@ async function main() {
       })
     });
     console.log(`Created ${publishStories ? "published" : "draft"} page: /${page.slug}`);
+  }
+
+  const settingsStory = existingStories.find((story) => story.slug === "site-settings" && !story.is_folder);
+  if (!settingsStory) {
+    await request("stories", {
+      method: "POST",
+      body: JSON.stringify({
+        publish: publishStories,
+        story: {
+          name: "Site Settings",
+          slug: "site-settings",
+          content: {
+            component: "site_settings",
+            logo_alt: "Lily Pads & Poppy Paws logo",
+            brand_name: "Lily Pads & Poppy Paws",
+            header_call_text: "Call us",
+            phone_display: "07752 027606",
+            phone_link: "tel:07752027606",
+            navigation: [
+              blok("site_nav_link", { label: "Home", href: "/" }),
+              blok("site_nav_link", { label: "About", href: "/about" }),
+              blok("site_nav_link", { label: "Services", href: "/services" }),
+              blok("site_nav_link", { label: "Gallery", href: "/gallery" }),
+              blok("site_nav_link", { label: "FAQs", href: "/faqs" }),
+              blok("site_nav_link", { label: "Contact", href: "/contact" })
+            ],
+            footer_description: "Qualified and insured dog grooming in Hemel Hempstead, Hertfordshire. Enquire about nail clipping and full grooms for all breeds.",
+            footer_find_us_heading: "Find us",
+            address_line_1: "42 Lomond Road",
+            address_line_2: "Hemel Hempstead",
+            address_line_3: "HP2 6PA",
+            footer_social_heading: "Follow & explore",
+            facebook_url: "https://www.facebook.com/lilypadspoppypaws/",
+            instagram_url: "https://www.instagram.com/lilypadspoppypaws/",
+            footer_links: [
+              blok("site_footer_link", { label: "Grooming services", href: "/services" }),
+              blok("site_footer_link", { label: "Frequently asked questions", href: "/faqs" }),
+              blok("site_footer_link", { label: "Contact & location", href: "/contact" }),
+              blok("site_footer_link", { label: "Privacy policy", href: "/privacy" })
+            ],
+            copyright_text: "© {year} Lily Pads & Poppy Paws",
+            footer_tagline: "Dog grooming in Hemel Hempstead, Hertfordshire"
+          }
+        }
+      })
+    });
+    console.log("Created Site Settings story.");
+  } else if (publishStories) {
+    await request(`stories/${settingsStory.id}/publish`);
+    console.log("Published Site Settings story.");
+  } else {
+    console.log("Kept existing Site Settings story unchanged.");
   }
 
   console.log("\nStoryblok setup finished.");
