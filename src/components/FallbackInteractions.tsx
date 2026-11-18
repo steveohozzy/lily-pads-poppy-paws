@@ -23,6 +23,7 @@ type GroomingPickerProps = {
   eyebrow?: string;
   heading?: string;
   highlight?: string;
+  highlight_after_words?: number;
   intro?: string;
   button_text?: string;
   phone_link?: string;
@@ -30,15 +31,21 @@ type GroomingPickerProps = {
   options?: GroomingPickerOption[];
 };
 
-export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highlight = "pamper", intro = "Choose the option that sounds closest. We'll point you in the right direction.", button_text = "Let's chat", phone_link = "tel:07752027606", options_aria_label = "Choose a grooming option", options }: GroomingPickerProps = {}) {
+export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highlight = "pamper", highlight_after_words, intro = "Choose the option that sounds closest. We'll point you in the right direction.", button_text = "Let's chat", phone_link = "tel:07752027606", options_aria_label = "Choose a grooming option", options }: GroomingPickerProps = {}) {
   const groomingOptions = options?.length ? options : defaultGroomingOptions;
   const [selected, setSelected] = useState(groomingOptions[1]?.id || groomingOptions[1]?.title || groomingOptions[0]?.id || groomingOptions[0]?.title || "");
   const choice = groomingOptions.find((item) => (item.id || item.title) === selected) || groomingOptions[0];
   const headingParts = heading || "What kind of pamper are you thinking?";
   const highlightIndex = highlight ? headingParts.toLowerCase().indexOf(highlight.toLowerCase()) : -1;
+  const words = [...headingParts.matchAll(/\\S+/g)];
+  const insertAfterWords = Math.max(0, Math.min(words.length, highlight_after_words ?? 3));
+  const insertIndex = insertAfterWords === 0 ? 0 : words[insertAfterWords - 1].index! + words[insertAfterWords - 1][0].length;
+  const headingBefore = headingParts.slice(0, insertIndex).trimEnd();
+  const headingAfter = headingParts.slice(insertIndex).trimStart();
+  const highlightedHeading = highlight ? <>{headingBefore}{headingBefore ? " " : ""}<span>{highlight}</span>{headingAfter ? " " : ""}{headingAfter}</> : headingParts;
   return (
     <div className="grooming-picker">
-      <div className="picker-copy"><p className="eyebrow"><PawPrint size={15}/> {eyebrow}</p><h2 className="section-heading mt-3">{highlightIndex >= 0 ? <>{headingParts.slice(0, highlightIndex)}<span>{headingParts.slice(highlightIndex, highlightIndex + highlight.length)}</span>{headingParts.slice(highlightIndex + highlight.length)}</> : headingParts}</h2><p className="mt-4 leading-7 text-slate-600">{intro}</p></div>
+      <div className="picker-copy"><p className="eyebrow"><PawPrint size={15}/> {eyebrow}</p><h2 className="section-heading mt-3">{highlightIndex >= 0 ? <>{headingParts.slice(0, highlightIndex)}<span>{headingParts.slice(highlightIndex, highlightIndex + highlight.length)}</span>{headingParts.slice(highlightIndex + highlight.length)}</> : highlightedHeading}</h2><p className="mt-4 leading-7 text-slate-600">{intro}</p></div>
       <div className="picker-options" role="group" aria-label={options_aria_label}>
         {groomingOptions.map((option) => {
           const optionId = option.id || option.title;

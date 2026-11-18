@@ -8,6 +8,7 @@ type Props = {
     eyebrow?: string;
     heading?: string;
     highlight?: string;
+    highlight_after_words?: number;
     intro?: string;
     button_text?: string;
     phone_link?: string;
@@ -29,6 +30,7 @@ export default function GroomingPickerBlock({ blok }: Props) {
           eyebrow={blok.eyebrow || "A tiny bit of help"}
           heading={blok.heading || "What kind of pamper are you thinking?"}
           highlight={blok.highlight || "pamper"}
+          highlight_after_words={blok.highlight_after_words ?? 3}
           intro={blok.intro || "Choose the option that sounds closest. We'll point you in the right direction."}
           button_text={blok.button_text || "Let's chat"}
           phone_link={blok.phone_link || "tel:07752027606"}

@@ -241,6 +241,7 @@ const components = [
       eyebrow: text(),
       heading: text(),
       highlight: text(),
+      highlight_after_words: field("number", { min_value: 0 }),
       intro: textarea(),
       button_text: text(),
       phone_link: text(),
