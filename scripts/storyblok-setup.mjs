@@ -10,20 +10,46 @@ if (!token) {
   process.exit(1);
 }
 
+let lastRequestAt = 0;
+
+const sleep = (milliseconds) =>
+  new Promise((resolve) => setTimeout(resolve, milliseconds));
+
 async function request(path, options = {}) {
-  const response = await fetch(`${baseUrl}/spaces/${spaceId}/${path}`, {
-    ...options,
-    headers: {
-      Authorization: token,
-      "Content-Type": "application/json",
-      ...(options.headers || {})
+  let attempt = 0;
+
+  while (attempt < 6) {
+    const waitForSpacing = Math.max(0, 250 - (Date.now() - lastRequestAt));
+    if (waitForSpacing) await sleep(waitForSpacing);
+
+    lastRequestAt = Date.now();
+
+    const response = await fetch(`${baseUrl}/spaces/${spaceId}/${path}`, {
+      ...options,
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+        ...(options.headers || {})
+      }
+    });
+
+    const body = await response.json().catch(() => ({}));
+
+    if (response.ok) return body;
+
+    if (response.status === 429 && attempt < 5) {
+      const retryAfter = Number(response.headers.get("retry-after"));
+      const backoff = retryAfter > 0 ? retryAfter * 1000 : 1000 * (attempt + 1);
+      console.log(`Storyblok rate limit reached. Retrying in ${Math.ceil(backoff / 1000)}s...`);
+      await sleep(backoff);
+      attempt += 1;
+      continue;
     }
-  });
-  const body = await response.json().catch(() => ({}));
-  if (!response.ok) {
+
     throw new Error(`Storyblok API ${response.status} on ${path}: ${JSON.stringify(body)}`);
   }
-  return body;
+
+  throw new Error(`Storyblok API rate limit persisted on ${path} after 5 retries.`);
 }
 
 const field = (type, extra = {}) => ({ type, pos: 0, required: false, ...extra });
