@@ -4,7 +4,7 @@ import { HeartHandshake, MapPin, PawPrint, Phone, ShieldCheck } from "lucide-rea
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; image_url?: string; image_alt?: string; button_text?: string; button_link?: string; secondary_button_text?: string; secondary_button_link?: string; phone_link?: string; phone_text?: string; paint_note?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
+type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; image_url?: string; image_alt?: string; button_text?: string; button_link?: string; secondary_button_text?: string; secondary_button_link?: string; phone_link?: string; phone_text?: string; paint_note?: string; layout?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
 
 export default function Hero({ blok }: Props) {
   const isHome = (blok.eyebrow || "").toLowerCase().includes("little love for every paw");
@@ -18,6 +18,12 @@ export default function Hero({ blok }: Props) {
   const artwork = imageSrc
     ? <img src={imageSrc} alt={blok.image?.alt || blok.image_alt || "Illustrated dog artwork for Lily Pads & Poppy Paws"} className={isHome ? "hero-brand-art hero-dog-art" : "page-feature-image"} />
     : <Image src={isHome ? "/images/1.jpg" : "/images/3.jpg"} alt="Aqua and blue dog grooming illustration for Lily Pads & Poppy Paws" width={1000} height={1000} priority className={isHome ? "hero-brand-art hero-dog-art" : "page-feature-image"} sizes="(max-width: 1024px) 90vw, 46vw" />;
+
+  if (!isHome && blok.layout === "centered") return (
+    <section className="page-hero" {...storyblokEditable(blok as never)}>
+      <div className="container-shell text-center"><p className="eyebrow justify-center"><PawPrint size={16}/> {blok.eyebrow || "A little about us"}</p><h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p></div>
+    </section>
+  );
 
   if (!isHome) return (
     <>
