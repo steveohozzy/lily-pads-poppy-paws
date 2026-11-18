@@ -52,7 +52,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><EyebrowIcon size={16} /> {blok.eyebrow || "Dog grooming in Hemel Hempstead"}</p>
             <h1 className="display-heading mt-5"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
-            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={buttonHref}>Explore our services</Link></div>
+            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore our services"}</Link></div>
             <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3"><span><ShieldCheck size={18}/> {blok.trust_badge_one || "Qualified & insured"}</span><span><HeartHandshake size={18}/> {blok.trust_badge_two || "All breeds welcome"}</span></div>
           </div>
           <div className="hero-art">
