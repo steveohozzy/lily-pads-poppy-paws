@@ -17,7 +17,21 @@ export default function TextSection({ blok }: Props) {
 
   const isMadeFor = eyebrow.toLowerCase().includes("made for wagging tails");
   const isOpeningHours = heading.toLowerCase().includes("opening hours");
+  const isPromise = eyebrow.toLowerCase().includes("the lily pads promise");
+  const isServicesIntro = eyebrow.toLowerCase().includes("the pamper menu");
   const EyebrowIcon = isIntro ? Sparkles : isWhy ? HeartHandshake : isLocal ? MapPin : PawPrint;
+
+  if (isPromise) return (
+    <section className="section-pad">
+      <div className="container-shell"><div className="soft-note-card max-w-xl"><span className="soft-note-flower">✿</span><p className="eyebrow">{eyebrow}</p><h2 className="section-heading mt-3"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-5 leading-8 text-slate-600" key={index}>{paragraph}</p>)}</div></div>
+    </section>
+  );
+
+  if (isServicesIntro) return (
+    <section className="section-pad services-section">
+      <div className="container-shell"><div className="section-intro mx-auto max-w-2xl text-center"><p className="eyebrow justify-center"><Sparkles size={16}/> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-4 leading-7 text-slate-600" key={index}>{paragraph}</p>)}</div></div>
+    </section>
+  );
 
   if (isIntro) return (
     <section className="section-pad intro-section" {...storyblokEditable(blok)}>
@@ -71,7 +85,6 @@ export default function TextSection({ blok }: Props) {
         {heading && <h2 className="section-heading mt-3"><HighlightedText text={heading} highlight={blok.highlight} /></h2>}
         {!isOpeningHours && paragraphs.map((paragraph,index)=><p className="prose-copy mt-5" key={index}>{paragraph}</p>)}
         {heading.toLowerCase().includes("opening hours") && <div className="contact-panel contact-address-panel mt-7"><span className="contact-icon"><PawPrint size={25}/></span><p className="eyebrow mt-5">When we're open</p><h3 className="mt-2 text-3xl font-bold text-navy">Opening hours.</h3><dl className="mt-4 space-y-2 leading-7 text-slate-600">{[["Monday","Closed"],["Tuesday","09:00 – 17:00"],["Wednesday","09:00 – 17:00"],["Thursday","09:00 – 17:00"],["Friday","09:00 – 17:00"],["Saturday","09:00 – 15:00"],["Sunday","Closed"]].map(([day,hours])=><div className="flex justify-between gap-4" key={day}><dt className="font-semibold">{day}</dt><dd>{hours}</dd></div>)}</dl></div>}
-        {heading.toLowerCase().includes("friendly approach") && <div className="soft-note-card mt-8"><span className="soft-note-flower">✿</span><p className="eyebrow">The Lily Pads promise</p><h3 className="section-heading mt-3">Gentle care.<br/><span>Lovely results.</span></h3></div>}
       </div>
     </section>
   );
