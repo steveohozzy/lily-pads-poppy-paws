@@ -15,8 +15,13 @@ export const business = {
   instagram: "https://www.instagram.com/lilypadspoppypaws/",
   facebook: "https://www.facebook.com/lilypadspoppypaws/",
   domain: "https://lilypadspoppypaws.co.uk",
-  // Confirm opening hours directly with the business before publishing.
-  openingHours: [] as string[]
+  openingHours: [
+    "Tu 09:00-17:00",
+    "We 09:00-17:00",
+    "Th 09:00-17:00",
+    "Fr 09:00-17:00",
+    "Sa 09:00-15:00"
+  ]
 };
 
 export const services = [
