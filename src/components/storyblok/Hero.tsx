@@ -12,7 +12,7 @@ export default function Hero({ blok }: Props) {
         <div className="relative z-10">
           <p className="eyebrow"><PawPrint size={16} /> {blok.eyebrow || "Dog grooming in Hemel Hempstead"}</p>
           <h1 className="display-heading mt-5">{blok.heading || "Happy dogs. Lovely fresh trims."}</h1>
-          <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog groomer. Everything available from nail clips to full grooms for all breeds."}</p>
+          <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a className="button-primary" href="tel:07752027606"><Phone size={18} /> Call 07752 027606</a>
             <Link className="button-secondary" href="/services">Explore our services <span aria-hidden="true">→</span></Link>
@@ -26,7 +26,7 @@ export default function Hero({ blok }: Props) {
           <div className="hero-art-wash" aria-hidden="true" />
           {blok.image?.filename ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img className="hero-brand-art" src={blok.image.filename} alt={blok.image.alt || "Dog ready for a groom"} />
+            <img className="hero-brand-art" src={blok.image.filename} alt={blok.image.alt || "Illustrated dog artwork for Lily Pads & Poppy Paws dog grooming"} />
           ) : (
             <Image
               src="/images/1.jpg"
