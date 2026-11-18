@@ -1131,3 +1131,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
 @media(max-width:560px) {
   .gallery-showcase-item-3 { grid-column:auto; width:100%; }
 }
+
+
+/* Keep Storyblok-rendered sections visually consistent with the approved aqua/navy fallback design. */
+.service-card-bottom > span { color:#168cb8; }
+.service-price-note { border-color:#bceafa; background:#f2fbff; }
+.gallery-page-section { background:linear-gradient(180deg,#fffdf8,#f2fbff); }
+.gallery-showcase-tile { background:#e8faff; }
+.gallery-showcase-tile-3 { background:#f2fbff; }
+.gallery-social-note { background:#f2faff; }
+.faq-intro { background:#eaf8ff; }
+.faq-intro a { color:#087eae; }
+.faq-item { border-color:#d8edf6; box-shadow:0 5px 20px #092b5807; }
+.faq-number { color:#168cb8; }
+.faq-item[open] { border-color:#9ddff0; }
+.faq-item summary { color:var(--navy); }
+.faq-plus { color:#078fc5; }
+.soft-note-card { border-color:#cdebf7; background:#f2fbff; }
