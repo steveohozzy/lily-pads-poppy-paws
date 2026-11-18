@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "storyblok:setup": "node --env-file=.env.local scripts/storyblok-setup.mjs"
   },
   "dependencies": {
     "@storyblok/react": "^7.0.0",
