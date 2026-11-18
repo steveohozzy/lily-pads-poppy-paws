@@ -67,7 +67,7 @@ const components = [
     is_root: true,
     is_nestable: false,
     schema: {
-      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "trust_ribbon", "faq_list", "gallery_grid", "call_to_action", "callout"]),
+      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "trust_ribbon", "faq_list", "gallery_grid", "call_to_action", "callout", "about_intro", "contact_panels"]),
       seo_title: text(),
       seo_description: textarea()
     }
@@ -309,6 +309,56 @@ const components = [
     }
   },
   {
+    name: "about_intro",
+    display_name: "About introduction",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      promise_eyebrow: text(),
+      promise_heading: text(),
+      promise_highlight: text(),
+      promise_body: textarea(),
+      heading: text(),
+      highlight: text(),
+      body: textarea(),
+      feature_one: text(),
+      feature_two: text(),
+      feature_three: text()
+    }
+  },
+  {
+    name: "contact_panels",
+    display_name: "Contact panels",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      phone_eyebrow: text(),
+      phone_heading: text(),
+      phone_body: textarea(),
+      phone_display: text(),
+      phone_link: text(),
+      location_eyebrow: text(),
+      location_heading: text(),
+      address_line_1: text(),
+      address_line_2: text(),
+      address_line_3: text(),
+      address_line_4: text(),
+      directions_text: text(),
+      directions_url: text(),
+      hours_eyebrow: text(),
+      hours_heading: text(),
+      monday_hours: text(),
+      tuesday_hours: text(),
+      wednesday_hours: text(),
+      thursday_hours: text(),
+      friday_hours: text(),
+      saturday_hours: text(),
+      sunday_hours: text(),
+      map_title: text(),
+      map_embed_url: text()
+    }
+  },
+  {
     name: "callout",
     display_name: "Callout",
     is_root: false,
@@ -450,14 +500,17 @@ const pages = [
         image_url: "/images/3.jpg",
         image_alt: "Lily Pads & Poppy Paws dog grooming illustration"
       }),
-      blok("text_section", {
-        eyebrow: "The Lily Pads promise",
-        heading: "Gentle care. Lovely results.",
-        body: "Every dog has their own personality, coat and comfort level. We believe grooming should feel like a positive part of their care."
-      }),
-      blok("text_section", {
+      blok("about_intro", {
+        promise_eyebrow: "The Lily Pads promise",
+        promise_heading: "Gentle care. Lovely results.",
+        promise_highlight: "Lovely results.",
+        promise_body: "Every dog has their own personality, coat and comfort level. We believe grooming should feel like a positive part of their care.",
         heading: "A friendly approach to dog grooming.",
-        body: "Every dog is different. Their breed, coat, age, personality and individual needs all help shape the kind of grooming that may be right for them. That's why Lily Pads & Poppy Paws encourages owners to get in touch and talk through what they are looking for before arranging an appointment.\n\nWhether you need a nail clip or want to enquire about a full dog groom, you can discuss your dog's needs and ask for a price before booking. The business is based in Hemel Hempstead, Hertfordshire, and welcomes enquiries for dogs of all breeds.\n\nLily Pads & Poppy Paws is qualified and insured, giving local dog owners a clear point of contact for grooming enquiries in Hemel Hempstead.\n\nQualified and insured · All breeds welcome · Friendly conversations about your dog's grooming needs."
+        highlight: "dog grooming.",
+        body: "Every dog is different. Their breed, coat, age, personality and individual needs all help shape the kind of grooming that may be right for them. That's why Lily Pads & Poppy Paws encourages owners to get in touch and talk through what they are looking for before arranging an appointment.\n\nWhether you need a nail clip or want to enquire about a full dog groom, you can discuss your dog's needs and ask for a price before booking. The business is based in Hemel Hempstead, Hertfordshire, and welcomes enquiries for dogs of all breeds.\n\nLily Pads & Poppy Paws is qualified and insured, giving local dog owners a clear point of contact for grooming enquiries in Hemel Hempstead.",
+        feature_one: "Qualified and insured",
+        feature_two: "All breeds welcome",
+        feature_three: "Friendly conversations about your dog's grooming needs"
       }),
       blok("text_section", {
         eyebrow: "Made for wagging tails",
@@ -573,20 +626,31 @@ const pages = [
         layout: "centered",
         intro: "Have a question about dog grooming, nail clipping, prices or appointments? Contact Lily Pads & Poppy Paws and let's talk about what your dog needs."
       }),
-      blok("text_section", {
-        eyebrow: "Give us a call",
-        heading: "Let's talk tails.",
-        body: "For grooming enquiries, prices and appointments, give us a ring. We can chat about your dog's needs and the best next step.\n\nTelephone: 07752 027606"
-      }),
-      blok("text_section", {
-        eyebrow: "Find our little corner",
-        heading: "Hemel Hempstead.",
-        body: "Lily Pads & Poppy Paws\n42 Lomond Road\nHemel Hempstead\nHP2 6PA\nHertfordshire\n\nGet directions: https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA"
-      }),
-      blok("text_section", {
-        eyebrow: "When we're open",
-        heading: "Opening hours.",
-        body: "Monday: Closed\nTuesday: 09:00 – 17:00\nWednesday: 09:00 – 17:00\nThursday: 09:00 – 17:00\nFriday: 09:00 – 17:00\nSaturday: 09:00 – 15:00\nSunday: Closed"
+      blok("contact_panels", {
+        phone_eyebrow: "Give us a call",
+        phone_heading: "Let's talk tails.",
+        phone_body: "For grooming enquiries, prices and appointments, give us a ring. We can chat about your dog's needs and the best next step.",
+        phone_display: "07752 027606",
+        phone_link: "tel:07752027606",
+        location_eyebrow: "Find our little corner",
+        location_heading: "Hemel Hempstead.",
+        address_line_1: "42 Lomond Road",
+        address_line_2: "Hemel Hempstead",
+        address_line_3: "HP2 6PA",
+        address_line_4: "Hertfordshire",
+        directions_text: "Get directions",
+        directions_url: "https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA",
+        hours_eyebrow: "When we're open",
+        hours_heading: "Opening hours.",
+        monday_hours: "Closed",
+        tuesday_hours: "09:00 – 17:00",
+        wednesday_hours: "09:00 – 17:00",
+        thursday_hours: "09:00 – 17:00",
+        friday_hours: "09:00 – 17:00",
+        saturday_hours: "09:00 – 15:00",
+        sunday_hours: "Closed",
+        map_title: "Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA",
+        map_embed_url: "https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed"
       }),
       commonCallout("We'd love to hear from you")
     ]
