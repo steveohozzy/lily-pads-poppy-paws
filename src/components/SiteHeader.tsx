@@ -85,6 +85,7 @@ export default function SiteHeader({ settings }: { settings?: SiteSettings | nul
   const closeMenu = () => setMenuOpen(false);
 
   return (
+    <>
     <header className={`site-header${hidden && !menuOpen ? " site-header-hidden" : ""}`}>
       <div className="container-shell header-inner">
         <Link href="/" className="brand-lockup" aria-label={`${brandName} — dog grooming in Hemel Hempstead`} onClick={closeMenu}>
@@ -114,28 +115,29 @@ export default function SiteHeader({ settings }: { settings?: SiteSettings | nul
         </div>
       </div>
 
-      {menuOpen && (
-        <div className="mobile-menu-layer">
-          <button className="mobile-menu-backdrop" type="button" aria-label="Close navigation menu" onClick={closeMenu} />
-          <nav id="mobile-menu-panel" className="mobile-menu-panel" aria-label="Mobile navigation">
-            <div className="mobile-menu-heading">
-              <span>Where would you like to go?</span>
-              <PawPrint className="mobile-menu-paw" aria-hidden="true" size={25} />
-            </div>
-            {links.map(([label, href], index) => (
-              <Link key={href} href={href} className="mobile-menu-link" onClick={closeMenu}>
-                <span className="mobile-menu-number">0{index + 1}</span>
-                <span>{label}</span>
-                <ChevronRight size={19} aria-hidden="true" />
-              </Link>
-            ))}
-            <a className="mobile-menu-call" href={phone} onClick={closeMenu}>
-              <Phone size={18} /> {settings?.header_call_text || "Give us a call"}
-            </a>
-            <p className="mobile-menu-footnote">A little love for every paw.</p>
-          </nav>
-        </div>
-      )}
     </header>
+    {menuOpen && (
+      <div className="mobile-menu-layer">
+        <button className="mobile-menu-backdrop" type="button" aria-label="Close navigation menu" onClick={closeMenu} />
+        <nav id="mobile-menu-panel" className="mobile-menu-panel" aria-label="Mobile navigation">
+          <div className="mobile-menu-heading">
+            <span>Where would you like to go?</span>
+            <PawPrint className="mobile-menu-paw" aria-hidden="true" size={25} />
+          </div>
+          {links.map(([label, href], index) => (
+            <Link key={href} href={href} className="mobile-menu-link" onClick={closeMenu}>
+              <span className="mobile-menu-number">0{index + 1}</span>
+              <span>{label}</span>
+              <ChevronRight size={19} aria-hidden="true" />
+            </Link>
+          ))}
+          <a className="mobile-menu-call" href={phone} onClick={closeMenu}>
+            <Phone size={18} /> {settings?.header_call_text || "Give us a call"}
+          </a>
+          <p className="mobile-menu-footnote">A little love for every paw.</p>
+        </nav>
+      </div>
+    )}
+    </>
   );
 }
