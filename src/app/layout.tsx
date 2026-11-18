@@ -30,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     description: business.description,
     url: business.domain,
     telephone: business.telephone,
-    image: `${business.domain}/images/brand-reference-logo.jpeg`,
+    image: `${business.domain}/images/2.jpeg`,
     address: {
       "@type": "PostalAddress",
       streetAddress: business.address.streetAddress,
