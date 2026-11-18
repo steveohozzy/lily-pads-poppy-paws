@@ -1,4 +1,4 @@
-import { StoryblokServerComponent } from "@storyblok/react/rsc";
+import { StoryblokServerComponent, storyblokEditable } from "@storyblok/react/rsc";
 import { PawPrint, Scissors, Sparkles, Heart } from "lucide-react";
 import { services } from "@/lib/business";
 import HighlightedText from "./HighlightedText";
@@ -8,7 +8,7 @@ type Props = { blok: { _uid: string; eyebrow?: string; heading?: string; highlig
 export default function ServiceGrid({ blok }: Props) {
   return (
     <>
-      <section className="section-pad services-section">
+      <section className="section-pad services-section" {...storyblokEditable(blok as never)}>
         <div className="container-shell">
           <div className="section-intro mx-auto max-w-2xl text-center">
             <p className="eyebrow justify-center"><PawPrint size={16} /> {blok.eyebrow || "The good stuff"}</p>
