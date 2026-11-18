@@ -14,7 +14,7 @@ export default function ServiceItem({ blok, show_prices = false, index = 0 }: Pr
       <h3 className={simple ? "mt-5 text-xl font-bold text-navy" : "mt-3 text-2xl font-bold text-navy"}>{title}</h3>
       {blok.description && <p className="mt-3 leading-7 text-slate-600">{blok.description}</p>}
       {show_prices && blok.show_price && blok.price && <p className="mt-4 font-bold text-navy">{blok.price}</p>}
-      {simple ? <a href={blok.link_url || "/contact"} className="text-link mt-6">{blok.link_text || "Ask us about this"} <span aria-hidden="true">→</span></a> : <div className="service-card-bottom">{blok.footer_note && <span><PawPrint size={15} /> {blok.footer_note}</span>}<a href={blok.link_url || "/contact"} className="text-link">{blok.link_text || "Enquire"} <span aria-hidden="true">→</span></a></div>}
+      {simple ? <a href={blok.link_url || "/contact"} className="text-link mt-6">{blok.link_text || "Ask us about this"}</a> : <div className="service-card-bottom">{blok.footer_note && <span><PawPrint size={15} /> {blok.footer_note}</span>}<a href={blok.link_url || "/contact"} className="text-link">{blok.link_text || "Enquire"}</a></div>}
     </article>
   );
 }
