@@ -87,9 +87,11 @@ export function HomeFallback() {
 
       <section className="section-pad why-section">
         <div className="container-shell grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div className="why-art">
-            <Image src="/images/brand-reference-deposits.jpg" alt="A cheerful illustrated fluffy dog surrounded by blue brush strokes and paw prints" width={526} height={800} sizes="(max-width: 1024px) 90vw, 42vw" />
-            <span className="why-art-caption">Little paws. Big personalities.</span>
+          <div className="why-art-illustration" aria-label="Illustrated paw print and grooming message">
+            <div className="why-art-splash" aria-hidden="true" />
+            <PawPrint className="why-art-paw" size={154} fill="currentColor" strokeWidth={1.2} aria-hidden="true" />
+            <span className="why-art-caption">Little paws.<br />Big personalities.</span>
+            <span className="why-art-sparkle" aria-hidden="true">✦</span>
           </div>
           <div>
             <p className="eyebrow"><HeartHandshake size={16} /> Care with a personal touch</p>
