@@ -6,7 +6,7 @@ import HighlightedText from "./HighlightedText";
 
 type Props = { blok: {
   _uid: string; _editable?: string; heading?: string; highlight?: string; body?: string; eyebrow?: string;
-  link_text?: string; link_url?: string; image?: { filename?: string }; image_alt?: string; art_caption?: string;
+  link_text?: string; link_url?: string; image?: { filename?: string }; image_url?: string; image_alt?: string; art_caption?: string;
   feature_one?: string; feature_two?: string; feature_three?: string;
   primary_button_text?: string; secondary_button_text?: string; directions_url?: string; map_embed_url?: string; map_title?: string;
   address_line_1?: string; address_line_2?: string; address_line_3?: string; address_line_4?: string; phone_display?: string; phone_link?: string;
@@ -65,7 +65,7 @@ export default function TextSection({ blok }: Props) {
   if (isMadeFor) return (
     <section className="section-pad about-image-band" {...storyblokEditable(blok)}>
       <div className="container-shell grid gap-8 md:grid-cols-2 md:items-center">
-        <Image src={blok.image?.filename || "/images/1.jpg"} alt={blok.image_alt || "Illustrated dog in the Lily Pads & Poppy Paws aqua and blue brand artwork"} width={1000} height={900} className="about-secondary-image" />
+        <Image src={blok.image?.filename || blok.image_url || "/images/1.jpg"} alt={blok.image_alt || "Illustrated dog in the Lily Pads & Poppy Paws aqua and blue brand artwork"} width={1000} height={900} className="about-secondary-image" />
         <div><p className="eyebrow"><Sparkles size={16}/> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-5 leading-8 text-slate-600" key={index}>{paragraph}</p>)}<Link href={blok.link_url || "/contact"} className="text-link mt-6">{blok.link_text || "Come and say hello"} <span aria-hidden="true">→</span></Link></div>
       </div>
     </section>
