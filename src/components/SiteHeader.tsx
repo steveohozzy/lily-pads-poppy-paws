@@ -6,6 +6,7 @@ import { business } from "@/lib/business";
 type NavItem = { _uid?: string; label?: string; href?: string };
 type SiteSettings = {
   logo?: { filename?: string; alt?: string };
+  logo_url?: string;
   logo_alt?: string;
   brand_name?: string;
   header_call_text?: string;
@@ -27,7 +28,7 @@ export default function SiteHeader({ settings }: { settings?: SiteSettings | nul
   const links = settings?.navigation?.length
     ? settings.navigation.filter((item) => item.label && item.href).map((item) => [item.label as string, item.href as string])
     : defaultLinks;
-  const logoSrc = settings?.logo?.filename || "/images/2.jpeg";
+  const logoSrc = settings?.logo?.filename || settings?.logo_url || "/images/2.jpeg";
   const logoAlt = settings?.logo?.alt || settings?.logo_alt || `${settings?.brand_name || business.name} logo`;
   const brandName = settings?.brand_name || business.name;
   const phone = settings?.phone_link || `tel:${business.telephone}`;
