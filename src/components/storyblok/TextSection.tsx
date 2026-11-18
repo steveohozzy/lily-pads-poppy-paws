@@ -9,7 +9,7 @@ type Props = { blok: {
   link_text?: string; link_url?: string; image?: { filename?: string }; image_alt?: string; art_caption?: string;
   feature_one?: string; feature_two?: string; feature_three?: string;
   primary_button_text?: string; secondary_button_text?: string; directions_url?: string; map_embed_url?: string; map_title?: string;
-  address_line_1?: string; address_line_2?: string; address_line_3?: string; phone_display?: string; phone_link?: string;
+  address_line_1?: string; address_line_2?: string; address_line_3?: string; address_line_4?: string; phone_display?: string; phone_link?: string;
   monday_hours?: string; tuesday_hours?: string; wednesday_hours?: string; thursday_hours?: string; friday_hours?: string; saturday_hours?: string; sunday_hours?: string;
 } };
 
@@ -76,7 +76,7 @@ export default function TextSection({ blok }: Props) {
       <div className="container-shell grid gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
         <div><p className="eyebrow"><MapPin size={16} /> {eyebrow || "Your local dog groomer"}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight} /></h2>
           {(eyebrow.toLowerCase().includes("your local dog groomer") ? paragraphs.slice(0, 1) : []).map((paragraph,index)=><p className="mt-5 max-w-xl leading-8 text-slate-600" key={index}>{paragraph}</p>)}
-          <address className="mt-5 not-italic font-bold leading-7 text-navy">{blok.address_line_1 || "Lily Pads & Poppy Paws"}<br />{blok.address_line_2 || "42 Lomond Road"}<br />{blok.address_line_3 || "Hemel Hempstead"}<br />{blok.address_line_3 ? "" : "HP2 6PA"}</address>
+          <address className="mt-5 not-italic font-bold leading-7 text-navy">{blok.address_line_1 || "Lily Pads & Poppy Paws"}<br />{blok.address_line_2 || "42 Lomond Road"}<br />{blok.address_line_3 || "Hemel Hempstead"}<br />{blok.address_line_4 || "HP2 6PA"}</address>
           <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}>{blok.primary_button_text || "Call to enquire"}</a><a className="button-secondary" href={blok.directions_url || "https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA"} target="_blank" rel="noreferrer">{blok.secondary_button_text || "Get directions"} <span aria-hidden="true">↗</span></a></div>
         </div>
         <div className="map-frame"><iframe title={blok.map_title || "Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA"} src={blok.map_embed_url || "https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed"} width="100%" height="390" loading="lazy" referrerPolicy="no-referrer-when-downgrade" /></div>
