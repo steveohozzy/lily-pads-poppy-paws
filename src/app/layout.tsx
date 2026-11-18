@@ -13,7 +13,14 @@ export const metadata: Metadata = {
   },
   description: "Lily Pads & Poppy Paws offers dog grooming in Hemel Hempstead, Hertfordshire. Qualified and insured, with nail clipping and full grooms for all breeds. Call to enquire.",
   alternates: { canonical: "/" },
-  robots: { index: true, follow: true },
+  robots: process.env.VERCEL_ENV && process.env.VERCEL_ENV !== "production"
+    ? { index: false, follow: false }
+    : { index: true, follow: true },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: ["/icon.svg"],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }]
+  },
   openGraph: {
     type: "website",
     locale: "en_GB",
