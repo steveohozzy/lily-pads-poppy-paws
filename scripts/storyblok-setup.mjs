@@ -67,7 +67,7 @@ const components = [
     is_root: true,
     is_nestable: false,
     schema: {
-      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "trust_ribbon", "faq_list", "gallery_grid", "call_to_action"]),
+      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "trust_ribbon", "faq_list", "gallery_grid", "call_to_action", "callout"]),
       seo_title: text(),
       seo_description: textarea()
     }
@@ -304,6 +304,18 @@ const components = [
     }
   },
   {
+    name: "callout",
+    display_name: "Callout",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      heading: text(),
+      body: textarea(),
+      button_text: text(),
+      phone_link: text()
+    }
+  },
+  {
     name: "call_to_action",
     display_name: "Call to action",
     is_root: false,
@@ -347,6 +359,14 @@ const commonCta = (heading = "Ready for a little pampering?") =>
     button_text: "Call 07752 027606"
   });
 
+const commonCallout = (heading = "Let's get those tails wagging!") =>
+  blok("callout", {
+    heading,
+    body: "Call to discuss your dog's grooming needs and ask about prices.",
+    button_text: "07752 027606",
+    phone_link: "tel:07752027606"
+  });
+
 const pages = [
   {
     name: "Home",
@@ -381,8 +401,12 @@ const pages = [
       }),
       blok("service_grid", {
         heading: "A little trim, or the full glow-up?",
+        eyebrow: "The good stuff",
+        button_text: "See all service information",
+        button_link: "/services",
         intro: "Explore our dog grooming services in Hemel Hempstead. Every dog is different, so get in touch to discuss what your four-legged friend needs.",
-        items: serviceItems.map((item) => blok("service_item", item))
+        items: serviceItems.map((item) => blok("service_item", item)),
+        price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment."
       }),
       blok("grooming_picker", {
         eyebrow: "A tiny bit of help",
@@ -435,7 +459,7 @@ const pages = [
         heading: "A local dog groomer for Hemel Hempstead.",
         body: "Based in Hemel Hempstead, Lily Pads & Poppy Paws welcomes enquiries from local dog owners looking for nail clipping or a full dog groom. Get in touch to talk through your dog's coat and grooming needs, ask about prices and discuss an appointment."
       }),
-      commonCta("Come and say hello")
+      commonCallout("Let's get those tails wagging!")
     ]
   },
   {
@@ -456,6 +480,9 @@ const pages = [
       }),
       blok("service_grid", {
         heading: "Our dog grooming services",
+        eyebrow: "The good stuff",
+        button_text: "See all service information",
+        button_link: "/services",
         intro: "All breeds are welcome. Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment.",
         items: serviceItems.map((item) => blok("service_item", item))
       }),
@@ -463,7 +490,18 @@ const pages = [
         heading: "Not sure which groom is right?",
         body: "Every pup is unique. If you're unsure whether your dog needs a nail clip, a full groom or something else, get in touch and talk through your requirements. You can ask for a price before arranging an appointment."
       }),
-      commonCta("Let's find the right care for your dog")
+      blok("grooming_picker", {
+        eyebrow: "A tiny bit of help",
+        heading: "What kind of pamper are you thinking?",
+        highlight: "pamper",
+        intro: "Choose the option that sounds closest. We'll point you in the right direction.",
+        options: [
+          blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
+          blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
+          blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
+        ]
+      }),
+      commonCallout("Let's find the right care for your dog")
     ]
   },
   {
@@ -475,6 +513,7 @@ const pages = [
       blok("hero", {
         eyebrow: "The lovely faces behind the paws",
         heading: "Lily Pads & Poppy Paws gallery.",
+        layout: "centered",
         intro: "Explore the illustrations and brand imagery behind Lily Pads & Poppy Paws, your local dog grooming business in Hemel Hempstead. More grooming photographs can be added here as they become available."
       }),
       blok("gallery_grid", {
@@ -490,7 +529,7 @@ const pages = [
         heading: "Follow along for more paw-some moments.",
         body: "Find Lily Pads & Poppy Paws on social media for the latest updates.\n\nFacebook: https://www.facebook.com/lilypadspoppypaws/\nInstagram: https://www.instagram.com/lilypadspoppypaws/"
       }),
-      commonCta("Want to know more?")
+      commonCallout("Want to know more?")
     ]
   },
   {
@@ -502,11 +541,8 @@ const pages = [
       blok("hero", {
         eyebrow: "Here to help",
         heading: "Dog grooming FAQs for Hemel Hempstead.",
+        layout: "centered",
         intro: "Everything you might like to know before booking a grooming appointment with Lily Pads & Poppy Paws."
-      }),
-      blok("text_section", {
-        heading: "Can't see the answer you're looking for?",
-        body: "Give us a call — we're always happy to have a chat. Telephone 07752 027606."
       }),
       blok("faq_list", {
         heading: "Your dog grooming questions answered",
@@ -521,7 +557,7 @@ const pages = [
           ["Where can I find a dog groomer in Hemel Hempstead?", "Lily Pads & Poppy Paws is based at 42 Lomond Road, Hemel Hempstead, HP2 6PA. Call 07752 027606 for dog grooming enquiries."]
         ].map(([question, answer]) => blok("faq_item", { question, answer }))
       }),
-      commonCta("Still have a question?")
+      commonCallout("Still have a question?")
     ]
   },
   {
@@ -533,6 +569,7 @@ const pages = [
       blok("hero", {
         eyebrow: "Let's have a chat",
         heading: "Contact your local dog groomer in Hemel Hempstead.",
+        layout: "centered",
         intro: "Have a question about dog grooming, nail clipping, prices or appointments? Contact Lily Pads & Poppy Paws and let's talk about what your dog needs."
       }),
       blok("text_section", {
@@ -550,7 +587,7 @@ const pages = [
         heading: "Opening hours.",
         body: "Monday: Closed\nTuesday: 09:00 – 17:00\nWednesday: 09:00 – 17:00\nThursday: 09:00 – 17:00\nFriday: 09:00 – 17:00\nSaturday: 09:00 – 15:00\nSunday: Closed"
       }),
-      commonCta("We'd love to hear from you")
+      commonCallout("We'd love to hear from you")
     ]
   },
   {
