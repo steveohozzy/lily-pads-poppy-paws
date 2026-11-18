@@ -36,7 +36,7 @@ The script creates or updates the component definitions and creates the seven pa
 - Contact (`contact`)
 - Privacy Policy (`privacy`)
 
-By default, new stories are published. To create them as drafts instead, set `STORYBLOK_PUBLISH=false` in `.env.local` before running the script.
+New stories are created as drafts by default, so they cannot unexpectedly replace the live fallback pages. Once you have reviewed them in Storyblok, set `STORYBLOK_PUBLISH=true` in `.env.local` and rerun the script to publish newly created stories. Existing stories are always skipped.
 
 The script is safe to rerun: component definitions are updated to match the application, but existing stories are skipped and are never overwritten. If you have already created a story manually, the script leaves it untouched.
 
