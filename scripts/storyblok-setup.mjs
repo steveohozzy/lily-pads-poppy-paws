@@ -67,7 +67,7 @@ const components = [
     is_root: true,
     is_nestable: false,
     schema: {
-      body: bloks(["hero", "text_section", "service_grid", "faq_list", "gallery_grid", "call_to_action"]),
+      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "faq_list", "gallery_grid", "call_to_action"]),
       seo_title: text(),
       seo_description: textarea()
     }
@@ -110,6 +110,30 @@ const components = [
       intro: textarea(),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
+    }
+  },
+  {
+    name: "grooming_picker",
+    display_name: "Grooming picker",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      eyebrow: text(),
+      heading: text(),
+      highlight: text(),
+      intro: textarea(),
+      options: bloks(["grooming_picker_option"])
+    }
+  },
+  {
+    name: "grooming_picker_option",
+    display_name: "Grooming picker option",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      title: text(),
+      detail: text(),
+      result: textarea()
     }
   },
   {
@@ -215,6 +239,17 @@ const pages = [
         heading: "A little trim, or the full glow-up?",
         intro: "Explore our dog grooming services in Hemel Hempstead. Every dog is different, so get in touch to discuss what your four-legged friend needs.",
         items: serviceItems.map((item) => blok("service_item", item))
+      }),
+      blok("grooming_picker", {
+        eyebrow: "A tiny bit of help",
+        heading: "What kind of pamper are you thinking?",
+        highlight: "pamper",
+        intro: "Choose the option that sounds closest. We'll point you in the right direction.",
+        options: [
+          blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
+          blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
+          blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
+        ]
       }),
       blok("text_section", {
         eyebrow: "Care with a personal touch",
@@ -428,11 +463,42 @@ async function main() {
   for (const page of pages) {
     const existing = existingStories.find((story) => story.slug === page.slug && !story.is_folder);
     if (existing) {
+      if (page.slug === "home") {
+        const fullStoryResponse = await request(`stories/${existing.id}`);
+        const currentStory = fullStoryResponse.story;
+        const currentBody = currentStory?.content?.body || [];
+        const hasPicker = currentBody.some((item) => item.component === "grooming_picker");
+
+        if (!hasPicker) {
+          const serviceGridIndex = currentBody.findIndex((item) => item.component === "service_grid");
+          const pickerBlock = blok("grooming_picker", {
+        eyebrow: "A tiny bit of help",
+        heading: "What kind of pamper are you thinking?",
+        highlight: "pamper",
+        intro: "Choose the option that sounds closest. We'll point you in the right direction.",
+        options: [
+          blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
+          blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
+          blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
+        ]
+      }),;
+          const insertAt = serviceGridIndex >= 0 ? serviceGridIndex + 1 : currentBody.length;
+          currentBody.splice(insertAt, 0, pickerBlock);
+          await request(`stories/${existing.id}`, {
+            method: "PUT",
+            body: JSON.stringify({ story: { ...currentStory, content: { ...currentStory.content, body: currentBody } } })
+          });
+          console.log("Added Grooming Picker block to existing homepage after Service Grid.");
+        } else {
+          console.log("Homepage already contains a Grooming Picker block.");
+        }
+      }
+
       if (publishStories && !existing.published_at) {
         await request(`stories/${existing.id}/publish`);
-        console.log(`Published existing draft: /${page.slug} (content left unchanged)`);
+        console.log(`Published existing draft: /${page.slug}`);
       } else {
-        console.log(`Skipped existing story: /${page.slug} (left unchanged)`);
+        console.log(`Kept existing story: /${page.slug} (existing content preserved)`);
       }
       continue;
     }
