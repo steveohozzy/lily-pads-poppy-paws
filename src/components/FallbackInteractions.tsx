@@ -37,7 +37,7 @@ export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highli
   const choice = groomingOptions.find((item) => (item.id || item.title) === selected) || groomingOptions[0];
   const headingParts = heading || "What kind of pamper are you thinking?";
   const highlightIndex = highlight ? headingParts.toLowerCase().indexOf(highlight.toLowerCase()) : -1;
-  const words = [...headingParts.matchAll(/\\S+/g)];
+  const words = [...headingParts.matchAll(/\S+/g)];
   const insertAfterWords = Math.max(0, Math.min(words.length, highlight_after_words ?? 3));
   const insertIndex = insertAfterWords === 0 ? 0 : words[insertAfterWords - 1].index! + words[insertAfterWords - 1][0].length;
   const headingBefore = headingParts.slice(0, insertIndex).trimEnd();
