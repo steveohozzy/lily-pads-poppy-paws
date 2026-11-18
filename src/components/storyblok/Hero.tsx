@@ -9,7 +9,11 @@ type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; i
 export default function Hero({ blok }: Props) {
   const isHome = blok.show_trust_ribbon || (blok.eyebrow || "").toLowerCase().includes("little love for every paw");
   const heading = blok.heading || "Happy dogs. Lovely fresh trims.";
-  const paintNote = heading.toLowerCase().includes("service") ? <>Freshen up<br/>your fluff!</> : heading.toLowerCase().includes("contact") ? <>Come say<br/>hello!</> : <>A little kindness<br/>goes a long way</>;
+  const isServices = heading.toLowerCase().includes("service");
+  const isContact = heading.toLowerCase().includes("contact");
+  const paintNote = isServices ? <>Freshen up<br/>your fluff!</> : isContact ? <>Come say<br/>hello!</> : <>A little kindness<br/>goes a long way</>;
+  const pageArtClass = isServices ? "page-art-services" : isContact ? "page-art-contact" : "page-art-about";
+  const pageButtonText = blok.button_text || (isServices ? "Call for a quote" : isContact ? "Call 07752 027606" : "Have a chat");
   const artwork = blok.image?.filename
     ? <img src={blok.image.filename} alt={blok.image.alt || "Illustrated dog artwork for Lily Pads & Poppy Paws"} className={isHome ? "hero-brand-art hero-dog-art" : "page-feature-image"} />
     : <Image src={isHome ? "/images/1.jpg" : "/images/3.jpg"} alt="Aqua and blue dog grooming illustration for Lily Pads & Poppy Paws" width={1000} height={1000} priority className={isHome ? "hero-brand-art hero-dog-art" : "page-feature-image"} sizes="(max-width: 1024px) 90vw, 46vw" />;
@@ -22,9 +26,9 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><PawPrint size={16}/> {blok.eyebrow || "A little about us"}</p>
             <h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {blok.button_text || "Have a chat"}</a><Link className="button-secondary" href={blok.button_link || "/services"}>Explore grooming <span aria-hidden="true">→</span></Link></div>
+            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {pageButtonText}</a><Link className="button-secondary" href={blok.button_link || "/services"}>Explore grooming <span aria-hidden="true">→</span></Link></div>
           </div>
-          <div className="page-art-card page-art-about">{artwork}<span className="paint-note">{paintNote}</span></div>
+          <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote}</span></div>
         </div>
       </section>
     </>
