@@ -27,14 +27,69 @@ async function fetchStory(slug: string) {
   }
 }
 
+const pageSeo: Record<string, { title: string; description: string }> = {
+  home: {
+    title: "Dog Grooming in Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Looking for a dog groomer in Hemel Hempstead? Lily Pads & Poppy Paws is qualified and insured, offering nail clips to full grooms for all breeds. Call to enquire."
+  },
+  about: {
+    title: "About Lily Pads & Poppy Paws | Hemel Hempstead Dog Groomer",
+    description: "Meet Lily Pads & Poppy Paws, a qualified and insured dog grooming business in Hemel Hempstead, Hertfordshire. All breeds welcome."
+  },
+  services: {
+    title: "Dog Grooming Services | Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Explore dog grooming in Hemel Hempstead, from nail clipping to full grooms for all breeds. Contact Lily Pads & Poppy Paws to discuss your dog's needs and prices."
+  },
+  gallery: {
+    title: "Dog Grooming Gallery | Lily Pads & Poppy Paws",
+    description: "See the Lily Pads & Poppy Paws dog grooming gallery. Follow our latest updates and lovely four-legged visitors in Hemel Hempstead."
+  },
+  faqs: {
+    title: "Dog Grooming FAQs | Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Answers to common questions about dog grooming, services, prices and appointments at Lily Pads & Poppy Paws in Hemel Hempstead."
+  },
+  contact: {
+    title: "Contact a Dog Groomer in Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Contact Lily Pads & Poppy Paws for dog grooming enquiries, prices and appointments. Find us at 42 Lomond Road, Hemel Hempstead, HP2 6PA."
+  },
+  privacy: {
+    title: "Privacy Policy | Lily Pads & Poppy Paws",
+    description: "Read the privacy information for the Lily Pads & Poppy Paws website."
+  }
+};
+
 export async function generateMetadata({ params }: { params: Promise<{ slug?: string[] }> }): Promise<Metadata> {
   const { slug } = await params;
   const path = slug?.join("/") || "home";
   const story = await fetchStory(path);
   const content = story?.content || {};
-  const pageTitle = content.seo_title || content.title || (path === "home" ? "Dog Groomers in Hemel Hempstead" : `${path.charAt(0).toUpperCase()}${path.slice(1)} | Dog Grooming`);
-  const description = content.seo_description || "Qualified and insured dog groomer in Hemel Hempstead. From nail clips to full grooms for all breeds. Call Lily Pads & Poppy Paws to enquire.";
-  return { title: pageTitle, description, alternates: { canonical: `${business.domain}${path === "home" ? "" : `/${path}`}` }, openGraph: { title: pageTitle, description, url: `${business.domain}${path === "home" ? "" : `/${path}`}`, siteName: business.name, locale: "en_GB", type: "website" } };
+  const fallback = pageSeo[path] || {
+    title: `${path.charAt(0).toUpperCase()}${path.slice(1)} | Lily Pads & Poppy Paws`,
+    description: "Qualified and insured dog groomer in Hemel Hempstead. Contact Lily Pads & Poppy Paws to discuss dog grooming services, prices and appointments."
+  };
+  const pageTitle = content.seo_title || content.title || fallback.title;
+  const description = content.seo_description || fallback.description;
+  const canonical = `${business.domain}${path === "home" ? "" : `/${path}`}`;
+  return {
+    title: { absolute: pageTitle },
+    description,
+    alternates: { canonical },
+    openGraph: {
+      title: pageTitle,
+      description,
+      url: canonical,
+      siteName: business.name,
+      locale: "en_GB",
+      type: "website",
+      images: [{ url: "/images/brand-reference-logo.jpeg", width: 1000, height: 1000, alt: "Lily Pads & Poppy Paws dog grooming in Hemel Hempstead" }]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: pageTitle,
+      description,
+      images: ["/images/brand-reference-logo.jpeg"]
+    }
+  };
 }
 
 export default async function DynamicPage({ params }: { params: Promise<{ slug?: string[] }> }) {
