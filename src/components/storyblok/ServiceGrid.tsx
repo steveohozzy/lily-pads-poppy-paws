@@ -3,18 +3,18 @@ import { PawPrint, Scissors, Sparkles, Heart } from "lucide-react";
 import { services } from "@/lib/business";
 import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { _uid: string; eyebrow?: string; heading?: string; highlight?: string; intro?: string; button_text?: string; button_link?: string; price_note?: string; show_prices?: boolean; show_button?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
+type Props = { blok: { _uid: string; eyebrow?: string; heading?: string; highlight?: string; intro?: string; button_text?: string; button_link?: string; price_note?: string; show_prices?: boolean; show_button?: boolean; show_heading?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
 
 export default function ServiceGrid({ blok }: Props) {
   return (
     <>
       <section className="section-pad services-section" {...storyblokEditable(blok as never)}>
         <div className="container-shell">
-          <div className="section-intro mx-auto max-w-2xl text-center">
+          {blok.show_heading !== false && <div className="section-intro mx-auto max-w-2xl text-center">
             <p className="eyebrow justify-center"><PawPrint size={16} /> {blok.eyebrow || "The good stuff"}</p>
             <h2 className="section-heading mt-4"><HighlightedText text={blok.heading || "A little care goes a long way"} highlight={blok.highlight} /></h2>
             <p className="mt-4 leading-7 text-slate-600">{blok.intro || "From nail clips to full grooms, get in touch to talk through what your dog needs."}</p>
-          </div>
+          </div>}
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {blok.items?.length ? blok.items.map((item, index) => <StoryblokServerComponent blok={item} key={item._uid} show_prices={blok.show_prices} index={index} />) : services.map((item, index) => {
               const Icon = [Scissors, Sparkles, Heart][index % 3];
