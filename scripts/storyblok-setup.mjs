@@ -578,6 +578,128 @@ const pages = [
   }
 ];
 
+
+function applyEditableDefaults(pageSlug, body) {
+  let changed = false;
+  const fill = (blok, values) => {
+    for (const [key, value] of Object.entries(values)) {
+      if ((blok[key] === undefined || blok[key] === null || blok[key] === "") && value !== undefined) {
+        blok[key] = value;
+        changed = true;
+      }
+    }
+  };
+
+  for (const blokItem of body) {
+    if (blokItem.component === "hero") {
+      const isHome = pageSlug === "home";
+      fill(blokItem, {
+        image_url: isHome ? "/images/1.jpg" : "/images/3.jpg",
+        image_alt: isHome ? "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style" : "Lily Pads & Poppy Paws dog grooming illustration",
+        phone_link: "tel:07752027606",
+        phone_text: isHome ? "Call 07752 027606" : "Call 07752 027606",
+        secondary_button_text: isHome ? "Explore our services" : "Explore grooming",
+        secondary_button_link: "/services",
+        ...(isHome ? {
+          trust_badge_one: "Qualified & insured",
+          trust_badge_two: "All breeds welcome",
+          sticker_top: "Pawsitively pampered!",
+          sticker_bottom: "Every dog is special"
+        } : {})
+      });
+    }
+
+    if (blokItem.component === "service_grid") {
+      fill(blokItem, {
+        eyebrow: pageSlug === "services" ? "The pamper menu" : "The good stuff",
+        button_text: "See all service information",
+        button_link: "/services"
+      });
+      for (const item of blokItem.items || []) {
+        if (item.component === "service_item") fill(item, {
+          kicker: "A little love · Tail-wagging care",
+          link_text: "Enquire",
+          link_url: "/contact",
+          footer_note: "All breeds welcome"
+        });
+      }
+    }
+
+    if (blokItem.component === "text_section") {
+      const eyebrow = (blokItem.eyebrow || "").toLowerCase();
+      const heading = (blokItem.heading || "").toLowerCase();
+      if (eyebrow.includes("welcome to our little grooming")) fill(blokItem, {
+        link_text: "Get to know Lily Pads & Poppy Paws",
+        link_url: "/about"
+      });
+      if (eyebrow.includes("care with a personal touch")) fill(blokItem, {
+        art_caption: "Little paws. Big personalities.",
+        feature_one: "Qualified and insured dog groomer",
+        feature_two: "Grooming options from nail clips to full grooms",
+        feature_three: "Conveniently based in Hemel Hempstead",
+        link_text: "Read our grooming FAQs",
+        link_url: "/faqs"
+      });
+      if (eyebrow.includes("made for wagging tails")) fill(blokItem, {
+        image_url: "/images/1.jpg",
+        image_alt: "Illustrated dog in the Lily Pads & Poppy Paws aqua and blue brand artwork",
+        link_text: "Come and say hello",
+        link_url: "/contact"
+      });
+      if ((eyebrow.includes("your local dog groomer") || heading.includes("hemel hempstead")) && (blokItem.body || "").includes("42 Lomond Road")) fill(blokItem, {
+        address_line_1: "Lily Pads & Poppy Paws",
+        address_line_2: "42 Lomond Road",
+        address_line_3: "Hemel Hempstead",
+        address_line_4: "HP2 6PA",
+        phone_display: "07752 027606",
+        phone_link: "tel:07752027606",
+        primary_button_text: "Call to enquire",
+        secondary_button_text: "Get directions",
+        directions_url: "https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA",
+        map_title: "Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA",
+        map_embed_url: "https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed"
+      });
+      if (heading.includes("opening hours")) fill(blokItem, {
+        monday_hours: "Closed",
+        tuesday_hours: "09:00 – 17:00",
+        wednesday_hours: "09:00 – 17:00",
+        thursday_hours: "09:00 – 17:00",
+        friday_hours: "09:00 – 17:00",
+        saturday_hours: "09:00 – 15:00",
+        sunday_hours: "Closed"
+      });
+    }
+
+    if (blokItem.component === "faq_list") fill(blokItem, {
+      intro: "Can't see the answer you're looking for? Give us a call — we're always happy to have a chat.",
+      phone_text: "07752 027606",
+      phone_display: "07752 027606",
+      phone_link: "tel:07752027606"
+    });
+
+    if (blokItem.component === "gallery_grid") fill(blokItem, {
+      eyebrow: "The lovely faces behind the paws",
+      social_eyebrow: "More fluffy updates",
+      social_heading: "Follow along for more paw-some moments.",
+      social_intro: "Find Lily Pads & Poppy Paws on social media for the latest updates.",
+      facebook_url: "https://www.facebook.com/lilypadspoppypaws/",
+      instagram_url: "https://www.instagram.com/lilypadspoppypaws/",
+      facebook_text: "Facebook",
+      instagram_text: "Instagram"
+    });
+
+    if (blokItem.component === "call_to_action") fill(blokItem, {
+      eyebrow: "Ready for a little pampering?",
+      phone_link: "tel:07752027606",
+      button_text: "07752 027606",
+      secondary_button_text: "Contact us",
+      secondary_button_link: "/contact"
+    });
+  }
+
+  return changed;
+}
+
 async function main() {
   console.log(`Preparing Storyblok space ${spaceId} (${publishStories ? "publish" : "draft"} stories).`);
 
@@ -609,12 +731,13 @@ async function main() {
   for (const page of pages) {
     const existing = existingStories.find((story) => story.slug === page.slug && !story.is_folder);
     if (existing) {
+      const fullStoryResponse = await request(`stories/${existing.id}`);
+      const currentStory = fullStoryResponse.story;
+      const currentBody = currentStory?.content?.body || [];
+      let changed = applyEditableDefaults(page.slug, currentBody);
+
       if (page.slug === "home") {
-        const fullStoryResponse = await request(`stories/${existing.id}`);
-        const currentStory = fullStoryResponse.story;
-        const currentBody = currentStory?.content?.body || [];
-        const hasRibbon = currentBody.some((item) => item.component === "trust_ribbon");
-        if (!hasRibbon) {
+        if (!currentBody.some((item) => item.component === "trust_ribbon")) {
           const heroIndex = currentBody.findIndex((item) => item.component === "hero");
           currentBody.splice(heroIndex >= 0 ? heroIndex + 1 : 0, 0, blok("trust_ribbon", {
             items: [
@@ -623,41 +746,42 @@ async function main() {
               blok("trust_ribbon_item", { label: "Hemel Hempstead, Hertfordshire", icon: "location" })
             ]
           }));
+          changed = true;
           console.log("Added Trust Ribbon block to existing homepage after Hero.");
         }
 
-        const hasPicker = currentBody.some((item) => item.component === "grooming_picker");
-
-        if (!hasPicker) {
+        if (!currentBody.some((item) => item.component === "grooming_picker")) {
           const serviceGridIndex = currentBody.findIndex((item) => item.component === "service_grid");
           const pickerBlock = blok("grooming_picker", {
-        eyebrow: "A tiny bit of help",
-        heading: "What kind of pamper are you thinking?",
-        highlight: "pamper",
-        intro: "Choose the option that sounds closest. We'll point you in the right direction.",
-        options: [
-          blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
-          blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
-          blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
-        ]
-      });
-          const insertAt = serviceGridIndex >= 0 ? serviceGridIndex + 1 : currentBody.length;
-          currentBody.splice(insertAt, 0, pickerBlock);
-          await request(`stories/${existing.id}`, {
-            method: "PUT",
-            body: JSON.stringify({ story: { name: currentStory.name, slug: currentStory.slug, content: { ...currentStory.content, body: currentBody } } })
+            eyebrow: "A tiny bit of help",
+            heading: "What kind of pamper are you thinking?",
+            highlight: "pamper",
+            intro: "Choose the option that sounds closest. We'll point you in the right direction.",
+            options: [
+              blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
+              blok("grooming_picker_option", { title: "The full pamper", detail: "A full groom for a fresh new look", result: "Let's talk about the full groom you're looking for and find out what's right for your dog's coat." }),
+              blok("grooming_picker_option", { title: "Something else", detail: "Not quite sure what they need?", result: "No worries at all. Tell us a little about your dog and we'll chat through the options together." })
+            ]
           });
-          console.log("Added Grooming Picker block to existing homepage after Service Grid.");
-        } else {
-          console.log("Homepage already contains a Grooming Picker block.");
+          currentBody.splice(serviceGridIndex >= 0 ? serviceGridIndex + 1 : currentBody.length, 0, pickerBlock);
+          changed = true;
+          console.log("Added Grooming Picker block to existing homepage.");
         }
+      }
+
+      if (changed) {
+        await request(`stories/${existing.id}`, {
+          method: "PUT",
+          body: JSON.stringify({ story: { name: currentStory.name, slug: currentStory.slug, content: { ...currentStory.content, body: currentBody } } })
+        });
+        console.log(`Updated editable content fields for /${page.slug} without replacing existing copy.`);
+      } else {
+        console.log(`No content migration needed for /${page.slug}.`);
       }
 
       if (publishStories) {
         await request(`stories/${existing.id}/publish`);
-        console.log(`Published existing draft: /${page.slug}`);
-      } else {
-        console.log(`Kept existing story: /${page.slug} (existing content preserved)`);
+        console.log(`Published / ${page.slug}`);
       }
       continue;
     }
