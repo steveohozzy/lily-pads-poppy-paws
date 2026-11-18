@@ -2,7 +2,7 @@ export const business = {
   name: "Lily Pads & Poppy Paws",
   shortName: "Lily Pads & Poppy Paws",
   description:
-    "Qualified and insured dog groomer in Hemel Hempstead. Everything available from nail clips to full grooms for all breeds.",
+    "Lily Pads & Poppy Paws is a qualified and insured dog grooming business based in Hemel Hempstead, Hertfordshire. Nail clipping and full grooms are available to enquire about, with all breeds welcome.",
   telephone: "07752027606",
   telephoneDisplay: "07752 027606",
   address: {
@@ -22,17 +22,17 @@ export const business = {
 export const services = [
   {
     title: "Nail clipping",
-    description: "Need a nail trim? Get in touch to enquire about nail clipping appointments.",
+    description: "Dog nail clipping in Hemel Hempstead. Get in touch to enquire about a nail trim and discuss your dog's needs.",
     icon: "scissors"
   },
   {
     title: "Full grooms",
-    description: "Enquire about a full groom for your dog. All breeds are welcome.",
+    description: "Enquire about a full dog groom in Hemel Hempstead. All breeds are welcome; get in touch to discuss your dog's coat and grooming requirements.",
     icon: "sparkles"
   },
   {
-    title: "Dog grooming enquiries",
-    description: "If you need something else for your dog, contact us and tell us what you are looking for.",
+    title: "Grooming advice and enquiries",
+    description: "Not sure what your dog needs? Contact Lily Pads & Poppy Paws to talk through your grooming requirements and ask about prices.",
     icon: "heart"
   }
 ];
