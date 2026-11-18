@@ -919,3 +919,107 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
     height:42px;
   }
 }
+
+
+/* Hand-painted hearts, paw prints and brush marks around the hero artwork. */
+.hero-art::after {
+  content:none;
+  animation:none;
+}
+.hero-paint-streak {
+  position:absolute;
+  z-index:1;
+  display:block;
+  pointer-events:none;
+  background:linear-gradient(90deg,#159bd2 0%,#4bc9e6 55%,#8fe3f1 100%);
+  opacity:.68;
+  filter: saturate(.92);
+}
+.hero-paint-streak-one {
+  width:42%;
+  height:13px;
+  top:13%;
+  right:-3%;
+  clip-path:polygon(0 35%,12% 10%,28% 28%,44% 0,61% 25%,78% 12%,100% 42%,94% 78%,72% 66%,54% 100%,34% 70%,15% 92%,4% 67%);
+  transform:rotate(-13deg);
+}
+.hero-paint-streak-two {
+  width:34%;
+  height:10px;
+  bottom:14%;
+  left:-4%;
+  opacity:.48;
+  clip-path:polygon(0 42%,14% 18%,32% 38%,49% 5%,65% 32%,82% 14%,100% 44%,91% 80%,70% 63%,52% 100%,31% 70%,12% 90%);
+  transform:rotate(-9deg);
+}
+.hero-doodle-heart,
+.hero-doodle-paw {
+  position:absolute;
+  z-index:3;
+  display:block;
+  pointer-events:none;
+  color:#159bd2;
+}
+.hero-doodle-heart svg {
+  display:block;
+  width:100%;
+  height:100%;
+  overflow:visible;
+}
+.hero-doodle-heart svg path {
+  fill:#36bce0;
+  stroke:#087fb8;
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  stroke-dasharray:1.5 1;
+  paint-order:stroke fill;
+}
+.hero-doodle-heart-one {
+  width:47px;
+  height:43px;
+  top:8%;
+  left:3%;
+  transform:rotate(-13deg);
+  filter:drop-shadow(2px 3px 0 #fff8);
+}
+.hero-doodle-heart-two {
+  width:31px;
+  height:29px;
+  right:4%;
+  bottom:18%;
+  transform:rotate(12deg);
+  opacity:.86;
+}
+.hero-doodle-paw {
+  filter:drop-shadow(1px 2px 0 #ffffffb8);
+}
+.hero-doodle-paw-one {
+  top:24%;
+  right:1%;
+  transform:rotate(19deg);
+}
+.hero-doodle-paw-two {
+  bottom:31%;
+  left:0;
+  transform:rotate(-17deg);
+  opacity:.82;
+}
+.hero-doodle-paw-three {
+  top:5%;
+  right:23%;
+  transform:rotate(13deg);
+  opacity:.72;
+}
+@media (max-width:640px) {
+  .hero-paint-streak-one { width:39%; height:9px; top:12%; right:-1%; }
+  .hero-paint-streak-two { width:30%; height:8px; bottom:13%; left:-2%; }
+  .hero-doodle-heart-one { width:35px; height:33px; top:5%; left:1%; }
+  .hero-doodle-heart-two { width:25px; height:23px; right:2%; bottom:16%; }
+  .hero-doodle-paw-one { top:23%; right:0; }
+  .hero-doodle-paw-two { bottom:29%; left:0; }
+  .hero-doodle-paw-three { top:3%; right:23%; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-doodle-heart,.hero-doodle-paw,.hero-paint-streak { animation:none !important; }
+}
