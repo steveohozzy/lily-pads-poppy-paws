@@ -18,9 +18,9 @@ export default function TextSection({ blok }: Props) {
   const heading = blok.heading || "";
   const body = blok.body || "";
   const paragraphs = body.split(/\n\n+/).filter(Boolean);
-  const renderLinkedText = (value: string) => value.split(/(https?:\\/\\/[^\\s]+|07752\\s?027606)/g).map((part, index) => {
-    if (/^https?:\\/\\//.test(part)) return <a className="underline" href={part} target="_blank" rel="noreferrer" key={index}>{part}</a>;
-    if (/^07752\\s?027606$/.test(part)) return <a className="underline" href="tel:07752027606" key={index}>{part}</a>;
+  const renderLinkedText = (value: string) => value.split(/(https?:\/\/[^\s]+|07752\s?027606)/g).map((part, index) => {
+    if (/^https?:\/\//.test(part)) return <a className="underline" href={part} target="_blank" rel="noreferrer" key={index}>{part}</a>;
+    if (/^07752\s?027606$/.test(part)) return <a className="underline" href="tel:07752027606" key={index}>{part}</a>;
     return part;
   });
   const isIntro = eyebrow.toLowerCase().includes("welcome to our little grooming");
