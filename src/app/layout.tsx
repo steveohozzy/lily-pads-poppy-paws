@@ -7,10 +7,10 @@ import { business } from "@/lib/business";
 export const metadata: Metadata = {
   metadataBase: new URL(business.domain),
   title: {
-    default: "Dog Groomers in Hemel Hempstead | Lily Pads & Poppy Paws",
+    default: "Dog Grooming in Hemel Hempstead | Lily Pads & Poppy Paws",
     template: "%s | Lily Pads & Poppy Paws"
   },
-  description: "Qualified and insured dog groomer in Hemel Hempstead. From nail clips to full grooms for all breeds. Call Lily Pads & Poppy Paws to enquire.",
+  description: "Lily Pads & Poppy Paws offers dog grooming in Hemel Hempstead, Hertfordshire. Qualified and insured, with nail clipping and full grooms for all breeds. Call to enquire.",
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
