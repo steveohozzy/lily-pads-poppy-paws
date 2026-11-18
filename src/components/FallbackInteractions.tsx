@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { ArrowRight, Check, ChevronLeft, ChevronRight, PawPrint, X } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, PawPrint, X } from "lucide-react";
 
 type GalleryImage = { src: string; alt: string; note?: string };
 const defaultGalleryImages: GalleryImage[] = [
@@ -52,7 +52,7 @@ export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highli
           return <button type="button" key={optionId} className={`picker-option ${selected === optionId ? "is-selected" : ""}`} onClick={() => setSelected(optionId)} aria-pressed={selected === optionId}><span className="picker-option-check">{selected === optionId ? <Check size={15}/> : <PawPrint size={15}/>}</span><strong>{option.title}</strong><small>{option.detail}</small></button>;
         })}
       </div>
-      {choice && <div className="picker-result" aria-live="polite"><span className="picker-result-paw"><PawPrint size={23}/></span><div><strong>{choice.title}</strong><p>{choice.result}</p></div><a href={phone_link}>{button_text} <ArrowRight size={17}/></a></div>}
+      {choice && <div className="picker-result" aria-live="polite"><span className="picker-result-paw"><PawPrint size={23}/></span><div><strong>{choice.title}</strong><p>{choice.result}</p></div><a href={phone_link}>{button_text} </a></div>}
     </div>
   );
 }
