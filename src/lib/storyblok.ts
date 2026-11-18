@@ -6,6 +6,8 @@ import ServiceGrid from "@/components/storyblok/ServiceGrid";
 import GroomingPickerBlock from "@/components/storyblok/GroomingPickerBlock";
 import TrustRibbon from "@/components/storyblok/TrustRibbon";
 import StoryblokCallout from "@/components/storyblok/StoryblokCallout";
+import AboutIntro from "@/components/storyblok/AboutIntro";
+import ContactPanels from "@/components/storyblok/ContactPanels";
 import FaqList from "@/components/storyblok/FaqList";
 import GalleryGrid from "@/components/storyblok/GalleryGrid";
 import CallToAction from "@/components/storyblok/CallToAction";
@@ -33,6 +35,8 @@ export const getStoryblokApi = storyblokInit({
     gallery_grid: GalleryGrid,
     call_to_action: CallToAction,
     callout: StoryblokCallout,
+    about_intro: AboutIntro,
+    contact_panels: ContactPanels,
     service_item: ServiceItem
   }
 });
