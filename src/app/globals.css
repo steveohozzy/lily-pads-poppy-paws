@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #102b50;
+  --blue: #168fc1;
+  --turquoise: #39c6e5;
+  --pale: #effbfe;
+  --ink: #172b42;
+}
+
+@theme inline {
+  --color-navy: var(--navy);
+  --color-skybrand: var(--blue);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-display: "Trebuchet MS", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: #fff; color: var(--ink); font-family: Arial, Helvetica, sans-serif; }
+a { text-decoration: none; }
+.container-shell { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+.site-header { position: relative; z-index: 20; background: #fff; border-bottom: 1px solid #e5f5f9; }
+.brand-lockup { display: inline-flex; align-items: center; gap: 10px; color: var(--navy); }
+.brand-mark { display: grid; width: 48px; height: 48px; place-items: center; border-radius: 50%; background: var(--turquoise); color: var(--navy); transform: rotate(-12deg); }
+.brand-name { font-family: "Trebuchet MS", Arial, sans-serif; font-size: 19px; line-height: .98; font-weight: 900; letter-spacing: -.8px; }
+.brand-name span { color: var(--blue); font-style: italic; }
+.nav-link { color: #29445f; font-size: 14px; font-weight: 700; transition: color .2s; }
+.nav-link:hover { color: var(--blue); }
+.header-call, .button-primary { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border-radius: 999px; background: var(--navy); color: white; padding: 13px 21px; font-weight: 800; box-shadow: 0 8px 20px #102b5020; transition: transform .2s, background .2s; }
+.header-call:hover, .button-primary:hover { background: #174d79; transform: translateY(-2px); }
+.mobile-nav { display: flex; overflow-x: auto; gap: 22px; padding: 11px 20px 14px; border-top: 1px solid #edf7fa; white-space: nowrap; }
+.mobile-nav a { color: var(--navy); font-size: 13px; font-weight: 700; }
+.hero-wrap { overflow: hidden; background: linear-gradient(115deg, #f0fbfe 0%, #fff 62%); }
+.eyebrow { display: flex; align-items: center; gap: 8px; color: #167da9; font-size: 13px; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; }
+.display-heading { max-width: 720px; color: var(--navy); font-family: "Trebuchet MS", Arial, sans-serif; font-size: clamp(2.8rem, 6.4vw, 5.4rem); font-weight: 900; letter-spacing: -.065em; line-height: .98; }
+.button-secondary { display: inline-flex; align-items: center; justify-content: center; border: 2px solid #b8eaf5; border-radius: 999px; padding: 11px 19px; color: var(--navy); font-weight: 800; transition: background .2s; }
+.button-secondary:hover { background: #e2f8fc; }
+.hero-art { position: relative; min-height: 420px; display: grid; place-items: center; }
+.hero-art > img { width: 100%; max-height: 520px; object-fit: contain; border-radius: 36px; position: relative; z-index: 2; }
+.hero-dog-placeholder { position: relative; width: min(100%, 500px); aspect-ratio: 1 / .94; display: grid; place-items: center; }
+.paint-splash { position: absolute; inset: 8% 2%; border-radius: 48% 52% 43% 57% / 48% 42% 58% 52%; background: var(--turquoise); transform: rotate(-7deg); box-shadow: 0 0 0 12px #39c6e522; }
+.dog-emoji { position: relative; z-index: 1; font-size: clamp(12rem, 25vw, 20rem); filter: drop-shadow(0 15px 12px #123b4b25); }
+.paw-stamp { position: absolute; top: 8%; right: 9%; z-index: 2; display: grid; width: 70px; height: 70px; place-items: center; border-radius: 50%; background: #fff; color: var(--navy); box-shadow: 0 10px 30px #123b4b20; transform: rotate(15deg); }
+.hero-note { position: absolute; z-index: 2; bottom: 8%; left: 2%; padding: 14px 20px; border: 2px solid var(--navy); border-radius: 18px 18px 18px 3px; background: white; color: var(--navy); font-family: cursive; font-size: 21px; font-weight: 700; transform: rotate(-7deg); }
+.section-pad { padding-block: 82px; }
+.bg-pale { background: var(--pale); }
+.section-heading { color: var(--navy); font-family: "Trebuchet MS", Arial, sans-serif; font-size: clamp(2rem, 4vw, 3.35rem); font-weight: 900; letter-spacing: -.045em; line-height: 1.05; }
+.prose-copy { color: #43576b; font-size: 17px; line-height: 1.9; }
+.service-card { border: 1px solid #d8f0f6; border-radius: 25px; background: white; padding: 29px; box-shadow: 0 12px 35px #10334d08; transition: transform .2s, box-shadow .2s; }
+.service-card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px #10334d12; }
+.service-icon { display: grid; width: 54px; height: 54px; place-items: center; border-radius: 18px; background: #dff8fd; color: #087eae; }
+.cta-panel { border: 1px solid #d9f2f8; border-radius: 32px; background: linear-gradient(135deg, #f0fcff, #fff); padding: clamp(28px, 6vw, 64px); text-align: center; }
+.cta-panel .eyebrow { justify-content: center; }
+.cta-strip { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; border-radius: 26px; background: #eafaff; padding: 30px; }
+.faq-item { padding-block: 20px; }
+.faq-item summary { cursor: pointer; color: var(--navy); font-size: 18px; font-weight: 800; }
+.faq-item p { max-width: 760px; padding-top: 12px; color: #52667a; line-height: 1.8; }
+.gallery-tile { overflow: hidden; aspect-ratio: 1; border-radius: 22px; background: #dff7fc; }
+.gallery-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.gallery-tile:hover img { transform: scale(1.04); }
+.page-hero { background: linear-gradient(120deg, #eafaff, #fff); padding-block: 68px; }
+.page-hero h1 { color: var(--navy); font-family: "Trebuchet MS", Arial, sans-serif; font-size: clamp(2.7rem, 6vw, 4.6rem); font-weight: 900; letter-spacing: -.06em; line-height: 1; }
+.site-footer { background: var(--navy); color: white; }
+.footer-heading { color: white; font-size: 16px; font-weight: 900; }
+.social-link { display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid #ffffff55; border-radius: 50%; color: white; }
+.social-link:hover { background: #ffffff20; }
+.contact-panel { border: 1px solid #d8f0f6; border-radius: 24px; background: #fff; padding: 28px; }
+@media (max-width: 640px) {
+  .container-shell { width: min(100% - 30px, 1160px); }
+  .hero-art { min-height: 300px; }
+  .section-pad { padding-block: 58px; }
+  .header-call { padding: 11px 14px; }
+  .header-call span { display: none; }
+}
