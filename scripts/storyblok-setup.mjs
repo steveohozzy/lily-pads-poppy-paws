@@ -124,7 +124,13 @@ const components = [
       intro: textarea(),
       image: field("asset"),
       button_text: text(),
-      button_link: field("multilink")
+      button_link: field("multilink"),
+      secondary_button_text: text(),
+      secondary_button_link: text(),
+      trust_badge_one: text(),
+      trust_badge_two: text(),
+      sticker_top: text(),
+      sticker_bottom: text()
     }
   },
   {
@@ -136,7 +142,32 @@ const components = [
       eyebrow: text(),
       heading: text(),
       highlight: text(),
-      body: textarea()
+      body: textarea(),
+      link_text: text(),
+      link_url: text(),
+      image: field("asset"),
+      image_alt: text(),
+      art_caption: text(),
+      feature_one: text(),
+      feature_two: text(),
+      feature_three: text(),
+      primary_button_text: text(),
+      secondary_button_text: text(),
+      directions_url: text(),
+      map_embed_url: text(),
+      map_title: text(),
+      address_line_1: text(),
+      address_line_2: text(),
+      address_line_3: text(),
+      phone_display: text(),
+      phone_link: text(),
+      monday_hours: text(),
+      tuesday_hours: text(),
+      wednesday_hours: text(),
+      thursday_hours: text(),
+      friday_hours: text(),
+      saturday_hours: text(),
+      sunday_hours: text()
     }
   },
   {
@@ -145,9 +176,12 @@ const components = [
     is_root: false,
     is_nestable: true,
     schema: {
+      eyebrow: text(),
       heading: text(),
       highlight: text(),
       intro: textarea(),
+      button_text: text(),
+      button_link: text(),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
     }
@@ -208,6 +242,10 @@ const components = [
     schema: {
       title: text(),
       description: textarea(),
+      kicker: text(),
+      link_text: text(),
+      link_url: text(),
+      footer_note: text(),
       show_price: field("boolean", { default_value: false }),
       price: text()
     }
