@@ -130,6 +130,7 @@ const components = [
         { name: "Illustrated", value: "illustrated" },
         { name: "Centered", value: "centered" }
       ] }),
+      show_secondary_button: field("boolean", { default_value: true }),
       button_text: text(),
       button_link: field("multilink"),
       secondary_button_text: text(),
@@ -278,6 +279,7 @@ const components = [
       heading: text(),
       highlight: text(),
       intro: textarea(),
+      show_heading: field("boolean", { default_value: false }),
       phone_text: text(),
       phone_display: text(),
       phone_link: text(),
@@ -710,12 +712,14 @@ function applyEditableDefaults(pageSlug, body) {
     if (blokItem.component === "hero") {
       const isHome = pageSlug === "home";
       fill(blokItem, {
-        image_url: isHome ? "/images/1.jpg" : "/images/3.jpg",
+        image_url: isHome || pageSlug === "services" ? "/images/1.jpg" : "/images/3.jpg",
         image_alt: isHome ? "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style" : "Lily Pads & Poppy Paws dog grooming illustration",
         layout: pageSlug === "gallery" || pageSlug === "faqs" ? "centered" : "illustrated",
         paint_note: pageSlug === "services" ? "Freshen up\\nyour fluff!" : pageSlug === "contact" ? "Come say\\nhello!" : "A little kindness\\ngoes a long way",
         phone_link: "tel:07752027606",
-        phone_text: isHome ? "Call 07752 027606" : "Call 07752 027606",
+        phone_text: isHome ? "Call 07752 027606" : pageSlug === "about" ? "Have a chat" : pageSlug === "services" ? "Call for a quote" : "Call 07752 027606",
+        button_text: isHome ? "Call 07752 027606" : pageSlug === "about" ? "Have a chat" : pageSlug === "services" ? "Call for a quote" : "Call 07752 027606",
+        show_secondary_button: isHome || pageSlug === "about",
         secondary_button_text: isHome ? "Explore our services" : "Explore grooming",
         secondary_button_link: "/services",
         ...(isHome ? {
@@ -750,10 +754,16 @@ function applyEditableDefaults(pageSlug, body) {
     if (blokItem.component === "text_section") {
       const eyebrow = (blokItem.eyebrow || "").toLowerCase();
       const heading = (blokItem.heading || "").toLowerCase();
-      if (eyebrow.includes("welcome to our little grooming")) fill(blokItem, {
+      if (eyebrow.includes("welcome to our little grooming")) {
+        if ((blokItem.body || "").includes("\\n\\nGet to know Lily Pads & Poppy Paws by visiting our About page.")) {
+          blokItem.body = blokItem.body.replace("\\n\\nGet to know Lily Pads & Poppy Paws by visiting our About page.", "");
+          changed = true;
+        }
+        fill(blokItem, {
         link_text: "Get to know Lily Pads & Poppy Paws",
         link_url: "/about"
-      });
+        });
+      }
       if (eyebrow.includes("care with a personal touch")) fill(blokItem, {
         art_caption: "Little paws. Big personalities.",
         feature_one: "Qualified and insured dog groomer",
@@ -793,6 +803,7 @@ function applyEditableDefaults(pageSlug, body) {
     }
 
     if (blokItem.component === "faq_list") fill(blokItem, {
+      show_heading: false,
       intro: "Can't see the answer you're looking for? Give us a call — we're always happy to have a chat.",
       phone_text: "07752 027606",
       phone_display: "07752 027606",
