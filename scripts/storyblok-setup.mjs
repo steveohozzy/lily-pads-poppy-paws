@@ -307,6 +307,7 @@ const components = [
       heading: text(),
       intro: textarea(),
       images: field("multiasset"),
+      gallery_items: bloks(["gallery_image"]),
       social_eyebrow: text(),
       social_heading: text(),
       social_highlight: text(),
@@ -377,6 +378,18 @@ const components = [
       body: textarea(),
       button_text: text(),
       phone_link: text()
+    }
+  },
+  {
+    name: "gallery_image",
+    display_name: "Gallery image",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      image: field("asset"),
+      image_url: text(),
+      alt: text(),
+      caption: text()
     }
   },
   {
@@ -585,10 +598,10 @@ const pages = [
       }),
       blok("gallery_grid", {
         heading: "A little love for every paw",
-        images: [
-          { filename: "/images/1.jpg", alt: "Illustrated dog artwork in the Lily Pads & Poppy Paws aqua and blue brand style" },
-          { filename: "/images/2.jpeg", alt: "Lily Pads & Poppy Paws business logo" },
-          { filename: "/images/3.jpg", alt: "Decorative dog grooming brand illustration for Lily Pads & Poppy Paws" }
+        gallery_items: [
+          blok("gallery_image", { image_url: "/images/1.jpg", alt: "Illustrated dog artwork in the Lily Pads & Poppy Paws aqua and blue brand style", caption: "A little love for every paw" }),
+          blok("gallery_image", { image_url: "/images/2.jpeg", alt: "Lily Pads & Poppy Paws business logo", caption: "A friendly welcome" }),
+          blok("gallery_image", { image_url: "/images/3.jpg", alt: "Decorative dog grooming brand illustration for Lily Pads & Poppy Paws", caption: "Made for happy tails" })
         ]
       }),
       commonCallout("Want to know more?")
@@ -791,7 +804,8 @@ function applyEditableDefaults(pageSlug, body) {
       phone_link: "tel:07752027606"
     });
 
-    if (blokItem.component === "gallery_grid") fill(blokItem, {
+    if (blokItem.component === "gallery_grid") {
+      fill(blokItem, {
       eyebrow: "The lovely faces behind the paws",
       social_eyebrow: "More fluffy updates",
       social_heading: "Follow along for more paw-some moments.",
@@ -801,7 +815,22 @@ function applyEditableDefaults(pageSlug, body) {
       instagram_url: "https://www.instagram.com/lilypadspoppypaws/",
       facebook_text: "Facebook",
       instagram_text: "Instagram"
-    });
+      });
+      if (!blokItem.gallery_items?.length) {
+        const oldImages = blokItem.images || [];
+        const defaults = oldImages.length ? oldImages.map((image, index) => blok("gallery_image", {
+          image_url: image.filename || image.url || ["/images/1.jpg", "/images/2.jpeg", "/images/3.jpg"][index],
+          alt: image.alt || image.title || "Lily Pads & Poppy Paws gallery image",
+          caption: image.title || ["A little love for every paw", "A friendly welcome", "Made for happy tails"][index] || "A little love for every paw"
+        })) : [
+          blok("gallery_image", { image_url: "/images/1.jpg", alt: "Illustrated dog artwork in the Lily Pads & Poppy Paws aqua and blue brand style", caption: "A little love for every paw" }),
+          blok("gallery_image", { image_url: "/images/2.jpeg", alt: "Lily Pads & Poppy Paws business logo", caption: "A friendly welcome" }),
+          blok("gallery_image", { image_url: "/images/3.jpg", alt: "Decorative dog grooming brand illustration for Lily Pads & Poppy Paws", caption: "Made for happy tails" })
+        ];
+        blokItem.gallery_items = defaults;
+        changed = true;
+      }
+    }
 
     if (blokItem.component === "call_to_action") fill(blokItem, {
       eyebrow: "Ready for a little pampering?",
