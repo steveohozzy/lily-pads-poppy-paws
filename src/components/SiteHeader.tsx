@@ -39,7 +39,7 @@ export default function SiteHeader({ settings }: { settings?: SiteSettings | nul
       <div className="container-shell header-inner">
         <Link href="/" className="brand-lockup" aria-label={`${brandName} — dog grooming in Hemel Hempstead`}>
           <Image src={logoSrc} alt={logoAlt} width={72} height={72} className="brand-logo-image" />
-          <span className="brand-name">{brandName}</span>
+          <span className="brand-name">{brandName.includes("&") ? <>{brandName.split("&")[0].trim()} <span>&</span><br/>{brandName.split("&").slice(1).join("&").trim()}</> : brandName}</span>
         </Link>
         <nav className="desktop-nav" aria-label="Main navigation">
           {links.map(([label, href]) => <Link key={href} href={href} className="nav-link">{label}</Link>)}
