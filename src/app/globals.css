@@ -185,3 +185,9 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
 }
+
+.why-art-illustration { position:relative; display:grid; width:min(100%,470px); min-height:410px; margin-inline:auto; place-items:center; overflow:hidden; border:12px solid #fff; border-radius:46% 54% 47% 53% / 48% 43% 57% 52%; background:#dff7ff; box-shadow:0 0 0 2px #a9e7f7,0 18px 0 #092b5810; transform:rotate(-3deg); }
+.why-art-splash { position:absolute; inset:9%; border-radius:50%; background:linear-gradient(140deg,#56d4ef,#159bd2); transform:rotate(12deg); }
+.why-art-paw { position:relative; z-index:1; color:#fff; filter:drop-shadow(0 12px 0 #087eae25); transform:rotate(-12deg); }
+.why-art-illustration .why-art-caption { right:5%; bottom:11%; z-index:2; }
+.why-art-sparkle { position:absolute; top:12%; right:15%; z-index:2; color:#fff; font-size:66px; transform:rotate(12deg); }
