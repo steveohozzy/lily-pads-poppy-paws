@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   },
   description: "Lily Pads & Poppy Paws offers dog grooming in Hemel Hempstead, Hertfordshire. Qualified and insured, with nail clipping and full grooms for all breeds. Call to enquire.",
   alternates: { canonical: "/" },
+  robots: { index: true, follow: true },
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -20,6 +21,12 @@ export const metadata: Metadata = {
     title: "Dog Grooming in Hemel Hempstead | Lily Pads & Poppy Paws",
     description: "Lily Pads & Poppy Paws offers qualified and insured dog grooming in Hemel Hempstead, from nail clipping to full grooms for all breeds.",
     url: business.domain
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dog Grooming in Hemel Hempstead | Lily Pads & Poppy Paws",
+    description: "Qualified and insured dog grooming in Hemel Hempstead, from nail clipping to full grooms. All breeds welcome.",
+    images: ["/images/2.jpeg"]
   }
 };
 
@@ -31,7 +38,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     name: settings?.brand_name || business.name,
     description: settings?.footer_description || business.description,
     url: business.domain,
-    telephone: settings?.phone_display || business.telephoneDisplay,
+    telephone: business.telephone.startsWith("0") ? `+44${business.telephone.slice(1)}` : business.telephone,
     image: settings?.logo?.filename || `${business.domain}/images/2.jpeg`,
     address: {
       "@type": "PostalAddress",
@@ -67,7 +74,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang="en-GB">
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
         <SiteHeader settings={settings} />
         <main>{children}</main>
         <SiteFooter settings={settings} />
