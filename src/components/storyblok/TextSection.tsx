@@ -13,6 +13,9 @@ export default function TextSection({ blok }: Props) {
   const isIntro = eyebrow.toLowerCase().includes("welcome to our little grooming");
   const isWhy = eyebrow.toLowerCase().includes("care with a personal touch");
   const isLocal = eyebrow.toLowerCase().includes("your local dog groomer") || heading.toLowerCase().includes("hemel hempstead") && body.includes("42 Lomond Road");
+
+  const isMadeFor = eyebrow.toLowerCase().includes("made for wagging tails");
+  const isOpeningHours = heading.toLowerCase().includes("opening hours");
   const EyebrowIcon = isIntro ? Sparkles : isWhy ? HeartHandshake : isLocal ? MapPin : PawPrint;
 
   if (isIntro) return (
@@ -37,11 +40,20 @@ export default function TextSection({ blok }: Props) {
     </section>
   );
 
+  if (isMadeFor) return (
+    <section className="section-pad about-image-band" {...storyblokEditable(blok)}>
+      <div className="container-shell grid gap-8 md:grid-cols-2 md:items-center">
+        <Image src="/images/1.jpg" alt="Illustrated dog in the Lily Pads & Poppy Paws aqua and blue brand artwork" width={1000} height={900} className="about-secondary-image" />
+        <div><p className="eyebrow"><Sparkles size={16}/> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-5 leading-8 text-slate-600" key={index}>{paragraph}</p>)}<Link href="/contact" className="text-link mt-6">Come and say hello <span aria-hidden="true">→</span></Link></div>
+      </div>
+    </section>
+  );
+
   if (isLocal) return (
     <section className="section-pad local-section" {...storyblokEditable(blok)}>
       <div className="container-shell grid gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
         <div><p className="eyebrow"><MapPin size={16} /> {eyebrow || "Your local dog groomer"}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight} /></h2>
-          {paragraphs.map((paragraph,index)=><p className="mt-5 max-w-xl leading-8 text-slate-600" key={index}>{paragraph}</p>)}
+          {(eyebrow.toLowerCase().includes("your local dog groomer") ? paragraphs.slice(0, 1) : []).map((paragraph,index)=><p className="mt-5 max-w-xl leading-8 text-slate-600" key={index}>{paragraph}</p>)}
           <address className="mt-5 not-italic font-bold leading-7 text-navy">Lily Pads & Poppy Paws<br />42 Lomond Road<br />Hemel Hempstead<br />HP2 6PA</address>
           <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606">Call to enquire</a><a className="button-secondary" href="https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>
         </div>
@@ -56,7 +68,7 @@ export default function TextSection({ blok }: Props) {
       <div className="container-shell max-w-4xl">
         {eyebrow && <p className="eyebrow">{icon}{eyebrow}</p>}
         {heading && <h2 className="section-heading mt-3"><HighlightedText text={heading} highlight={blok.highlight} /></h2>}
-        {paragraphs.map((paragraph,index)=><p className="prose-copy mt-5" key={index}>{paragraph}</p>)}
+        {!isOpeningHours && paragraphs.map((paragraph,index)=><p className="prose-copy mt-5" key={index}>{paragraph}</p>)}
         {heading.toLowerCase().includes("opening hours") && <div className="contact-panel contact-address-panel mt-7"><span className="contact-icon"><PawPrint size={25}/></span><p className="eyebrow mt-5">When we're open</p><h3 className="mt-2 text-3xl font-bold text-navy">Opening hours.</h3><dl className="mt-4 space-y-2 leading-7 text-slate-600">{[["Monday","Closed"],["Tuesday","09:00 – 17:00"],["Wednesday","09:00 – 17:00"],["Thursday","09:00 – 17:00"],["Friday","09:00 – 17:00"],["Saturday","09:00 – 15:00"],["Sunday","Closed"]].map(([day,hours])=><div className="flex justify-between gap-4" key={day}><dt className="font-semibold">{day}</dt><dd>{hours}</dd></div>)}</dl></div>}
         {heading.toLowerCase().includes("friendly approach") && <div className="soft-note-card mt-8"><span className="soft-note-flower">✿</span><p className="eyebrow">The Lily Pads promise</p><h3 className="section-heading mt-3">Gentle care.<br/><span>Lovely results.</span></h3></div>}
       </div>
