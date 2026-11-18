@@ -32,3 +32,19 @@ export const getStoryblokApi = storyblokInit({
     service_item: ServiceItem
   }
 });
+
+
+export async function getSiteSettings() {
+  if (!accessToken) return null;
+
+  try {
+    const api = getStoryblokApi();
+    const version = process.env.NODE_ENV === "development" && process.env.STORYBLOK_PREVIEW_TOKEN
+      ? "draft"
+      : "published";
+    const response = await api.get("cdn/stories/site-settings", { version, cv: Date.now() });
+    return response.data.story?.content || null;
+  } catch {
+    return null;
+  }
+}
