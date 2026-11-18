@@ -253,6 +253,46 @@ export function ContactFallback() {
 
 export function PrivacyFallback() {
   return (
-    <section className="section-pad"><div className="container-shell max-w-4xl"><p className="eyebrow">Website information</p><h1 className="section-heading mt-3">Privacy policy</h1><p className="mt-6 leading-8 text-slate-600">This page is a starter privacy notice and must be reviewed and completed by the business before the website goes live. Add the business's data controller details, the information collected, purposes and lawful bases, retention periods, third-party services, data subject rights and contact method. If analytics, advertising cookies or enquiry forms are added, update this policy and implement the appropriate consent controls.</p><p className="mt-5 leading-8 text-slate-600">The website currently provides telephone links and links to third-party social media and map services. Those third-party services operate under their own privacy policies.</p></div></section>
+    <section className="section-pad">
+      <div className="container-shell max-w-4xl">
+        <p className="eyebrow">Website information</p>
+        <h1 className="section-heading mt-3">Privacy policy</h1>
+        <p className="mt-5 leading-8 text-slate-600"><strong>Last updated: 18 November 2026</strong></p>
+
+        <div className="prose-copy mt-7">
+          <h2>1. Who we are</h2>
+          <p>Lily Pads & Poppy Paws is a dog grooming business based at 42 Lomond Road, Hemel Hempstead, HP2 6PA, Hertfordshire.</p>
+          <p>If you have a question about this policy or how information is handled, you can contact us by telephone on <a href="tel:07752027606">07752 027606</a>.</p>
+
+          <h2>2. Information we collect</h2>
+          <p>This website is provided for information purposes only. It does not offer visitor accounts, online booking forms, contact forms, newsletter subscriptions or online payments. We do not deliberately collect personal information through website forms or ask visitors to create an account.</p>
+          <p>If you choose to contact us by telephone or through our social media pages, we will use the information you choose to provide to respond to your enquiry and, where relevant, discuss our services. Social media platforms handle information in accordance with their own privacy policies.</p>
+
+          <h2>3. Website hosting and technical information</h2>
+          <p>Our website is hosted by Vercel. Like most hosting providers, Vercel may automatically process limited technical information when someone visits the website. This may include IP addresses, browser and device information, pages requested, dates and times of requests, and technical or security log information.</p>
+          <p>This information may be processed to deliver the website, maintain its security and investigate technical problems. We do not use hosting logs to identify individual visitors or for direct marketing. Vercel's own privacy information explains how it handles data as a service provider.</p>
+
+          <h2>4. Cookies, maps and tracking</h2>
+          <p>We do not currently use website analytics or advertising pixels, and we do not deliberately use this website to track visitors for advertising or marketing purposes.</p>
+          <p>Some pages include an embedded Google Map to help visitors find our location. When the map loads, Google may receive technical information about your visit and may use cookies or similar technologies in accordance with Google's own privacy terms and settings. Links to external services, including Facebook and Instagram, may also take you to platforms that use their own cookies and tracking technologies.</p>
+          <p>We will update this policy if we add analytics, advertising technology, online forms or other features that change how personal information or cookies are used.</p>
+
+          <h2>5. Third-party websites and services</h2>
+          <p>Our website contains links to external websites and social media services, including Facebook, Instagram and Google Maps. When you follow a link or use an embedded third-party service, that provider may process information about you under its own privacy policy. We do not control those services or their privacy practices.</p>
+
+          <h2>6. How long information is kept</h2>
+          <p>We do not maintain a website visitor database or collect information through website forms. Technical information held by our hosting provider is subject to that provider's own retention and security practices.</p>
+          <p>Any information you choose to provide when contacting us directly will only be kept for as long as reasonably necessary to deal with your enquiry or meet applicable legal obligations.</p>
+
+          <h2>7. Your privacy rights</h2>
+          <p>Under UK data protection law, you may have rights in relation to personal information, including the right to request access to information held about you, ask for inaccurate information to be corrected, request its deletion where applicable, or object to or restrict certain processing.</p>
+          <p>If you have a question or want to make a privacy request, please contact us on <a href="tel:07752027606">07752 027606</a>.</p>
+          <p>You can also find out more or raise a concern with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noreferrer">ico.org.uk/make-a-complaint</a>.</p>
+
+          <h2>8. Changes to this policy</h2>
+          <p>We may update this Privacy Policy if the website or the way we handle information changes. The latest version will be published on this page.</p>
+        </div>
+      </div>
+    </section>
   );
 }
