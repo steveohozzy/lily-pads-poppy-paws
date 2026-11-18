@@ -40,7 +40,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       addressCountry: business.address.addressCountry
     },
     sameAs: [business.facebook, business.instagram],
-    priceRange: "$",
     areaServed: { "@type": "City", name: "Hemel Hempstead" }
   };
 
