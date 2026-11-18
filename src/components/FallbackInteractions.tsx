@@ -24,10 +24,13 @@ type GroomingPickerProps = {
   heading?: string;
   highlight?: string;
   intro?: string;
+  button_text?: string;
+  phone_link?: string;
+  options_aria_label?: string;
   options?: GroomingPickerOption[];
 };
 
-export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highlight = "pamper", intro = "Choose the option that sounds closest. We'll point you in the right direction.", options }: GroomingPickerProps = {}) {
+export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highlight = "pamper", intro = "Choose the option that sounds closest. We'll point you in the right direction.", button_text = "Let's chat", phone_link = "tel:07752027606", options_aria_label = "Choose a grooming option", options }: GroomingPickerProps = {}) {
   const groomingOptions = options?.length ? options : defaultGroomingOptions;
   const [selected, setSelected] = useState(groomingOptions[1]?.id || groomingOptions[1]?.title || groomingOptions[0]?.id || groomingOptions[0]?.title || "");
   const choice = groomingOptions.find((item) => (item.id || item.title) === selected) || groomingOptions[0];
@@ -36,13 +39,13 @@ export function GroomingPicker({ eyebrow = "A tiny bit of help", heading, highli
   return (
     <div className="grooming-picker">
       <div className="picker-copy"><p className="eyebrow"><PawPrint size={15}/> {eyebrow}</p><h2 className="section-heading mt-3">{highlightIndex >= 0 ? <>{headingParts.slice(0, highlightIndex)}<span>{headingParts.slice(highlightIndex, highlightIndex + highlight.length)}</span>{headingParts.slice(highlightIndex + highlight.length)}</> : headingParts}</h2><p className="mt-4 leading-7 text-slate-600">{intro}</p></div>
-      <div className="picker-options" role="group" aria-label="Choose a grooming option">
+      <div className="picker-options" role="group" aria-label={options_aria_label}>
         {groomingOptions.map((option) => {
           const optionId = option.id || option.title;
           return <button type="button" key={optionId} className={`picker-option ${selected === optionId ? "is-selected" : ""}`} onClick={() => setSelected(optionId)} aria-pressed={selected === optionId}><span className="picker-option-check">{selected === optionId ? <Check size={15}/> : <PawPrint size={15}/>}</span><strong>{option.title}</strong><small>{option.detail}</small></button>;
         })}
       </div>
-      {choice && <div className="picker-result" aria-live="polite"><span className="picker-result-paw"><PawPrint size={23}/></span><div><strong>{choice.title}</strong><p>{choice.result}</p></div><a href="tel:07752027606">Let's chat <ArrowRight size={17}/></a></div>}
+      {choice && <div className="picker-result" aria-live="polite"><span className="picker-result-paw"><PawPrint size={23}/></span><div><strong>{choice.title}</strong><p>{choice.result}</p></div><a href={phone_link}>{button_text} <ArrowRight size={17}/></a></div>}
     </div>
   );
 }
