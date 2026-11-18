@@ -4,10 +4,10 @@ import { HeartHandshake, MapPin, PawPrint, Phone, ShieldCheck } from "lucide-rea
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; button_text?: string; button_link?: string; show_trust_ribbon?: boolean } };
+type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; button_text?: string; button_link?: string; secondary_button_text?: string; secondary_button_link?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
 
 export default function Hero({ blok }: Props) {
-  const isHome = blok.show_trust_ribbon || (blok.eyebrow || "").toLowerCase().includes("little love for every paw");
+  const isHome = (blok.eyebrow || "").toLowerCase().includes("little love for every paw");
   const heading = blok.heading || "Happy dogs. Lovely fresh trims.";
   const isServices = heading.toLowerCase().includes("service");
   const isContact = heading.toLowerCase().includes("contact");
@@ -26,7 +26,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><PawPrint size={16}/> {blok.eyebrow || "A little about us"}</p>
             <h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {pageButtonText}</a><Link className="button-secondary" href={blok.button_link || "/services"}>Explore grooming <span aria-hidden="true">→</span></Link></div>
+            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {pageButtonText}</a><Link className="button-secondary" href={blok.secondary_button_link || blok.button_link || "/services"}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link></div>
           </div>
           <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote}</span></div>
         </div>
@@ -43,19 +43,18 @@ export default function Hero({ blok }: Props) {
             <h1 className="display-heading mt-5"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
             <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={blok.button_link || "/services"}>Explore our services <span aria-hidden="true">→</span></Link></div>
-            <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3"><span><ShieldCheck size={18}/> Qualified & insured</span><span><HeartHandshake size={18}/> All breeds welcome</span></div>
+            <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3"><span><ShieldCheck size={18}/> {blok.trust_badge_one || "Qualified & insured"}</span><span><HeartHandshake size={18}/> {blok.trust_badge_two || "All breeds welcome"}</span></div>
           </div>
           <div className="hero-art">
             <div className="hero-art-wash" aria-hidden="true"/><span className="hero-paint-streak hero-paint-streak-one" aria-hidden="true"/><span className="hero-paint-streak hero-paint-streak-two" aria-hidden="true"/>
             <span className="hero-doodle-heart hero-doodle-heart-one" aria-hidden="true"><svg viewBox="0 0 64 58"><path d="M31 51C23 44 6 32 6 19 6 9 18 4 26 12l6 7 6-8C47 1 60 9 58 21 56 33 42 44 31 51Z"/></svg></span>
             <span className="hero-doodle-heart hero-doodle-heart-two" aria-hidden="true"><svg viewBox="0 0 64 58"><path d="M31 51C22 43 7 32 7 20 7 9 18 5 26 13l6 6 7-8C48 2 59 10 57 21 55 33 42 44 31 51Z"/></svg></span>
             <span className="hero-doodle-paw hero-doodle-paw-one" aria-hidden="true"><PawPrint size={27}/></span><span className="hero-doodle-paw hero-doodle-paw-two" aria-hidden="true"><PawPrint size={22}/></span><span className="hero-doodle-paw hero-doodle-paw-three" aria-hidden="true"><PawPrint size={24}/></span>
-            {artwork}<span className="hero-sticker hero-sticker-top" aria-hidden="true">Pawsitively<br/>pampered!</span><span className="hero-sticker hero-sticker-bottom" aria-hidden="true"><PawPrint size={17}/> Every dog is special</span>
+            {artwork}<span className="hero-sticker hero-sticker-top" aria-hidden="true">{blok.sticker_top || "Pawsitively pampered!"}</span><span className="hero-sticker hero-sticker-bottom" aria-hidden="true"><PawPrint size={17}/> {blok.sticker_bottom || "Every dog is special"}</span>
           </div>
         </div>
         <div className="hero-wave" aria-hidden="true"/>
       </section>
-      <section className="trust-ribbon" aria-label="About our dog grooming service"><div className="container-shell"><span><PawPrint size={17}/> A warm welcome for every breed</span><span><ShieldCheck size={17}/> Qualified and insured</span><span><MapPin size={17}/> Hemel Hempstead, Hertfordshire</span></div></section>
     </>
   );
 }
