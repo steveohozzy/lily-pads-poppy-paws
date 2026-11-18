@@ -29,7 +29,7 @@ export default function Hero({ blok }: Props) {
             <img className="hero-brand-art" src={blok.image.filename} alt={blok.image.alt || "Dog ready for a groom"} />
           ) : (
             <Image
-              src="/images/brand-reference-logo.jpeg"
+              src="/images/2.jpeg"
               alt="Lily Pads & Poppy Paws illustrated dog grooming logo with two hand-drawn dogs and blue flowers"
               width={1000}
               height={1000}
