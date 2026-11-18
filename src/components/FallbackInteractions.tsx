@@ -5,9 +5,9 @@ import { useState } from "react";
 import { ArrowRight, Check, ChevronLeft, ChevronRight, PawPrint, X } from "lucide-react";
 
 const galleryImages = [
-  { src: "/images/1.jpg", alt: "Lily Pads & Poppy Paws artwork — image one", note: "A little love for every paw" },
-  { src: "/images/2.jpeg", alt: "Lily Pads & Poppy Paws logo artwork", note: "A friendly welcome" },
-  { src: "/images/3.jpg", alt: "Lily Pads & Poppy Paws artwork — image three", note: "Made for happy tails" }
+  { src: "/images/1.jpg", alt: "Illustrated dog artwork in the Lily Pads & Poppy Paws aqua and blue brand style", note: "A little love for every paw" },
+  { src: "/images/2.jpeg", alt: "Lily Pads & Poppy Paws business logo", note: "A friendly welcome" },
+  { src: "/images/3.jpg", alt: "Decorative dog grooming brand illustration for Lily Pads & Poppy Paws", note: "Made for happy tails" }
 ];
 
 const groomingOptions = [
