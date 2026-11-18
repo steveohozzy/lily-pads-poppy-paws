@@ -3,7 +3,7 @@ import { PawPrint, Scissors, Sparkles, Heart } from "lucide-react";
 import { services } from "@/lib/business";
 import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { _uid: string; eyebrow?: string; heading?: string; highlight?: string; intro?: string; button_text?: string; button_link?: string; price_note?: string; show_prices?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
+type Props = { blok: { _uid: string; eyebrow?: string; heading?: string; highlight?: string; intro?: string; button_text?: string; button_link?: string; price_note?: string; show_prices?: boolean; show_button?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
 
 export default function ServiceGrid({ blok }: Props) {
   return (
@@ -16,13 +16,13 @@ export default function ServiceGrid({ blok }: Props) {
             <p className="mt-4 leading-7 text-slate-600">{blok.intro || "From nail clips to full grooms, get in touch to talk through what your dog needs."}</p>
           </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {blok.items?.length ? blok.items.map((item) => <StoryblokServerComponent blok={item} key={item._uid} show_prices={blok.show_prices} />) : services.map((item, index) => {
+            {blok.items?.length ? blok.items.map((item, index) => <StoryblokServerComponent blok={item} key={item._uid} show_prices={blok.show_prices} index={index} />) : services.map((item, index) => {
               const Icon = [Scissors, Sparkles, Heart][index % 3];
               return <article className={`service-card service-card-${index + 1}`} key={item.title}><span className="service-icon"><Icon size={27} /></span><h3 className="mt-5 text-xl font-bold text-navy">{item.title}</h3><p className="mt-3 leading-7 text-slate-600">{item.description}</p><a href="/contact" className="text-link mt-6">Ask us about this <span aria-hidden="true">→</span></a></article>;
             })}
           </div>
           {blok.price_note && <div className="service-price-note mt-9"><PawPrint size={24}/><p><strong>Every pup is unique.</strong> {blok.price_note}</p></div>}
-          <div className="mt-9 text-center"><a href={blok.button_link || "/services"} className="button-secondary">{blok.button_text || "See all service information"} <span aria-hidden="true">→</span></a></div>
+          {blok.show_button !== false && <div className="mt-9 text-center"><a href={blok.button_link || "/services"} className="button-secondary">{blok.button_text || "See all service information"} <span aria-hidden="true">→</span></a></div>}
         </div>
       </section>
     </>
