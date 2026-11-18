@@ -126,6 +126,10 @@ const components = [
       image: field("asset"),
       image_url: text(),
       image_alt: text(),
+      layout: field("option", { options: [
+        { name: "Illustrated", value: "illustrated" },
+        { name: "Centered", value: "centered" }
+      ] }),
       button_text: text(),
       button_link: field("multilink"),
       secondary_button_text: text(),
@@ -195,6 +199,7 @@ const components = [
       button_text: text(),
       button_link: text(),
       price_note: textarea(),
+      show_button: field("boolean", { default_value: true }),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
     }
@@ -259,6 +264,10 @@ const components = [
       link_text: text(),
       link_url: text(),
       footer_note: text(),
+      variant: field("option", { options: [
+        { name: "Simple", value: "simple" },
+        { name: "Illustrated", value: "illustrated" }
+      ] }),
       show_price: field("boolean", { default_value: false }),
       price: text()
     }
@@ -460,8 +469,7 @@ const pages = [
         button_text: "See all service information",
         button_link: "/services",
         intro: "Explore our dog grooming services in Hemel Hempstead. Every dog is different, so get in touch to discuss what your four-legged friend needs.",
-        items: serviceItems.map((item) => blok("service_item", item)),
-        price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment."
+        items: serviceItems.map((item) => blok("service_item", item))
       }),
       blok("grooming_picker", {
         eyebrow: "A tiny bit of help",
@@ -698,6 +706,7 @@ function applyEditableDefaults(pageSlug, body) {
       fill(blokItem, {
         image_url: isHome ? "/images/1.jpg" : "/images/3.jpg",
         image_alt: isHome ? "A friendly illustrated dog on a bright aqua background, in the Lily Pads & Poppy Paws brand style" : "Lily Pads & Poppy Paws dog grooming illustration",
+        layout: pageSlug === "gallery" || pageSlug === "faqs" ? "centered" : "illustrated",
         phone_link: "tel:07752027606",
         phone_text: isHome ? "Call 07752 027606" : "Call 07752 027606",
         secondary_button_text: isHome ? "Explore our services" : "Explore grooming",
@@ -715,14 +724,17 @@ function applyEditableDefaults(pageSlug, body) {
       fill(blokItem, {
         eyebrow: pageSlug === "services" ? "The pamper menu" : "The good stuff",
         button_text: "See all service information",
-        button_link: "/services"
+        button_link: "/services",
+        show_button: pageSlug !== "services"
       });
+      if (pageSlug === "services") fill(blokItem, { price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment." });
       for (const item of blokItem.items || []) {
         if (item.component === "service_item") fill(item, {
-          kicker: "A little love · Tail-wagging care",
-          link_text: "Enquire",
+          kicker: pageSlug === "home" ? "" : "A little love · 01",
+          link_text: pageSlug === "home" ? "Ask us about this" : "Enquire",
           link_url: "/contact",
-          footer_note: "All breeds welcome"
+          footer_note: pageSlug === "home" ? "" : "All breeds welcome",
+          variant: pageSlug === "home" ? "simple" : "illustrated"
         });
       }
     }
@@ -854,6 +866,99 @@ async function main() {
         }));
         changed = true;
         console.log("Added Grooming Picker block to existing services page.");
+      }
+
+      if (page.slug === "about" && !currentBody.some((item) => item.component === "about_intro")) {
+        const promiseIndex = currentBody.findIndex((item) => item.component === "text_section" && (item.eyebrow || "").toLowerCase().includes("the lily pads promise"));
+        const approachIndex = currentBody.findIndex((item) => item.component === "text_section" && (item.heading || "").toLowerCase().includes("friendly approach"));
+        if (promiseIndex >= 0 && approachIndex >= 0) {
+          const promise = currentBody[promiseIndex];
+          const approach = currentBody[approachIndex];
+          const combined = blok("about_intro", {
+            promise_eyebrow: promise.eyebrow,
+            promise_heading: promise.heading,
+            promise_highlight: "Lovely results.",
+            promise_body: promise.body,
+            heading: approach.heading,
+            highlight: "dog grooming.",
+            body: approach.body,
+            feature_one: "Qualified and insured",
+            feature_two: "All breeds welcome",
+            feature_three: "Friendly conversations about your dog's grooming needs"
+          });
+          const insertAt = Math.min(promiseIndex, approachIndex);
+          currentBody.splice(Math.max(promiseIndex, approachIndex), 1);
+          currentBody.splice(Math.min(promiseIndex, approachIndex), 1);
+          currentBody.splice(insertAt, 0, combined);
+          changed = true;
+          console.log("Combined existing About sections into the fallback-matched About Introduction block.");
+        }
+      }
+
+      if (page.slug === "contact" && !currentBody.some((item) => item.component === "contact_panels")) {
+        const phoneIndex = currentBody.findIndex((item) => item.component === "text_section" && (item.eyebrow || "").toLowerCase().includes("give us a call"));
+        const locationIndex = currentBody.findIndex((item) => item.component === "text_section" && (item.eyebrow || "").toLowerCase().includes("find our little corner"));
+        const hoursIndex = currentBody.findIndex((item) => item.component === "text_section" && (item.heading || "").toLowerCase().includes("opening hours"));
+        if (phoneIndex >= 0 && locationIndex >= 0 && hoursIndex >= 0) {
+          const combined = blok("contact_panels", {
+            phone_eyebrow: "Give us a call",
+            phone_heading: currentBody[phoneIndex].heading || "Let's talk tails.",
+            phone_body: currentBody[phoneIndex].body || "For grooming enquiries, prices and appointments, give us a ring. We can chat about your dog's needs and the best next step.",
+            phone_display: "07752 027606",
+            phone_link: "tel:07752027606",
+            location_eyebrow: "Find our little corner",
+            location_heading: "Hemel Hempstead.",
+            address_line_1: "42 Lomond Road",
+            address_line_2: "Hemel Hempstead",
+            address_line_3: "HP2 6PA",
+            address_line_4: "Hertfordshire",
+            directions_text: "Get directions",
+            directions_url: "https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA",
+            hours_eyebrow: "When we're open",
+            hours_heading: "Opening hours.",
+            monday_hours: "Closed",
+            tuesday_hours: "09:00 – 17:00",
+            wednesday_hours: "09:00 – 17:00",
+            thursday_hours: "09:00 – 17:00",
+            friday_hours: "09:00 – 17:00",
+            saturday_hours: "09:00 – 15:00",
+            sunday_hours: "Closed",
+            map_title: "Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA",
+            map_embed_url: "https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed"
+          });
+          const insertAt = Math.min(phoneIndex, locationIndex, hoursIndex);
+          [phoneIndex, locationIndex, hoursIndex].sort((a, b) => b - a).forEach((index) => currentBody.splice(index, 1));
+          currentBody.splice(insertAt, 0, combined);
+          changed = true;
+          console.log("Combined existing Contact sections into the fallback-matched Contact Panels block.");
+        }
+      }
+
+      if (page.slug !== "home") {
+        for (let i = currentBody.length - 1; i >= 0; i--) {
+          const block = currentBody[i];
+          if (block.component === "call_to_action") {
+            currentBody[i] = blok("callout", {
+              heading: block.heading || "Let's get those tails wagging!",
+              body: "Call to discuss your dog's grooming needs and ask about prices.",
+              button_text: block.button_text || "07752 027606",
+              phone_link: "tel:07752027606"
+            });
+            changed = true;
+          }
+          if (page.slug === "faqs" && block.component === "text_section" && (block.heading || "").toLowerCase().includes("can't see the answer")) {
+            currentBody.splice(i, 1);
+            changed = true;
+          }
+          if (page.slug === "services" && block.component === "text_section" && (block.heading || "").toLowerCase().includes("not sure which groom")) {
+            currentBody.splice(i, 1);
+            changed = true;
+          }
+          if (page.slug === "gallery" && block.component === "text_section" && (block.eyebrow || "").toLowerCase().includes("more fluffy updates")) {
+            currentBody.splice(i, 1);
+            changed = true;
+          }
+        }
       }
 
       if (page.slug === "home") {
