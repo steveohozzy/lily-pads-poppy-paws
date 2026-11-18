@@ -572,3 +572,132 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
 .page-art-contact .paint-note { background:#08284f; color:#fff; }
 .service-card-bottom > span { color:#087eae; }
 .gallery-page-section { background:linear-gradient(180deg,#fffefa,#effaff); }
+
+
+/* Flowing paint and paw-print details — no scrolling ticker. */
+.paw-ticker,
+.paw-ticker-track { display:none !important; }
+
+.hero-wrap,
+.intro-section,
+.services-section,
+.picker-section,
+.why-section,
+.local-section,
+.page-hero,
+.gallery-page-section,
+.about-image-band {
+  position:relative;
+  isolation:isolate;
+}
+.hero-wrap > *,
+.intro-section > *,
+.services-section > *,
+.picker-section > *,
+.why-section > *,
+.local-section > *,
+.page-hero > *,
+.gallery-page-section > *,
+.about-image-band > * {
+  position:relative;
+  z-index:1;
+}
+
+/* Loose brush marks sit behind the content, like layered paint on paper. */
+.hero-wrap::after,
+.intro-section::before,
+.services-section::before,
+.picker-section::before,
+.why-section::before,
+.local-section::before,
+.page-hero::before,
+.gallery-page-section::before,
+.about-image-band::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  width:clamp(210px,34vw,440px);
+  height:clamp(42px,7vw,86px);
+  border-radius:52% 18% 48% 24% / 55% 42% 58% 45%;
+  opacity:.36;
+  filter:blur(.2px);
+  pointer-events:none;
+  transform:rotate(-13deg);
+  background:linear-gradient(90deg,#55d4ed 0%,#a8eafa 48%,#d8f6ff 100%);
+}
+.hero-wrap::after { right:-95px; bottom:10%; width:38%; height:92px; opacity:.22; transform:rotate(-19deg); }
+.intro-section::before { top:18%; left:-130px; transform:rotate(16deg); opacity:.2; }
+.services-section::before { top:9%; right:-130px; transform:rotate(-17deg); opacity:.32; background:linear-gradient(90deg,#bceeff,#43c8e8,#8ce1f2); }
+.picker-section::before { bottom:8%; left:-120px; transform:rotate(-11deg); opacity:.24; }
+.why-section::before { top:12%; right:-135px; transform:rotate(17deg); opacity:.22; }
+.local-section::before { bottom:12%; left:-130px; transform:rotate(-16deg); opacity:.2; }
+.page-hero::before { top:17%; right:-120px; transform:rotate(-18deg); opacity:.3; }
+.gallery-page-section::before { top:7%; left:-120px; transform:rotate(13deg); opacity:.23; }
+.about-image-band::before { top:18%; right:-120px; transform:rotate(-15deg); opacity:.24; }
+
+/* Floating paw stamps: varied sizes, angles and paths keep the page lively. */
+.hero-wrap::before,
+.intro-section::after,
+.services-section::after,
+.why-section::after,
+.local-section::after,
+.page-hero::after,
+.gallery-page-section::after {
+  content:"🐾";
+  position:absolute;
+  z-index:2;
+  display:block;
+  color:#078fc5;
+  font-size:clamp(27px,3.2vw,43px);
+  line-height:1;
+  opacity:.2;
+  pointer-events:none;
+  filter:drop-shadow(0 5px 5px #078fc51a);
+  animation:paw-drift 8s ease-in-out infinite;
+}
+.hero-wrap::before { top:17%; left:4%; }
+.intro-section::after { top:17%; right:7%; animation-delay:-2s; }
+.services-section::after { bottom:12%; left:5%; font-size:34px; animation-delay:-4s; }
+.why-section::after { top:16%; left:7%; font-size:30px; animation-delay:-1s; }
+.local-section::after { bottom:16%; right:8%; animation-delay:-5s; }
+.page-hero::after { right:7%; bottom:12px; font-size:58px; opacity:.16; animation-delay:-3s; }
+.gallery-page-section::after { top:13%; right:6%; animation-delay:-6s; }
+
+@keyframes paw-drift {
+  0%,100% { transform:translate3d(0,0,0) rotate(-14deg); }
+  50% { transform:translate3d(10px,-18px,0) rotate(9deg); }
+}
+
+/* Hand-painted edges and soft layered washes on key artwork blocks. */
+.hero-art-wash {
+  border-radius:61% 39% 55% 45% / 42% 58% 42% 58%;
+  box-shadow:0 0 0 9px #45c9e81b,0 0 0 22px #45c9e80c,0 25px 55px #0b47701c;
+}
+.why-art-illustration {
+  border-radius:39% 61% 48% 52% / 55% 42% 58% 45%;
+  box-shadow:0 0 0 2px #a9e7f7,12px 15px 0 #45c9e829,0 22px 38px #092b5810;
+}
+.page-art-card {
+  border-radius:35% 65% 48% 52% / 48% 39% 61% 52%;
+  border:10px solid #fff;
+  box-shadow:0 0 0 3px #9ce4f5,13px 17px 0 #45c9e82b,0 22px 45px #092b5818;
+}
+.page-feature-image { border-radius:inherit; }
+.service-card:nth-child(odd) { transform:rotate(-1deg); }
+.service-card:nth-child(even) { transform:rotate(1deg); }
+.service-card:hover { transform:translateY(-8px) rotate(0deg); }
+.final-cta {
+  border-radius:44% 5% 42% 6% / 7% 38% 7% 38%;
+  box-shadow:12px 15px 0 #45c9e822;
+}
+@media (max-width:640px) {
+  .service-card:nth-child(odd),.service-card:nth-child(even) { transform:none; }
+  .final-cta { border-radius:30px 30px 30px 8px; }
+  .hero-wrap::before { left:2%; top:8%; }
+  .page-hero::after { right:4%; font-size:42px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-wrap::before,.intro-section::after,.services-section::after,
+  .why-section::after,.local-section::after,.page-hero::after,
+  .gallery-page-section::after { animation:none !important; }
+}
