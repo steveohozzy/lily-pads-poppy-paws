@@ -201,6 +201,7 @@ const components = [
       button_text: text(),
       button_link: text(),
       price_note: textarea(),
+      price_note_heading: text(),
       show_button: field("boolean", { default_value: true }),
       show_heading: field("boolean", { default_value: true }),
       show_prices: field("boolean", { default_value: false }),
@@ -241,6 +242,9 @@ const components = [
       heading: text(),
       highlight: text(),
       intro: textarea(),
+      button_text: text(),
+      phone_link: text(),
+      options_aria_label: text(),
       options: bloks(["grooming_picker_option"])
     }
   },
@@ -492,6 +496,9 @@ const pages = [
         eyebrow: "A tiny bit of help",
         heading: "What kind of pamper are you thinking?",
         highlight: "pamper",
+        button_text: "Let's chat",
+        phone_link: "tel:07752027606",
+        options_aria_label: "Choose a grooming option",
         intro: "Choose the option that sounds closest. We'll point you in the right direction.",
         options: [
           blok("grooming_picker_option", { title: "Just a little tidy", detail: "A nail clip or small tidy-up", result: "A little maintenance can make a lovely difference. Give us a call to ask about nail clipping." }),
@@ -745,7 +752,7 @@ function applyEditableDefaults(pageSlug, body) {
         show_button: pageSlug !== "services",
         show_heading: pageSlug !== "services"
       });
-      if (pageSlug === "services") fill(blokItem, { price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment." });
+      if (pageSlug === "services") fill(blokItem, { price_note: "Prices depend on the grooming required and your dog. Give us a call and we'll happily discuss your needs and provide a price before arranging an appointment.", price_note_heading: "Every pup is unique." });
       for (const [index, item] of (blokItem.items || []).entries()) {
         if (item.component === "service_item") fill(item, {
           kicker: pageSlug === "home" ? "" : `A little love · 0${index + 1}`,
@@ -807,6 +814,8 @@ function applyEditableDefaults(pageSlug, body) {
         sunday_hours: "Closed"
       });
     }
+
+    if (blokItem.component === "grooming_picker") fill(blokItem, { button_text: "Let's chat", phone_link: "tel:07752027606", options_aria_label: "Choose a grooming option" });
 
     if (blokItem.component === "faq_list") fill(blokItem, {
       show_heading: false,
