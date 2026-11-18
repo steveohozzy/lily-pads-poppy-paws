@@ -224,7 +224,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   height: 480px;
   max-height: none;
   object-fit: cover;
-  object-position: center 64%;
+  object-position: center 58%;
   border: 9px solid #fff;
   border-radius: 42% 58% 48% 52% / 45% 43% 57% 55%;
   background: #fff;
