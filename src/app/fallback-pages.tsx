@@ -236,6 +236,15 @@ export function ContactFallback() {
       <section className="section-pad"><div className="container-shell"><div className="grid gap-5 lg:grid-cols-[.85fr_1.15fr]">
         <div className="contact-panel contact-main-panel"><span className="contact-icon"><Phone size={25}/></span><p className="eyebrow mt-5">Give us a call</p><h2 className="mt-2 text-3xl font-bold text-navy">Let's talk tails.</h2><p className="mt-3 leading-7 text-slate-600">For grooming enquiries, prices and appointments, give us a ring. We can chat about your dog's needs and the best next step.</p><a className="button-primary mt-6" href="tel:07752027606">07752 027606</a></div>
         <div className="contact-panel contact-address-panel"><span className="contact-icon"><MapPin size={25}/></span><p className="eyebrow mt-5">Find our little corner</p><h2 className="mt-2 text-3xl font-bold text-navy">Hemel Hempstead.</h2><address className="mt-4 not-italic leading-8 text-slate-600">42 Lomond Road<br/>Hemel Hempstead<br/>HP2 6PA<br/>Hertfordshire</address><a className="text-link mt-5" href="https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a></div>
+        <div className="contact-panel contact-address-panel"><span className="contact-icon"><PawPrint size={25}/></span><p className="eyebrow mt-5">When we're open</p><h2 className="mt-2 text-3xl font-bold text-navy">Opening hours.</h2><dl className="mt-4 space-y-2 leading-7 text-slate-600">
+          <div className="flex justify-between gap-4"><dt>Monday</dt><dd className="font-semibold text-navy">Closed</dd></div>
+          <div className="flex justify-between gap-4"><dt>Tuesday</dt><dd className="font-semibold text-navy">09:00 – 17:00</dd></div>
+          <div className="flex justify-between gap-4"><dt>Wednesday</dt><dd className="font-semibold text-navy">09:00 – 17:00</dd></div>
+          <div className="flex justify-between gap-4"><dt>Thursday</dt><dd className="font-semibold text-navy">09:00 – 17:00</dd></div>
+          <div className="flex justify-between gap-4"><dt>Friday</dt><dd className="font-semibold text-navy">09:00 – 17:00</dd></div>
+          <div className="flex justify-between gap-4"><dt>Saturday</dt><dd className="font-semibold text-navy">09:00 – 15:00</dd></div>
+          <div className="flex justify-between gap-4"><dt>Sunday</dt><dd className="font-semibold text-navy">Closed</dd></div>
+        </dl></div>
       </div><div className="map-frame mt-8"><iframe title="Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA" src="https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed" width="100%" height="390" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/></div></div></section>
       <Callout />
     </>
