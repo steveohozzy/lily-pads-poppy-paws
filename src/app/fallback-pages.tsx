@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { BadgeCheck, HeartHandshake, MapPin, PawPrint, Phone, ShieldCheck, Sparkles } from "lucide-react";
 import { services } from "@/lib/business";
@@ -8,104 +9,141 @@ export function HomeFallback() {
   return (
     <>
       <section className="hero-wrap">
-        <div className="container-shell grid gap-8 py-14 lg:grid-cols-[1.05fr_.95fr] lg:items-center lg:py-20">
-          <div className="relative z-10">
-            <p className="eyebrow"><PawPrint size={16} /> Dog grooming in Hemel Hempstead</p>
-            <h1 className="display-heading mt-5">A little pampering for your best friend.</h1>
-            <p className="mt-6 max-w-xl text-lg leading-8 text-slate-700">Qualified and insured dog groomer. Everything available from nail clips to full grooms for all breeds!</p>
+        <div className="container-shell hero-layout grid gap-8 py-12 lg:grid-cols-[1.02fr_.98fr] lg:items-center lg:py-16">
+          <div className="hero-copy relative z-10">
+            <p className="eyebrow"><PawPrint size={16} /> A little love for every paw · Hemel Hempstead</p>
+            <h1 className="display-heading mt-5">Dog grooming in <span>Hemel Hempstead</span></h1>
+            <p className="hero-intro mt-6 max-w-xl">Happy dogs, lovely fresh coats and a whole lot of fuss. Lily Pads & Poppy Paws is a qualified and insured dog groomer offering everything from nail clips to full grooms for all breeds.</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="button-primary" href="tel:07752027606">Call 07752 027606</a>
-              <Link className="button-secondary" href="/services">Explore grooming services</Link>
+              <a className="button-primary" href="tel:07752027606"><Phone size={18} /> Call 07752 027606</a>
+              <Link className="button-secondary" href="/services">Explore our services <span aria-hidden="true">→</span></Link>
             </div>
-            <div className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold text-navy">
-              <span className="flex items-center gap-2"><ShieldCheck size={18} className="text-sky-700" /> Qualified & insured</span>
-              <span className="flex items-center gap-2"><HeartHandshake size={18} className="text-sky-700" /> All breeds welcome</span>
+            <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3">
+              <span><ShieldCheck size={18} /> Qualified & insured</span>
+              <span><HeartHandshake size={18} /> All breeds welcome</span>
             </div>
           </div>
           <div className="hero-art">
-            <div className="hero-dog-placeholder">
-              <div className="paint-splash" />
-              <div className="paw-stamp"><PawPrint size={38} fill="currentColor" /></div>
-              <div className="dog-emoji" aria-hidden="true">🐶</div>
-              <span className="hero-note">Lots of love<br />for every paw</span>
+            <div className="hero-art-wash" aria-hidden="true" />
+            <Image
+              src="/images/brand-reference-logo.jpeg"
+              alt="Lily Pads & Poppy Paws illustrated dog grooming logo with two hand-drawn dogs and blue flowers"
+              width={1000}
+              height={1000}
+              priority
+              className="hero-brand-art"
+              sizes="(max-width: 1024px) 90vw, 46vw"
+            />
+            <span className="hero-sticker hero-sticker-top" aria-hidden="true">Pawsitively<br />pampered!</span>
+            <span className="hero-sticker hero-sticker-bottom" aria-hidden="true"><PawPrint size={17} /> Every dog is special</span>
+          </div>
+        </div>
+        <div className="hero-wave" aria-hidden="true" />
+      </section>
+
+      <section className="trust-ribbon" aria-label="About our dog grooming service">
+        <div className="container-shell">
+          <span><PawPrint size={17} /> A warm welcome for every breed</span>
+          <span><ShieldCheck size={17} /> Qualified and insured</span>
+          <span><MapPin size={17} /> Hemel Hempstead, Hertfordshire</span>
+        </div>
+      </section>
+
+      <section className="section-pad intro-section">
+        <div className="container-shell grid gap-10 lg:grid-cols-[.82fr_1.18fr] lg:items-center">
+          <div>
+            <p className="eyebrow"><Sparkles size={16} /> Welcome to our little grooming corner</p>
+            <h2 className="section-heading mt-4">Good hair days are for <span>every dog.</span></h2>
+          </div>
+          <div className="prose-copy">
+            <p>At Lily Pads & Poppy Paws, we believe every dog deserves to feel comfortable, cared for and looking their very best. Based in Hemel Hempstead, we welcome all breeds and offer grooming from a simple nail clip to a full groom.</p>
+            <p className="mt-4">Not sure what your dog needs? Give us a call. We can chat about the grooming you have in mind and provide a price before you arrange an appointment.</p>
+            <Link href="/about" className="text-link mt-5">Get to know Lily Pads & Poppy Paws <span aria-hidden="true">→</span></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad services-section">
+        <div className="container-shell">
+          <div className="section-intro mx-auto max-w-2xl text-center">
+            <p className="eyebrow justify-center"><PawPrint size={16} /> The good stuff</p>
+            <h2 className="section-heading mt-4">A little trim, or the full <span>glow-up?</span></h2>
+            <p className="mt-4 leading-7 text-slate-600">Explore our dog grooming services in Hemel Hempstead. Every dog is different, so get in touch to discuss what your four-legged friend needs.</p>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-3">
+            {services.map((service, index) => (
+              <article className={`service-card service-card-${index + 1}`} key={service.title}>
+                <span className="service-icon" aria-hidden="true">{index === 0 ? <ScissorsIcon /> : index === 1 ? <Sparkles size={27} /> : <HeartHandshake size={27} />}</span>
+                <p className="service-kicker">0{index + 1} · Tail-wagging care</p>
+                <h3 className="mt-2 text-xl font-bold text-navy">{service.title}</h3>
+                <p className="mt-3 leading-7 text-slate-600">{service.description}</p>
+                <Link href="/contact" className="text-link mt-6">Ask us about this <span aria-hidden="true">→</span></Link>
+              </article>
+            ))}
+          </div>
+          <div className="mt-9 text-center"><Link href="/services" className="button-secondary">See all service information <span aria-hidden="true">→</span></Link></div>
+        </div>
+      </section>
+
+      <section className="section-pad why-section">
+        <div className="container-shell grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+          <div className="why-art">
+            <Image src="/images/brand-reference-deposits.jpg" alt="A cheerful illustrated fluffy dog surrounded by blue brush strokes and paw prints" width={526} height={800} sizes="(max-width: 1024px) 90vw, 42vw" />
+            <span className="why-art-caption">Little paws. Big personalities.</span>
+          </div>
+          <div>
+            <p className="eyebrow"><HeartHandshake size={16} /> Care with a personal touch</p>
+            <h2 className="section-heading mt-4">Because they're not just pets. They're <span>family.</span></h2>
+            <p className="mt-5 leading-8 text-slate-600">Choosing a dog groomer is about finding someone you feel happy trusting with a very important member of the family. Lily Pads & Poppy Paws is qualified and insured, and welcomes dogs of all breeds.</p>
+            <ul className="feature-list mt-6">
+              <li><BadgeCheck size={20} /> Qualified and insured dog groomer</li>
+              <li><PawPrint size={20} /> Grooming options from nail clips to full grooms</li>
+              <li><MapPin size={20} /> Conveniently based in Hemel Hempstead</li>
+            </ul>
+            <Link href="/faqs" className="text-link mt-7">Read our grooming FAQs <span aria-hidden="true">→</span></Link>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad local-section">
+        <div className="container-shell grid gap-9 lg:grid-cols-[.9fr_1.1fr] lg:items-center">
+          <div>
+            <p className="eyebrow"><MapPin size={16} /> Your local dog groomer</p>
+            <h2 className="section-heading mt-4">Find us in <span>Hemel Hempstead.</span></h2>
+            <p className="mt-5 max-w-xl leading-8 text-slate-600">Lily Pads & Poppy Paws is based at 42 Lomond Road, Hemel Hempstead, HP2 6PA. If you're looking for dog grooming in Hemel Hempstead, Hertfordshire, get in touch to ask about services, prices and appointments.</p>
+            <address className="mt-5 not-italic font-bold leading-7 text-navy">Lily Pads & Poppy Paws<br />42 Lomond Road<br />Hemel Hempstead<br />HP2 6PA</address>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a className="button-primary" href="tel:07752027606"><Phone size={17} /> Call to enquire</a>
+              <a className="button-secondary" href="https://www.google.com/maps/search/?api=1&query=42+Lomond+Road+Hemel+Hempstead+HP2+6PA" target="_blank" rel="noreferrer">Get directions <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <div className="map-frame">
+            <iframe title="Map showing Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead HP2 6PA" src="https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed" width="100%" height="390" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad final-cta-section">
+        <div className="container-shell">
+          <div className="final-cta">
+            <PawPrint className="final-cta-paw" size={36} fill="currentColor" aria-hidden="true" />
+            <p className="eyebrow justify-center">Ready for a little pampering?</p>
+            <h2 className="section-heading mt-4">Let's get those tails wagging!</h2>
+            <p className="mx-auto mt-4 max-w-xl leading-7 text-slate-600">Tell us a little about your dog and the grooming you're looking for. We'd love to hear from you.</p>
+            <div className="mt-7 flex flex-wrap justify-center gap-3">
+              <a href="tel:07752027606" className="button-primary"><Phone size={18} /> 07752 027606</a>
+              <Link href="/contact" className="button-secondary">Contact us <span aria-hidden="true">→</span></Link>
             </div>
           </div>
         </div>
       </section>
-
-      <section className="section-pad">
-        <div className="container-shell grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
-          <div>
-            <p className="eyebrow"><Sparkles size={16} /> Welcome to our little corner</p>
-            <h2 className="section-heading mt-3">Dog grooming in Hemel Hempstead</h2>
-          </div>
-          <div className="prose-copy">
-            <p>Lily Pads & Poppy Paws is a dog grooming business in Hemel Hempstead, Hertfordshire. We offer everything from nail clips to full grooms for all breeds.</p>
-            <p className="mt-4">Whether you are looking for a quick nail trim or enquiring about a full groom, give us a call and we can discuss what your dog needs and provide a price.</p>
-            <Link href="/about" className="mt-5 inline-flex font-bold text-sky-700 hover:text-navy">More about Lily Pads & Poppy Paws →</Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-pale">
-        <div className="container-shell">
-          <div className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow justify-center"><PawPrint size={16} /> Grooming services</p>
-            <h2 className="section-heading mt-3">From nail clips to full grooms</h2>
-            <p className="mt-4 leading-7 text-slate-600">Every dog is different. Get in touch to talk through the grooming you need and ask for a price.</p>
-          </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-3">
-            {services.map((service, index) => (
-              <article className="service-card" key={service.title}>
-                <span className="service-icon">{index === 0 ? "✂" : index === 1 ? "✦" : "♡"}</span>
-                <h3 className="mt-5 text-xl font-bold text-navy">{service.title}</h3>
-                <p className="mt-3 leading-7 text-slate-600">{service.description}</p>
-                <Link href="/contact" className="mt-6 inline-flex font-bold text-sky-700 hover:text-navy">Enquire now →</Link>
-              </article>
-            ))}
-          </div>
-          <div className="mt-8 text-center"><Link href="/services" className="button-secondary">View all service information</Link></div>
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="container-shell grid gap-6 md:grid-cols-3">
-          <div className="contact-panel">
-            <BadgeCheck className="text-sky-700" size={28} />
-            <h2 className="mt-4 text-xl font-bold text-navy">Qualified & insured</h2>
-            <p className="mt-2 leading-7 text-slate-600">Your dog is in the care of a qualified and insured dog groomer.</p>
-          </div>
-          <div className="contact-panel">
-            <PawPrint className="text-sky-700" size={28} />
-            <h2 className="mt-4 text-xl font-bold text-navy">All breeds welcome</h2>
-            <p className="mt-2 leading-7 text-slate-600">From nail clips to full grooms, get in touch to discuss your dog's needs.</p>
-          </div>
-          <div className="contact-panel">
-            <MapPin className="text-sky-700" size={28} />
-            <h2 className="mt-4 text-xl font-bold text-navy">Based in Hemel Hempstead</h2>
-            <p className="mt-2 leading-7 text-slate-600">Find Lily Pads & Poppy Paws at 42 Lomond Road, Hemel Hempstead, HP2 6PA.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad bg-pale">
-        <div className="container-shell grid gap-10 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="eyebrow"><MapPin size={16} /> Find your local dog groomer</p>
-            <h2 className="section-heading mt-3">Looking for dog grooming in Hemel Hempstead?</h2>
-            <p className="mt-5 max-w-xl leading-8 text-slate-600">Lily Pads & Poppy Paws is based at 42 Lomond Road, Hemel Hempstead, HP2 6PA. If you are local and looking for a dog groomer, call us to ask about services, prices and availability.</p>
-            <a className="button-primary mt-7" href="tel:07752027606">Call 07752 027606</a>
-          </div>
-          <div className="overflow-hidden rounded-3xl border border-sky-100 bg-white p-2 shadow-sm">
-            <iframe title="Map showing Lily Pads & Poppy Paws in Hemel Hempstead" src="https://www.google.com/maps?q=42%20Lomond%20Road%2C%20Hemel%20Hempstead%2C%20HP2%206PA&output=embed" width="100%" height="340" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="rounded-2xl border-0" />
-          </div>
-        </div>
-      </section>
-      <Callout />
     </>
   );
 }
 
+function ScissorsIcon() {
+  return <span className="scissors-symbol" aria-hidden="true">✂</span>;
+}
 
 
 export function AboutFallback() {
