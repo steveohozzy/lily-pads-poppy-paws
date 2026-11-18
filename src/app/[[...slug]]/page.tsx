@@ -64,7 +64,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
   const story = await fetchStory(path);
   const content = story?.content || {};
   const fallback = pageSeo[path] || {
-    title: `${path.charAt(0).toUpperCase()}rc/app/[[...slug]]/page.tsx | Lily Pads & Poppy Paws`,
+    title: `${path.charAt(0).toUpperCase()}${path.slice(1)} | Lily Pads & Poppy Paws`,
     description: "Qualified and insured dog groomer in Hemel Hempstead. Contact Lily Pads & Poppy Paws to discuss dog grooming services, prices and appointments."
   };
   const pageTitle = content.seo_title || content.title || fallback.title;
