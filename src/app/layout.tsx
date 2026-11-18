@@ -44,7 +44,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       { "@type": "City", name: "Hemel Hempstead" },
       { "@type": "AdministrativeArea", name: "Hertfordshire" }
     ],
-    knowsAbout: ["Dog grooming", "Dog nail clipping", "Full dog grooms"]
+    knowsAbout: ["Dog grooming", "Dog nail clipping", "Full dog grooms"],
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Dog grooming services",
+      itemListElement: [
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Dog nail clipping" } },
+        { "@type": "Offer", itemOffered: { "@type": "Service", name: "Full dog grooming" } }
+      ]
+    }
   };
 
   return (
