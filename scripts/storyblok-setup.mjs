@@ -397,7 +397,12 @@ async function main() {
   for (const page of pages) {
     const existing = existingStories.find((story) => story.slug === page.slug && !story.is_folder);
     if (existing) {
-      console.log(`Skipped existing story: /${page.slug} (left unchanged)`);
+      if (publishStories && !existing.published_at) {
+        await request(`stories/${existing.id}/publish`);
+        console.log(`Published existing draft: /${page.slug} (content left unchanged)`);
+      } else {
+        console.log(`Skipped existing story: /${page.slug} (left unchanged)`);
+      }
       continue;
     }
 
