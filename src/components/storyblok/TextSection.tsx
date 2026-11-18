@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { HeartHandshake, MapPin, PawPrint, ShieldCheck, Sparkles } from "lucide-react";
 import { storyblokEditable } from "@storyblok/react/rsc";
