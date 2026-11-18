@@ -1,8 +1,9 @@
 import { StoryblokServerComponent } from "@storyblok/react/rsc";
 import { PawPrint, Scissors, Sparkles, Heart } from "lucide-react";
 import { services } from "@/lib/business";
+import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { _uid: string; heading?: string; intro?: string; show_prices?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
+type Props = { blok: { _uid: string; heading?: string; highlight?: string; intro?: string; show_prices?: boolean; items?: Array<{ _uid: string; component: string; title?: string; description?: string; show_price?: boolean; price?: string }> } };
 
 export default function ServiceGrid({ blok }: Props) {
   return (
@@ -10,7 +11,7 @@ export default function ServiceGrid({ blok }: Props) {
       <div className="container-shell">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow justify-center"><PawPrint size={16} /> Grooming services</p>
-          <h2 className="section-heading mt-3">{blok.heading || "A little care goes a long way"}</h2>
+          <h2 className="section-heading mt-3"><HighlightedText text={blok.heading || "A little care goes a long way"} highlight={blok.highlight} /></h2>
           <p className="mt-4 leading-7 text-slate-600">{blok.intro || "From nail clips to full grooms, get in touch to talk through what your dog needs."}</p>
         </div>
         <div className="mt-10 grid gap-5 md:grid-cols-3">
