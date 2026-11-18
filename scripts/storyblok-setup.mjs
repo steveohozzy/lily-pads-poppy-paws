@@ -67,7 +67,7 @@ const components = [
     is_root: true,
     is_nestable: false,
     schema: {
-      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "faq_list", "gallery_grid", "call_to_action"]),
+      body: bloks(["hero", "text_section", "service_grid", "grooming_picker", "trust_ribbon", "faq_list", "gallery_grid", "call_to_action"]),
       seo_title: text(),
       seo_description: textarea()
     }
@@ -150,6 +150,30 @@ const components = [
       intro: textarea(),
       show_prices: field("boolean", { default_value: false }),
       items: bloks(["service_item"])
+    }
+  },
+  {
+    name: "trust_ribbon",
+    display_name: "Trust ribbon",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      items: bloks(["trust_ribbon_item"])
+    }
+  },
+  {
+    name: "trust_ribbon_item",
+    display_name: "Trust ribbon item",
+    is_root: false,
+    is_nestable: true,
+    schema: {
+      label: text(),
+      icon: field("option", { options: [
+        { name: "Paw", value: "paw" },
+        { name: "Shield", value: "shield" },
+        { name: "Location", value: "location" },
+        { name: "Heart", value: "heart" }
+      ] })
     }
   },
   {
@@ -268,7 +292,20 @@ const pages = [
       blok("hero", {
         eyebrow: "A little love for every paw · Hemel Hempstead",
         heading: "Dog grooming in Hemel Hempstead",
-        intro: "Happy dogs, lovely fresh coats and a whole lot of fuss. Lily Pads & Poppy Paws is a qualified and insured dog groomer offering everything from nail clips to full grooms for all breeds."
+        intro: "Happy dogs, lovely fresh coats and a whole lot of fuss. Lily Pads & Poppy Paws is a qualified and insured dog groomer offering everything from nail clips to full grooms for all breeds.",
+        secondary_button_text: "Explore our services",
+        secondary_button_link: "/services",
+        trust_badge_one: "Qualified & insured",
+        trust_badge_two: "All breeds welcome",
+        sticker_top: "Pawsitively pampered!",
+        sticker_bottom: "Every dog is special"
+      }),
+      blok("trust_ribbon", {
+        items: [
+          blok("trust_ribbon_item", { label: "A warm welcome for every breed", icon: "paw" }),
+          blok("trust_ribbon_item", { label: "Qualified and insured", icon: "shield" }),
+          blok("trust_ribbon_item", { label: "Hemel Hempstead, Hertfordshire", icon: "location" })
+        ]
       }),
       blok("text_section", {
         eyebrow: "Welcome to our little grooming corner",
@@ -507,6 +544,19 @@ async function main() {
         const fullStoryResponse = await request(`stories/${existing.id}`);
         const currentStory = fullStoryResponse.story;
         const currentBody = currentStory?.content?.body || [];
+        const hasRibbon = currentBody.some((item) => item.component === "trust_ribbon");
+        if (!hasRibbon) {
+          const heroIndex = currentBody.findIndex((item) => item.component === "hero");
+          currentBody.splice(heroIndex >= 0 ? heroIndex + 1 : 0, 0, blok("trust_ribbon", {
+            items: [
+              blok("trust_ribbon_item", { label: "A warm welcome for every breed", icon: "paw" }),
+              blok("trust_ribbon_item", { label: "Qualified and insured", icon: "shield" }),
+              blok("trust_ribbon_item", { label: "Hemel Hempstead, Hertfordshire", icon: "location" })
+            ]
+          }));
+          console.log("Added Trust Ribbon block to existing homepage after Hero.");
+        }
+
         const hasPicker = currentBody.some((item) => item.component === "grooming_picker");
 
         if (!hasPicker) {
