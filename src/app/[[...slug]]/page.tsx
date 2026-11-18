@@ -81,13 +81,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug?: st
       siteName: business.name,
       locale: "en_GB",
       type: "website",
-      images: [{ url: "/images/brand-reference-logo.jpeg", width: 1000, height: 1000, alt: "Lily Pads & Poppy Paws dog grooming in Hemel Hempstead" }]
+      images: [{ url: "/images/2.jpeg", width: 1000, height: 1000, alt: "Lily Pads & Poppy Paws dog grooming in Hemel Hempstead" }]
     },
     twitter: {
       card: "summary_large_image",
       title: pageTitle,
       description,
-      images: ["/images/brand-reference-logo.jpeg"]
+      images: ["/images/2.jpeg"]
     }
   };
 }
