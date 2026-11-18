@@ -4,6 +4,7 @@ import Hero from "@/components/storyblok/Hero";
 import TextSection from "@/components/storyblok/TextSection";
 import ServiceGrid from "@/components/storyblok/ServiceGrid";
 import GroomingPickerBlock from "@/components/storyblok/GroomingPickerBlock";
+import TrustRibbon from "@/components/storyblok/TrustRibbon";
 import FaqList from "@/components/storyblok/FaqList";
 import GalleryGrid from "@/components/storyblok/GalleryGrid";
 import CallToAction from "@/components/storyblok/CallToAction";
@@ -26,6 +27,7 @@ export const getStoryblokApi = storyblokInit({
     text_section: TextSection,
     service_grid: ServiceGrid,
     grooming_picker: GroomingPickerBlock,
+    trust_ribbon: TrustRibbon,
     faq_list: FaqList,
     gallery_grid: GalleryGrid,
     call_to_action: CallToAction,
