@@ -26,7 +26,7 @@ export function HomeFallback() {
           <div className="hero-art">
             <div className="hero-art-wash" aria-hidden="true" />
             <Image
-              src="/images/brand-reference-logo.jpeg"
+              src="/images/2.jpeg"
               alt="Lily Pads & Poppy Paws illustrated dog grooming logo with two hand-drawn dogs and blue flowers"
               width={1000}
               height={1000}
