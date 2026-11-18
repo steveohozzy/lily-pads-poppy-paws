@@ -24,7 +24,7 @@ type SiteSettings = {
   footer_tagline?: string;
 };
 
-const defaultFooterLinks = [
+const defaultFooterLinks: FooterLink[] = [
   { label: "Grooming services", href: "/services" },
   { label: "Frequently asked questions", href: "/faqs" },
   { label: "Contact & location", href: "/contact" },
