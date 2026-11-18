@@ -4,14 +4,14 @@ import { HeartHandshake, MapPin, PawPrint, Phone, ShieldCheck } from "lucide-rea
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
 
-type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; button_text?: string; button_link?: string; secondary_button_text?: string; secondary_button_link?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
+type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; button_text?: string; button_link?: string; secondary_button_text?: string; secondary_button_link?: string; phone_link?: string; phone_text?: string; paint_note?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
 
 export default function Hero({ blok }: Props) {
   const isHome = (blok.eyebrow || "").toLowerCase().includes("little love for every paw");
   const heading = blok.heading || "Happy dogs. Lovely fresh trims.";
   const isServices = heading.toLowerCase().includes("service");
   const isContact = heading.toLowerCase().includes("contact");
-  const paintNote = isServices ? <>Freshen up<br/>your fluff!</> : isContact ? <>Come say<br/>hello!</> : <>A little kindness<br/>goes a long way</>;
+  const paintNote = blok.paint_note || (isServices ? "Freshen up your fluff!" : isContact ? "Come say hello!" : "A little kindness goes a long way");
   const pageArtClass = isServices ? "page-art-services" : isContact ? "page-art-contact" : "page-art-about";
   const pageButtonText = blok.button_text || (isServices ? "Call for a quote" : isContact ? "Call 07752 027606" : "Have a chat");
   const artwork = blok.image?.filename
@@ -26,7 +26,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><PawPrint size={16}/> {blok.eyebrow || "A little about us"}</p>
             <h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {pageButtonText}</a><Link className="button-secondary" href={blok.secondary_button_link || blok.button_link || "/services"}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link></div>
+            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a><Link className="button-secondary" href={blok.secondary_button_link || blok.button_link || "/services"}>{blok.secondary_button_text || "Explore grooming"} <span aria-hidden="true">→</span></Link></div>
           </div>
           <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote}</span></div>
         </div>
@@ -42,7 +42,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><PawPrint size={16} /> {blok.eyebrow || "Dog grooming in Hemel Hempstead"}</p>
             <h1 className="display-heading mt-5"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
-            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={blok.button_link || "/services"}>Explore our services <span aria-hidden="true">→</span></Link></div>
+            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={blok.button_link || "/services"}>Explore our services <span aria-hidden="true">→</span></Link></div>
             <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3"><span><ShieldCheck size={18}/> {blok.trust_badge_one || "Qualified & insured"}</span><span><HeartHandshake size={18}/> {blok.trust_badge_two || "All breeds welcome"}</span></div>
           </div>
           <div className="hero-art">
