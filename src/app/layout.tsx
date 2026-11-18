@@ -45,6 +45,13 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       { "@type": "AdministrativeArea", name: "Hertfordshire" }
     ],
     knowsAbout: ["Dog grooming", "Dog nail clipping", "Full dog grooms"],
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/Tuesday", opens: "09:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/Wednesday", opens: "09:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/Thursday", opens: "09:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/Friday", opens: "09:00", closes: "17:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "https://schema.org/Saturday", opens: "09:00", closes: "15:00" }
+    ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Dog grooming services",
