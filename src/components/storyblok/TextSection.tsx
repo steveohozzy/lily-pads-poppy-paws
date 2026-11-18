@@ -41,7 +41,7 @@ export default function TextSection({ blok }: Props) {
 
   if (isServicesIntro) return (
     <section className="section-pad services-section">
-      <div className="container-shell"><div className="section-intro mx-auto max-w-2xl text-center"><p className="eyebrow justify-center"><Sparkles size={16}/> {eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-4 leading-7 text-slate-600" key={index}>{paragraph}</p>)}</div></div>
+      <div className="container-shell"><div className="section-intro mx-auto max-w-2xl text-center"><p className="eyebrow justify-center">{eyebrow}</p><h2 className="section-heading mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h2>{paragraphs.map((paragraph,index)=><p className="mt-4 leading-7 text-slate-600" key={index}>{paragraph}</p>)}</div></div>
     </section>
   );
 
