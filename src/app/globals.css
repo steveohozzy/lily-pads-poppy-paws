@@ -567,3 +567,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
 .paw-ticker-track span:nth-child(even) { color:#078fc5; font-size:17px; }
 .paw-ticker:hover .paw-ticker-track { animation-play-state:paused; }
 @media(prefers-reduced-motion:reduce) { .paw-ticker-track { animation:none; } }
+
+/* Small final colour fixes for selectors with stronger specificity. */
+.page-art-contact .paint-note { background:#08284f; color:#fff; }
+.service-card-bottom > span { color:#087eae; }
+.gallery-page-section { background:linear-gradient(180deg,#fffefa,#effaff); }
