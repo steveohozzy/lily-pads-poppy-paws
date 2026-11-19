@@ -108,7 +108,7 @@ body { background: var(--paper); color: var(--ink); }
 .hero-intro { color:#36516b; font-size:18px; line-height:1.8; }
 .hero-art { min-height:460px; }
 .hero-art-wash { position:absolute; width:88%; height:88%; border-radius:48% 52% 59% 41% / 44% 43% 57% 56%; background:linear-gradient(145deg,#4bd0ee,#168fc7); transform:rotate(-7deg); box-shadow:0 0 0 13px #159bd21a, 0 25px 55px #0b47701c; }
-.hero-brand-art { position:relative; z-index:1; width:min(100%,490px); max-height:500px; object-fit:contain; mix-blend-mode:multiply; border-radius:30px; filter:drop-shadow(0 18px 20px #082b4a20); }
+.hero-brand-art { position:relative; z-index:1; width:min(100%,490px); max-height:500px; object-fit:contain; mix-blend-mode:multiply; border-radius:30px; filter:drop-shadow(0 18px 20px #082b4a20);}
 .hero-sticker { position:absolute; z-index:4; display:flex; align-items:center; gap:7px; padding:12px 17px; border:2px solid var(--navy); border-radius:18px 18px 18px 4px; background:#fff; color:var(--navy); font-family:Georgia,serif; font-size:16px; font-weight:700; box-shadow:0 8px 0 #092b5812; }
 .hero-sticker-top { top:4%; right:-1%; transform:rotate(7deg); text-align:center; }
 .hero-sticker-bottom { bottom:6%; left:-3%; transform:rotate(-6deg); }
