@@ -15,7 +15,6 @@ export default function Hero({ blok }: Props) {
   const isContact = heading.toLowerCase().includes("contact");
   const paintNote = blok.paint_note || (isServices ? "Freshen up\nyour fluff!" : isContact ? "Come say\nhello!" : "A little kindness\ngoes a long way");
   const pageArtClass = isServices ? "page-art-services" : isContact ? "page-art-contact" : "page-art-about";
-  const pageButtonText = blok.phone_text || blok.button_text || (isServices ? "Call for a quote" : isContact ? "Call 07752 027606" : "Have a chat");
   const buttonHref = typeof blok.button_link === "string" ? blok.button_link : blok.button_link?.cached_url || blok.button_link?.url || "/services";
   const secondaryHref = blok.secondary_button_link || buttonHref;
   const imageSrc = blok.image?.filename || blok.image_url;
