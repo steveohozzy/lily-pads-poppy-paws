@@ -119,7 +119,7 @@ body { background: var(--paper); color: var(--ink); }
 .trust-ribbon { background:var(--navy); color:#fff; }
 .trust-ribbon .container-shell { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px 24px; padding-block:19px; }
 .trust-ribbon span { display:flex; align-items:center; gap:9px; font-size:13px; font-weight:800; }
-.trust-ribbon svg { color:#64d9f1; 
+.trust-ribbon svg { color:#64d9f1; }
 .section-pad { padding-block:clamp(62px,8vw,100px); }
 .section-heading { font-family:Georgia,"Times New Roman",serif; font-size:clamp(2.2rem,4.2vw,3.7rem); line-height:1.04; letter-spacing:-.045em; color:var(--navy); }
 .prose-copy { color:#405a72; font-size:17px; line-height:1.9; }
