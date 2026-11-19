@@ -221,7 +221,7 @@ export function FaqsFallback() {
   return (
     <>
       <section className="page-hero"><div className="container-shell text-center"><p className="eyebrow justify-center"><HeartHandshake size={16}/> Here to help</p><h1 className="mt-4">Dog grooming FAQs for <span>Hemel Hempstead.</span></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Everything you might like to know before booking a grooming appointment with Lily Pads & Poppy Paws.</p></div></section>
-      <section className="section-pad"><div className="container-shell max-w-4xl"><div className="faq-intro"><span>🐾</span><p>Can't see the answer you're looking for? Give us a call — we're always happy to have a chat.</p><a href="tel:07752027606">07752 027606</a></div><div className="faq-list mt-7">{faqs.map(([q,a],index)=><details className="faq-item" key={q}><summary><span className="faq-number">0{index+1}</span><span>{q}</span><span className="faq-plus" aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div></section>
+      <section className="section-pad"><div className="container-shell max-w-4xl"><div className="faq-intro"><p>Can't see the answer you're looking for? Give us a call — we're always happy to have a chat.</p><a href="tel:07752027606">07752 027606</a></div><div className="faq-list mt-7">{faqs.map(([q,a],index)=><details className="faq-item" key={q}><summary><span className="faq-number">0{index+1}</span><span>{q}</span><span className="faq-plus" aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div></section>
       <Callout />
     </>
   );
