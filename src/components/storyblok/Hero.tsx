@@ -3,6 +3,7 @@ import Link from "next/link";
 import { HeartHandshake, PawPrint, Phone, ShieldCheck, Sparkles } from "lucide-react";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
+import EnquiryOptions from "@/components/EnquiryOptions";
 
 type Props = { blok: { eyebrow?: string; heading?: string; highlight?: string; intro?: string; image?: { filename?: string; alt?: string }; image_url?: string; image_alt?: string; button_text?: string; button_link?: string | { cached_url?: string; url?: string }; secondary_button_text?: string; secondary_button_link?: string; show_secondary_button?: boolean; phone_link?: string; phone_text?: string; paint_note?: string; layout?: string; eyebrow_icon?: string; trust_badge_one?: string; trust_badge_two?: string; sticker_top?: string; sticker_bottom?: string } };
 
@@ -36,7 +37,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><EyebrowIcon size={16}/> {blok.eyebrow || "A little about us"}</p>
             <h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p>
-            <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.phone_text || pageButtonText}</a>{blok.show_secondary_button !== false && <Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"}</Link>}</div>
+            <div className="mt-7 flex flex-wrap items-center gap-3"><EnquiryOptions compact />{blok.show_secondary_button !== false && <Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore grooming"}</Link>}</div>
           </div>
           <div className={`page-art-card ${pageArtClass}`}>{artwork}<span className="paint-note">{paintNote.split("\n").map((line, index) => <span key={index}>{index > 0 && <br/>}{line}</span>)}</span></div>
         </div>
@@ -52,7 +53,7 @@ export default function Hero({ blok }: Props) {
             <p className="eyebrow"><EyebrowIcon size={16} /> {blok.eyebrow || "Dog grooming in Hemel Hempstead"}</p>
             <h1 className="display-heading mt-5"><HighlightedText text={heading} highlight={blok.highlight}/></h1>
             <p className="hero-intro mt-6 max-w-xl">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead, with nail clipping and full grooms available to enquire about. All breeds welcome."}</p>
-            <div className="mt-8 flex flex-wrap gap-3"><a className="button-primary" href={blok.phone_link || "tel:07752027606"}><Phone size={18}/> {blok.button_text || "Call 07752 027606"}</a><Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore our services"}</Link></div>
+            <div className="mt-8 flex flex-wrap items-center gap-3"><EnquiryOptions compact /><Link className="button-secondary" href={secondaryHref}>{blok.secondary_button_text || "Explore our services"}</Link></div>
             <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3"><span><ShieldCheck size={18}/> {blok.trust_badge_one || "Qualified & insured"}</span><span><HeartHandshake size={18}/> {blok.trust_badge_two || "All breeds welcome"}</span></div>
           </div>
           <div className="hero-art">
