@@ -272,7 +272,7 @@ export function PrivacyFallback() {
 
           <h2>4. Cookies, maps and tracking</h2>
           <p>We do not currently use website analytics or advertising pixels, and we do not deliberately use this website to track visitors for advertising or marketing purposes.</p>
-          <p>Some pages include an embedded Google Map to help visitors find our location. When the map loads, Google may receive technical information about your visit and may use cookies or similar technologies in accordance with Google's own privacy terms and settings. Links to external services, including Facebook and Instagram, may also take you to platforms that use their own cookies and tracking technologies.</p>
+          <p>Some pages include an embedded Google Map and the Facebook Page feed. When these embedded services load, Google or Meta may receive technical information about your visit and may use cookies or similar technologies in accordance with their own privacy terms and settings. Links to external services, including Facebook and Instagram, may also take you to platforms that use their own cookies and tracking technologies.</p>
           <p>We will update this policy if we add analytics, advertising technology, online forms or other features that change how personal information or cookies are used.</p>
 
           <h2>5. Third-party websites and services</h2>
