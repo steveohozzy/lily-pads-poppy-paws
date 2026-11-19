@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { HeartHandshake, PawPrint, Phone, ShieldCheck, Sparkles } from "lucide-react";
+import { HeartHandshake, PawPrint, ShieldCheck, Sparkles } from "lucide-react";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
 import EnquiryOptions from "@/components/EnquiryOptions";
