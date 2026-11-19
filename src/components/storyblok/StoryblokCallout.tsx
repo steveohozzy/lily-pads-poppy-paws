@@ -1,4 +1,4 @@
-import { Phone } from "lucide-react";
+import EnquiryOptions from "@/components/EnquiryOptions";
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 type Props = {
@@ -20,7 +20,7 @@ export default function StoryblokCallout({ blok }: Props) {
           <p className="font-display text-3xl font-bold text-navy">{blok.heading || "Let's get those tails wagging!"}</p>
           <p className="mt-2 text-slate-600">{blok.body || "Call to discuss your dog's grooming needs and ask about prices."}</p>
         </div>
-        <a href={blok.phone_link || "tel:07752027606"} className="button-primary shrink-0"><Phone size={18} /> {blok.button_text || "07752 027606"}</a>
+        <div className="shrink-0"><EnquiryOptions compact /></div>
       </div>
     </section>
   );
