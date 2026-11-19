@@ -1,4 +1,4 @@
-import { PawPrint, Phone } from "lucide-react";
+import { PawPrint } from "lucide-react";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import HighlightedText from "./HighlightedText";
 import EnquiryOptions from "@/components/EnquiryOptions";
