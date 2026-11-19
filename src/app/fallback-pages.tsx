@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BadgeCheck, HeartHandshake, MapPin, PawPrint, Phone, ShieldCheck, Sparkles } from "lucide-react";
 import { services } from "@/lib/business";
 import Callout from "@/components/Callout";
+import EnquiryOptions from "@/components/EnquiryOptions";
 import { GroomingPicker, GalleryShowcase } from "@/components/FallbackInteractions";
 
 
@@ -15,8 +16,8 @@ export function HomeFallback() {
             <p className="eyebrow"><PawPrint size={16} /> A little love for every paw · Hemel Hempstead</p>
             <h1 className="display-heading mt-5">Dog grooming in <span>Hemel Hempstead</span></h1>
             <p className="hero-intro mt-6 max-w-xl">Happy dogs, lovely fresh coats and a whole lot of fuss. Lily Pads & Poppy Paws is a qualified and insured dog groomer offering everything from nail clips to full grooms for all breeds.</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a className="button-primary" href="tel:07752027606"><Phone size={18} /> Call 07752 027606</a>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <EnquiryOptions compact />
               <Link className="button-secondary" href="/services">Explore our services</Link>
             </div>
             <div className="hero-trust mt-8 flex flex-wrap gap-x-6 gap-y-3">
@@ -146,10 +147,7 @@ export function HomeFallback() {
             <p className="eyebrow justify-center">Ready for a little pampering?</p>
             <h2 className="section-heading mt-4">Let's get those tails wagging!</h2>
             <p className="mx-auto mt-4 max-w-xl leading-7 text-slate-600">Tell us a little about your dog and the grooming you're looking for. We'd love to hear from you.</p>
-            <div className="mt-7 flex flex-wrap justify-center gap-3">
-              <a href="tel:07752027606" className="button-primary"><Phone size={18} /> 07752 027606</a>
-              <Link href="/contact" className="button-secondary">Contact us</Link>
-            </div>
+            <div className="mt-7 flex justify-center"><EnquiryOptions /></div>
           </div>
         </div>
       </section>
