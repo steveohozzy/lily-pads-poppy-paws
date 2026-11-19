@@ -69,6 +69,20 @@ export default function SiteFooter({ settings }: { settings?: SiteSettings | nul
           <div className="mt-5 grid gap-2 text-sky-100">
             {links.map((item) => <Link href={item.href || "/"} key={item._uid || item.href}>{item.label}</Link>)}
           </div>
+          <div className="mt-7">
+            <h3 className="mb-3 font-bold text-white">Latest from Facebook</h3>
+            <iframe
+              title="Latest public Facebook posts from Lily Pads & Poppy Paws"
+              src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(settings?.facebook_url || business.facebook)}&tabs=timeline&width=340&height=420&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=false`}
+              width="340"
+              height="420"
+              style={{ border: "none", overflow: "hidden", maxWidth: "100%" }}
+              scrolling="no"
+              frameBorder="0"
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
       <div className="border-t border-white/15">
