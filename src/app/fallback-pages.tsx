@@ -165,7 +165,7 @@ export function AboutFallback() {
     <>
       <section className="page-hero page-hero-art">
         <div className="container-shell grid gap-10 lg:grid-cols-[1fr_.85fr] lg:items-center">
-          <div><p className="eyebrow"><HeartHandshake size={16} /> A little about us</p><h1 className="mt-4">Dog grooming with care in <span>Hemel Hempstead.</span></h1>
+          <div><p className="eyebrow"><HeartHandshake size={16} /> A little about us</p><h1 className="mt-4 mxauto">Dog grooming with care in <span>Hemel Hempstead.</span></h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">Lily Pads & Poppy Paws is a qualified and insured dog grooming business in Hemel Hempstead, Hertfordshire. All breeds are welcome, with grooming options ranging from nail clipping to full grooms. The aim is simple: to make every dog feel comfortable, cared for and looking their best.</p>
             <div className="mt-7 flex flex-wrap gap-3"><a className="button-primary" href="tel:07752027606"><Phone size={18} /> Have a chat</a><Link className="button-secondary" href="/services">Explore grooming</Link></div>
           </div>
@@ -199,7 +199,7 @@ export function ServicesFallback() {
 export function GalleryFallback() {
   return (
     <>
-      <section className="page-hero"><div className="container-shell text-center"><p className="eyebrow justify-center"><PawPrint size={16}/> The lovely faces behind the paws</p><h1 className="mt-4">Lily Pads & Poppy Paws <span>gallery.</span></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Explore the illustrations and brand imagery behind Lily Pads & Poppy Paws, your local dog grooming business in Hemel Hempstead. More grooming photographs can be added here as they become available.</p></div></section>
+      <section className="page-hero"><div className="container-shell text-center"><p className="eyebrow justify-center"><PawPrint size={16}/> The lovely faces behind the paws</p><h1 className="mt-4 mx-auto">Lily Pads & Poppy Paws <span>gallery.</span></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Explore the illustrations and brand imagery behind Lily Pads & Poppy Paws, your local dog grooming business in Hemel Hempstead. More grooming photographs can be added here as they become available.</p></div></section>
       <section className="section-pad gallery-page-section"><div className="container-shell"><GalleryShowcase /><div className="gallery-social-note mt-12"><div><p className="eyebrow">More fluffy updates</p><h2 className="section-heading mt-2">Follow along for <span>more paw-some moments.</span></h2><p className="mt-3 leading-7 text-slate-600">Find Lily Pads & Poppy Paws on social media for the latest updates.</p></div><div className="flex flex-wrap gap-3"><a className="button-secondary" href="https://www.facebook.com/lilypadspoppypaws/" target="_blank" rel="noreferrer">Facebook</a><a className="button-secondary" href="https://www.instagram.com/lilypadspoppypaws/" target="_blank" rel="noreferrer">Instagram</a></div></div></div></section>
       <Callout />
     </>
@@ -220,7 +220,7 @@ const faqs = [
 export function FaqsFallback() {
   return (
     <>
-      <section className="page-hero"><div className="container-shell text-center"><p className="eyebrow justify-center"><HeartHandshake size={16}/> Here to help</p><h1 className="mt-4">Dog grooming FAQs for <span>Hemel Hempstead.</span></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Everything you might like to know before booking a grooming appointment with Lily Pads & Poppy Paws.</p></div></section>
+      <section className="page-hero"><div className="container-shell text-center"><p className="eyebrow justify-center"><HeartHandshake size={16}/> Here to help</p><h1 className="mt-4 mx-auto">Dog grooming FAQs for <span>Hemel Hempstead.</span></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">Everything you might like to know before booking a grooming appointment with Lily Pads & Poppy Paws.</p></div></section>
       <section className="section-pad"><div className="container-shell max-w-4xl"><div className="faq-intro"><p>Can't see the answer you're looking for? Give us a call — we're always happy to have a chat.</p><a href="tel:07752027606">07752 027606</a></div><div className="faq-list mt-7">{faqs.map(([q,a],index)=><details className="faq-item" key={q}><summary><span className="faq-number">0{index+1}</span><span>{q}</span><span className="faq-plus" aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div></section>
       <Callout />
     </>

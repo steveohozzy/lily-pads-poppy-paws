@@ -24,7 +24,7 @@ export default function Hero({ blok }: Props) {
 
   if (!isHome && blok.layout === "centered") return (
     <section className="page-hero" {...storyblokEditable(blok as never)}>
-      <div className="container-shell text-center"><p className="eyebrow justify-center"><EyebrowIcon size={16}/> {blok.eyebrow || "A little about us"}</p><h1 className="mt-4"><HighlightedText text={heading} highlight={blok.highlight}/></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p></div>
+      <div className="container-shell text-center"><p className="eyebrow justify-center"><EyebrowIcon size={16}/> {blok.eyebrow || "A little about us"}</p><h1 className="mt-4 mx-auto"><HighlightedText text={heading} highlight={blok.highlight}/></h1><p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-slate-600">{blok.intro || "Qualified and insured dog grooming in Hemel Hempstead. All breeds are welcome."}</p></div>
     </section>
   );
 
