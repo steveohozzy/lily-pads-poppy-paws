@@ -397,8 +397,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid
   --blue: #c97896;
   --turquoise: #b8eaf0;
   --pale: #fff2f6;
-  --ink: #405268;
-  --sky: #d9f4f7;
+  --ink: #405268;  --sky: #d9f4f7;
   --paper: #fffdfa;
   --soft-blue: #f3fbfc;
 }
@@ -797,8 +796,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible { outline-color:#f2b5
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23159bd2' stroke='%23159bd2' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='4' r='2'/%3E%3Ccircle cx='18' cy='8' r='2'/%3E%3Ccircle cx='20' cy='16' r='2'/%3E%3Cpath d='M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23159bd2' stroke='%23159bd2' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='4' r='2'/%3E%3Ccircle cx='18' cy='8' r='2'/%3E%3Ccircle cx='20' cy='16' r='2'/%3E%3Cpath d='M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z'/%3E%3C/svg%3E"),
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23159bd2' stroke='%23159bd2' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='4' r='2'/%3E%3Ccircle cx='18' cy='8' r='2'/%3E%3Ccircle cx='20' cy='16' r='2'/%3E%3Cpath d='M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z'/%3E%3C/svg%3E");
-  background-repeat:no-repeat;
-  background-size:31px 31px,31px 31px,31px 31px;
+  background-repeat:no-repeat;  background-size:31px 31px,31px 31px,31px 31px;
   background-position:0 0,30px 15px,61px 1px;
   filter:drop-shadow(0 3px 3px #087eae18);
   animation:paw-walk 7s ease-in-out infinite;
@@ -1197,8 +1195,7 @@ html, body {
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
-}
-body { position: relative; }
+}body { position: relative; }
 .container-shell,
 .hero-layout,
 .hero-copy,
@@ -1512,4 +1509,221 @@ img, svg, iframe { max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .google-reviews-carousel { scroll-behavior: auto; }
+}"use client";
+
+import { useRef } from "react";
+import { Star, PawPrint, ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+
+const reviews = [
+  {
+    name: "Bev Heys",
+    date: "A month ago",
+    text: "First time my dog had been to a groomers. The lady was really friendly and put me at ease. My dog come out beautiful and so soft and smelt wonderful thank you",
+    services: "Dog ear cleaning, Dog bathing and blow dry",
+    profile: "https://www.google.com/maps/contrib/110118572824136253474/reviews?hl=en-GB"
+  },
+  {
+    name: "Anthony Rich",
+    date: "Edited 4 months ago",
+    text: "As usual,what can I say? WOW! Friendly, punctual, lovely cut.Happy dog, happy man, thank you.",
+    profile: "https://www.google.com/maps/contrib/114778148188651020599/reviews?hl=en-GB"
+  },
+  {
+    name: "Gary Brown",
+    date: "A year ago",
+    text: "Very friendly and they done an excellent job with my dogs first puppy pamper, all at a very reasonable prices. Booking is essential. A little awkward to find but most definitely worth it. Very friendly staff with a very warm welcome for the dog and myself."
+  },
+  {
+    name: "Matthew Poynter",
+    date: "A year ago",
+    text: "Fabulous girls here and Petal loves to come and see them.",
+    profile: "https://www.google.com/maps/contrib/107968247999793642523/reviews?hl=en-GB"
+  },
+  {
+    name: "Jozsef Rantle",
+    date: "Edited a year ago",
+    text: "Best dog groomers not just in hemel, but the whole UK! 10/10, 5 STAR you name it! Cannot give enough praise! You will not regret taking your dog here and the service is amazing",
+    profile: "https://www.google.com/maps/contrib/101025186461020121991/reviews?hl=en-GB"
+  },
+  {
+    name: "Claire Evetts",
+    date: "2 years ago",
+    text: "They groomed my very hairy (Long haired German Shephard). She looked gorgeous afterwards and smelt lovely. Very friendly staff, will be returning. 5 gold 🌟",
+    profile: "https://www.google.com/maps/contrib/107371294291689395545/reviews?hl=en-GB"
+  }
+];
+
+const googleReviewsUrl =
+  "https://www.google.com/maps/search/?api=1&query=Lily+Pads+%26+Poppy+Paws%2C+42+Lomond+Road%2C+Hemel+Hempstead+HP2+6PA";
+
+function Stars() {
+  return (
+    <span className="google-review-stars" aria-label="5 out of 5 stars">
+      {Array.from({ length: 5 }, (_, index) => (
+        <Star key={index} size={17} fill="currentColor" strokeWidth={1.5} />
+      ))}
+    </span>
+  );
+}
+
+export default function GoogleReviews() {
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollReviews = (direction: "previous" | "next") => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const distance = carousel.clientWidth * 0.85;
+    carousel.scrollBy({
+      left: direction === "next" ? distance : -distance,
+      behavior: "smooth"
+    });
+  };
+
+  return (
+    <section className="section-pad google-reviews-section" aria-labelledby="google-reviews-heading">
+      <div className="container-shell">
+        <div className="google-reviews-heading">
+          <p className="eyebrow"><PawPrint size={16} /> A little love from our customers</p>
+          <h2 id="google-reviews-heading" className="section-heading mt-4">
+            Happy dogs, <span>happy humans.</span>
+          </h2>
+          <p className="google-reviews-intro">
+            We’re so grateful to everyone who takes the time to share their experience.
+            Here are six lovely words taken directly from our customers’ Google reviews.
+          </p>
+          <div className="google-reviews-rating" aria-label="Five-star Google reviews">
+            <span className="google-reviews-stars" aria-hidden="true">
+              {Array.from({ length: 5 }, (_, index) => <Star key={index} size={21} fill="currentColor" strokeWidth={1.5} />)}
+            </span>
+            <span>Kind words from our Google customers</span>
+          </div>
+        </div>
+
+        <div className="google-reviews-carousel-wrap">
+          <button
+            className="google-reviews-arrow"
+            type="button"
+            aria-label="Scroll to previous reviews"
+            onClick={() => scrollReviews("previous")}
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          <div className="google-reviews-carousel" ref={carouselRef} aria-label="Customer Google reviews">
+            {reviews.map((review) => (
+              <article className="google-review-card" key={review.name}>
+                <Stars />
+                <p className="google-review-date">{review.date}</p>
+                <p className="google-review-text">“{review.text}”</p>
+                {review.services && <p className="google-review-services"><strong>Services:</strong> {review.services}</p>}
+                <a
+                  className="google-review-author"
+                  href={review.profile || googleReviewsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {review.name} <ArrowUpRight size={14} />
+                </a>
+                <span className="google-review-source">Google review</span>
+              </article>
+            ))}
+          </div>
+
+          <button
+            className="google-reviews-arrow"
+            type="button"
+            aria-label="Scroll to next reviews"
+            onClick={() => scrollReviews("next")}
+          >
+            <ChevronRight size={22} />
+          </button>
+        </div>
+
+        <div className="google-reviews-actions">
+          <a className="button-primary" href={googleReviewsUrl} target="_blank" rel="noopener noreferrer">
+            Read our reviews on Google <ArrowUpRight size={17} />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+/* Google reviews carousel: precise card navigation and compact mobile layout. */
+.google-reviews-section,
+.google-reviews-section .container-shell,
+.google-reviews-carousel-wrap,
+.google-reviews-carousel {
+  min-width: 0;
+  max-width: 100%;
+}
+.google-reviews-carousel-wrap {
+  width: 100%;
+  grid-template-columns: 40px minmax(0, 1fr) 40px;
+  gap: 10px;
+  margin-top: 30px;
+}
+.google-reviews-carousel {
+  width: 100%;
+  grid-auto-columns: calc((100% - 32px) / 3);
+  gap: 16px;
+  padding: 3px 1px 12px;
+  scroll-padding-inline: 1px;
+  -webkit-overflow-scrolling: touch;
+}
+.google-reviews-carousel .google-review-card {
+  min-width: 0;
+  min-height: 250px;
+  padding: 20px;
+  border-radius: 19px;
+}
+.google-review-card .google-review-text {
+  margin: 9px 0 13px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.google-review-card .google-review-services {
+  margin: 0 0 12px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+.google-review-source { margin-top: 3px; }
+.google-reviews-arrow { flex: 0 0 auto; }
+@media (max-width: 900px) {
+  .google-reviews-carousel { grid-auto-columns: calc((100% - 16px) / 2); }
+}
+@media (max-width: 640px) {
+  .google-reviews-section { overflow: hidden; }
+  .google-reviews-section .container-shell { width: calc(100% - 28px); }
+  .google-reviews-intro { margin-top: 13px; font-size: 14px; line-height: 1.65; }
+  .google-reviews-rating { margin-top: 14px; }
+  .google-reviews-carousel-wrap {
+    width: 100%;
+    grid-template-columns: 32px minmax(0, 1fr) 32px;
+    gap: 5px;
+    margin-top: 22px;
+  }
+  .google-reviews-carousel {
+    min-width: 0;
+    grid-auto-columns: 100%;
+    gap: 10px;
+    padding: 2px 0 10px;
+    scroll-padding-inline: 0;
+  }
+  .google-reviews-carousel .google-review-card {
+    min-height: 0;
+    padding: 17px;
+  }
+  .google-review-card .google-review-text {
+    margin: 8px 0 11px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .google-reviews-arrow { width: 32px; height: 32px; }
+  .google-reviews-arrow svg { width: 18px; height: 18px; }
+  .google-reviews-actions { margin-top: 22px; }
+  .google-reviews-actions .button-primary { width: 100%; }
 }
