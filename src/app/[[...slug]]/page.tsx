@@ -97,7 +97,7 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug?:
   const { slug } = await params;
   const path = slug?.join("/") || "home";
   const story = await fetchStory(path);
-  if (story) return <>{<StoryblokStory story={story} />}{path === "home" && <GoogleReviews />}</>;
+  if (story) return <><StoryblokStory story={story} />{path === "home" && <GoogleReviews />}</>;
   const Fallback = fallbackPages[path];
   if (!Fallback) notFound();
   return <Fallback />;
