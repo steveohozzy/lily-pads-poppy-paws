@@ -53,7 +53,7 @@ export default function GoogleReviews() {
 
         <div className="google-reviews-actions">
           <a className="button-primary" href={googleReviewsUrl} target="_blank" rel="noopener noreferrer">
-            Read our Google reviews <ArrowUpRight size={17} />
+            Find us on Google <ArrowUpRight size={17} />
           </a>
         </div>
       </div>
