@@ -2,16 +2,16 @@ import { Star, PawPrint, ArrowUpRight } from "lucide-react";
 
 const reviews = [
   {
-    name: "Kyli H.",
-    text: "Her puppy came home smelling and looking amazing, and had a wonderful time."
+    name: "Kyli Hartley",
+    text: "Puppy smells and looks amazing. She had a wonderful time."
   },
   {
     name: "Joe S H",
-    text: "A really easy experience from start to finish, especially with a nervous dachshund."
+    text: "We have a very nervous long haired dachshund who had some matting that needed removing and general grooming and Lily Pads and Poppy Paws was suggested by a friend, and I’m glad I did! It was so very easy from start to finish…" 
   },
   {
     name: "Beverley Fennell",
-    text: "Their dog was so relaxed and happy during the pamper that he even nodded off."
+    text: "Our dog loved it. A big smile from him during his bath proved he enjoyed it. He was so chilled that he actually fell asleep at one point. It was great to see all the photos the groomer took during his pamper session. Highly recommended!"
   }
 ];
 
@@ -29,13 +29,13 @@ export default function GoogleReviews() {
           </h2>
           <p className="google-reviews-intro">
             We’re so grateful to everyone who takes the time to share their experience.
-            Here are just a few of the lovely things customers have said.
+            Here are a few words taken directly from our customers’ Google reviews.
           </p>
-          <div className="google-reviews-rating" aria-label="Five star customer feedback">
+          <div className="google-reviews-rating" aria-label="Five star Google rating">
             <span className="google-reviews-stars" aria-hidden="true">
               {Array.from({ length: 5 }, (_, index) => <Star key={index} size={21} fill="currentColor" strokeWidth={1.5} />)}
             </span>
-            <span>5-star customer feedback</span>
+            <span>5.0 out of 5 on Google · 54 reviews</span>
           </div>
         </div>
 
@@ -46,7 +46,7 @@ export default function GoogleReviews() {
                 {Array.from({ length: 5 }, (_, index) => <Star key={index} size={17} fill="currentColor" strokeWidth={1.5} />)}
               </div>
               <p>{review.text}</p>
-              <span className="google-review-author">{review.name}</span>
+              <span className="google-review-author">{review.name} · Google review</span>
             </article>
           ))}
         </div>
