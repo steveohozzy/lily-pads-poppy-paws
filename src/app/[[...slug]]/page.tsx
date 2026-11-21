@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { StoryblokStory } from "@storyblok/react/rsc";
 import { getStoryblokApi } from "@/lib/storyblok";
 import { business } from "@/lib/business";
+import GoogleReviews from "@/components/GoogleReviews";
 import { HomeFallback, AboutFallback, ServicesFallback, GalleryFallback, FaqsFallback, ContactFallback, PrivacyFallback } from "../fallback-pages";
 
 const fallbackPages: Record<string, React.ComponentType> = {
@@ -96,7 +97,7 @@ export default async function DynamicPage({ params }: { params: Promise<{ slug?:
   const { slug } = await params;
   const path = slug?.join("/") || "home";
   const story = await fetchStory(path);
-  if (story) return <StoryblokStory story={story} />;
+  if (story) return <>{<StoryblokStory story={story} />}{path === "home" && <GoogleReviews />}</>;
   const Fallback = fallbackPages[path];
   if (!Fallback) notFound();
   return <Fallback />;
