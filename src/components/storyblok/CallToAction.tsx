@@ -5,7 +5,6 @@ import EnquiryOptions from "@/components/EnquiryOptions";
 
 type Props = { blok: {
   _uid?: string; _editable?: string; eyebrow?: string; heading?: string; highlight?: string; body?: string;
-  button_text?: string; button_link?: string; phone_link?: string; secondary_button_text?: string; secondary_button_link?: string;
 } };
 
 export default function CallToAction({ blok }: Props) {
