@@ -7,8 +7,6 @@ type Props = {
     _editable?: string;
     heading?: string;
     body?: string;
-    button_text?: string;
-    phone_link?: string;
   };
 };
 
