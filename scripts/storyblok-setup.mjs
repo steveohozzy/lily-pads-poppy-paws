@@ -348,8 +348,6 @@ const components = [
       phone_eyebrow: text(),
       phone_heading: text(),
       phone_body: textarea(),
-      phone_display: text(),
-      phone_link: text(),
       location_eyebrow: text(),
       location_heading: text(),
       address_line_1: text(),
