@@ -402,8 +402,7 @@ const components = [
       eyebrow: text(),
       heading: text(),
       highlight: text(),
-      body: textarea(),
-    }
+      body: textarea()
     }
   }
 ];
