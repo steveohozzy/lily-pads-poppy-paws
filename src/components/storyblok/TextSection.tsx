@@ -9,7 +9,7 @@ type Props = { blok: {
   link_text?: string; link_url?: string; image?: { filename?: string }; image_url?: string; image_alt?: string; art_caption?: string;
   feature_one?: string; feature_two?: string; feature_three?: string;
   primary_button_text?: string; secondary_button_text?: string; directions_url?: string; map_embed_url?: string; map_title?: string;
-  address_line_1?: string; address_line_2?: string; address_line_3?: string; address_line_4?: string; phone_display?: string; phone_link?: string;
+  address_line_1?: string; address_line_2?: string; address_line_3?: string; address_line_4?: string; phone_link?: string;
   monday_hours?: string; tuesday_hours?: string; wednesday_hours?: string; thursday_hours?: string; friday_hours?: string; saturday_hours?: string; sunday_hours?: string;
 } };
 
