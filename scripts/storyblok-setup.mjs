@@ -136,16 +136,12 @@ const components = [
         { name: "Sparkles", value: "sparkles" }
       ] }),
       show_secondary_button: field("boolean", { default_value: true }),
-      button_text: text(),
-      button_link: field("multilink"),
       secondary_button_text: text(),
       secondary_button_link: text(),
       trust_badge_one: text(),
       trust_badge_two: text(),
       sticker_top: text(),
       sticker_bottom: text(),
-      phone_link: text(),
-      phone_text: text(),
       paint_note: text()
     }
   },
@@ -176,7 +172,6 @@ const components = [
       address_line_1: text(),
       address_line_2: text(),
       address_line_3: text(),
-      phone_display: text(),
       phone_link: text(),
       address_line_4: text(),
       monday_hours: text(),
@@ -315,7 +310,6 @@ const components = [
       eyebrow: text(),
       heading: text(),
       intro: textarea(),
-      images: field("multiasset"),
       gallery_items: bloks(["gallery_image"]),
       social_eyebrow: text(),
       social_heading: text(),
@@ -385,8 +379,6 @@ const components = [
     schema: {
       heading: text(),
       body: textarea(),
-      button_text: text(),
-      phone_link: text()
     }
   },
   {
@@ -411,11 +403,7 @@ const components = [
       heading: text(),
       highlight: text(),
       body: textarea(),
-      button_text: text(),
-      button_link: text(),
-      phone_link: text(),
-      secondary_button_text: text(),
-      secondary_button_link: text()
+    }
     }
   }
 ];
