@@ -71,7 +71,7 @@ Every page uses the root **Page** component. Its `body` field is a nestable bloc
 
 | Component | Purpose / editable content |
 |---|---|
-| Hero | Eyebrow, heading, highlighted phrase, intro, image, alt text, paint note, CTA labels and destinations, trust labels, layout variant |
+| Hero | Eyebrow, heading, highlighted phrase, intro, image, alt text, paint note, secondary link, trust labels, layout variant |
 | Trust Ribbon | Reorderable trust/location messages and icon choice |
 | Text Section | Eyebrow, heading, highlighted phrase, body copy, image, links, location details, map and opening-hours fields |
 | About Introduction | The two-column Lily Pads promise and friendly approach section, including feature list |
@@ -81,11 +81,11 @@ Every page uses the root **Page** component. Its `body` field is a nestable bloc
 | Grooming Picker Option | Option title, short description and selected-result text |
 | FAQ List | Intro message, phone CTA and FAQ heading |
 | FAQ Item | Individual question and answer |
-| Gallery Grid | Gallery heading, images, captions, social text and social destinations |
+| Gallery Grid | Gallery heading, reorderable Gallery Items, social text and social destinations. Add images through Gallery Items; the duplicate multi-asset Images field has been removed. |
 | Gallery Image | Image asset or URL, alt text and caption |
 | Contact Panels | Phone enquiry card, address card, directions link, opening hours and map |
-| Callout | The compact contact strip used at the bottom of inner pages |
-| Call to Action | The larger homepage final CTA |
+| Callout | Heading and body for the compact contact strip used at the bottom of inner pages; contact methods are provided by the shared enquiry controls. |
+| Call to Action | Eyebrow, heading, highlighted phrase and body for the larger homepage final CTA; contact methods are provided by the shared enquiry controls. |
 
 The small icons, paint marks, card shapes, spacing, responsive behaviour and interaction mechanics are part of the design system. Editors manage their wording, links, images, options and ordering through Storyblok; they do not need to recreate the visual styling.
 
