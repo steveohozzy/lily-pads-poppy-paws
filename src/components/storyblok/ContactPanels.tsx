@@ -4,8 +4,7 @@ import { storyblokEditable } from "@storyblok/react/rsc";
 
 type Props = { blok: {
   _uid: string; _editable?: string;
-  phone_eyebrow?: string; phone_heading?: string; phone_body?: string; phone_display?: string; phone_link?: string;
-  location_eyebrow?: string; location_heading?: string; address_line_1?: string; address_line_2?: string; address_line_3?: string; address_line_4?: string;
+  phone_eyebrow?: string; phone_heading?: string; phone_body?: string; location_eyebrow?: string; location_heading?: string; address_line_1?: string; address_line_2?: string; address_line_3?: string; address_line_4?: string;
   directions_text?: string; directions_url?: string; hours_eyebrow?: string; hours_heading?: string;
   monday_hours?: string; tuesday_hours?: string; wednesday_hours?: string; thursday_hours?: string; friday_hours?: string; saturday_hours?: string; sunday_hours?: string;
   map_title?: string; map_embed_url?: string;
