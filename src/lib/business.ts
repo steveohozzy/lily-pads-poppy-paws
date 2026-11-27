@@ -14,7 +14,7 @@ export const business = {
   },
   instagram: "https://www.instagram.com/lilypadspoppypaws/",
   facebook: "https://www.facebook.com/lilypadspoppypaws/",
-  domain: "https://lilypadspoppypaws.co.uk",
+  domain: "https://www.lilypadspoppypaws.co.uk",
   openingHours: [
     "Tu 09:00-17:00",
     "We 09:00-17:00",
