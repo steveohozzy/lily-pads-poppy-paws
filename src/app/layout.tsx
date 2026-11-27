@@ -56,6 +56,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
       addressRegion: business.address.addressRegion,
       addressCountry: business.address.addressCountry
     },
+    areaServed: ["Hemel Hempstead", "Hertfordshire"],
     sameAs: [settings?.facebook_url || business.facebook, settings?.instagram_url || business.instagram],
     knowsAbout: ["Dog grooming", "Dog nail clipping", "Full dog grooms"],
     openingHoursSpecification: [
